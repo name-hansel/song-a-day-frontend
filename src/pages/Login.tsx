@@ -10,7 +10,7 @@ export default function Login() {
 
     return (
         appUser ? <Navigate to="/dashboard" replace/> : <div>
-            <h1>song of day</h1>
+            <h1>song a day</h1>
             <button onClick={login}>Login with Spotify</button>
         </div>
     )
