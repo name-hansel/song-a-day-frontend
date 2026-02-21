@@ -1,14 +1,19 @@
 import axios from "axios";
 import type {AppUser} from "../types/AppUser.ts";
 
+const REFRESH_TOKEN_API_URL = "/auth/refresh-access-token";
+const GET_CURRENT_USER_API_URL = "/app-user/me";
+const LOGOUT_API_URL = "/auth/logout";
+
 export const api = axios.create({baseURL: "http://127.0.0.1:8080/api", withCredentials: true});
 
 let refreshPromise: Promise<void> | null = null;
 
 async function refreshAccessToken() {
     if (!refreshPromise) {
+
         refreshPromise = api
-            .post("/auth/refresh-access-token")
+            .post(REFRESH_TOKEN_API_URL)
             .then(() => {
             })
             .finally(() => {
@@ -22,7 +27,7 @@ api.interceptors.response.use(
     res => res,
     async error => {
         const original = error.config;
-        if (original._retry || original.url?.includes("/auth/refresh-access-token") || error.response?.data?.message === "USER_NOT_LOGGED_IN")
+        if (original._retry || original.url?.includes(REFRESH_TOKEN_API_URL) || error.response?.data?.message === "USER_NOT_LOGGED_IN")
             return Promise.reject(error);
 
         if (!error.response || error.response.status !== 401)
@@ -39,5 +44,5 @@ api.interceptors.response.use(
     }
 );
 
-export const getAppUser = () => api.get<AppUser>("/auth/me");
-export const logoutAppUser = () => api.post("/auth/logout");
+export const getAppUser = () => api.get<AppUser>(GET_CURRENT_USER_API_URL);
+export const logoutAppUser = () => api.post(LOGOUT_API_URL);
