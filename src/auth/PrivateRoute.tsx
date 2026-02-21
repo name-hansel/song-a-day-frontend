@@ -10,7 +10,7 @@ export default function PrivateRoute({children}: { children: ReactElement }) {
     }
 
     if (!appUser) {
-        return <Navigate to="/login" replace/>
+        return <Navigate to="/" replace/>
     }
 
     return children;
