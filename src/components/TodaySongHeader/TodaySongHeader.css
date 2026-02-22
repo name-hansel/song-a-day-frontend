@@ -8,7 +8,7 @@
     align-items: center;
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-text-dark);
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
 }
 
@@ -17,7 +17,6 @@
     font-weight: 400;
     font-size: 1.8rem;
     letter-spacing: 2px;
-    font-style: italic;
     margin: 0;
 }
 
@@ -27,4 +26,5 @@
 
 .today-song-day {
     font-size: 1.4rem;
+    font-style: italic;
 }

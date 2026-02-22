@@ -5,6 +5,7 @@ export type SongOfDay = {
     uuid: string;
     songDate: string;
     trackInformation: TrackSearch;
+    addedAtTime: string;
 }
 
 export async function getSongOfDayForAppUser() {

@@ -18,8 +18,8 @@ export default function SongOfDayItem({song}: { song: SongOfDay }) {
                     <p className="song-album">{song.trackInformation.albumName}</p>
                 </div>
                 <div className="song-metainfo">
-                    <p className="song-description">
-                        TODO: Added at (time) here
+                    <p className="logged-at">
+                        logged at: {song.addedAtTime}
                     </p>
                 </div>
             </div>
