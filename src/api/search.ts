@@ -1,6 +1,6 @@
-import {api} from "./auth.ts";
+import {api} from "./common.ts";
 
-export type TrackSearchResult = {
+export type TrackSearch = {
     spotifyId: string;
     trackName: string;
     artistName: string;
@@ -9,7 +9,7 @@ export type TrackSearchResult = {
 }
 
 export async function searchForTracks(query: string, signal?: AbortSignal) {
-    const response = await api.get<TrackSearchResult[]>("/spotify/search-track", {
+    const response = await api.get<TrackSearch[]>("/spotify/search-track", {
         params: {
             q: query
         },

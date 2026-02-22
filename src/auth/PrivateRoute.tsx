@@ -5,6 +5,7 @@ import Login from "../pages/login/Login.tsx";
 export default function PrivateRoute({children}: { children: ReactElement }) {
     const {appUser, loading} = useAuth();
 
+    // TODO: Spinner here
     if (loading) {
         return <h2>Loading...</h2>
     }

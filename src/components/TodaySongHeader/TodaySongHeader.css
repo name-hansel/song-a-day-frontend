@@ -1,11 +1,12 @@
 .today-song-header {
     width: 100%;
     display: flex;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     padding: 1rem 1.5rem;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--color-text-light);
+    background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-text-dark);
     border-radius: 6px;
     box-sizing: border-box;
@@ -13,11 +14,15 @@
 
 .today-song {
     color: var(--color-bg-primary);
-    font-weight: 600;
+    font-weight: 400;
     font-size: 1.8rem;
     letter-spacing: 2px;
     font-style: italic;
     margin: 0;
+}
+
+.today-song-title {
+    font-weight: 800;
 }
 
 .today-song-day {

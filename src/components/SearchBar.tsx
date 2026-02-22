@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import {useDebounce} from "../hooks/useDebounce.ts";
-import {searchForTracks, type TrackSearchResult} from "../api/search.ts";
+import {searchForTracks, type TrackSearch} from "../api/search.ts";
 
 export default function SearchBar() {
     const [query, setQuery] = useState("");
-    const [searchResult, setSearchResult] = useState<TrackSearchResult[]>([]);
+    const [searchResult, setSearchResult] = useState<TrackSearch[]>([]);
     const [searchLoading, setSearchLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const debouncedQuery = useDebounce(query, 300);
@@ -49,7 +49,7 @@ export default function SearchBar() {
 
             <ul>
                 {
-                    searchResult.map((track: TrackSearchResult) => (
+                    searchResult.map((track: TrackSearch) => (
                         <li key={track.spotifyId}>
                             <div>
                                 <h2>{track.trackName}</h2>
