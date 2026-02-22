@@ -1,21 +1,19 @@
 import './App.css'
 import {AuthProvider} from "./auth/AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
-import Login from "./pages/Login.tsx";
 import PrivateRoute from "./auth/PrivateRoute.tsx";
-import UserHome from "./pages/UserHome.tsx";
+import Home from "./pages/Home.tsx";
 
 function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/dashboard" element={
+                    <Route path="/" element={
                         <PrivateRoute>
-                            <UserHome/>
+                            <Home/>
                         </PrivateRoute>
                     }/>
-                    <Route path="/" element={<Login/>}/>
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

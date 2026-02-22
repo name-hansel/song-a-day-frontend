@@ -1,6 +1,6 @@
 import {useAuth} from "./AuthContext.tsx";
-import {Navigate} from 'react-router';
 import type {ReactElement} from "react";
+import Login from "../pages/Login.tsx";
 
 export default function PrivateRoute({children}: { children: ReactElement }) {
     const {appUser, loading} = useAuth();
@@ -10,7 +10,7 @@ export default function PrivateRoute({children}: { children: ReactElement }) {
     }
 
     if (!appUser) {
-        return <Navigate to="/" replace/>
+        return <Login/>
     }
 
     return children;
