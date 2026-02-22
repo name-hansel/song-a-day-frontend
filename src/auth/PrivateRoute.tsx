@@ -1,6 +1,6 @@
 import {useAuth} from "./AuthContext.tsx";
 import type {ReactElement} from "react";
-import Login from "../pages/Login.tsx";
+import Login from "../pages/login/Login.tsx";
 
 export default function PrivateRoute({children}: { children: ReactElement }) {
     const {appUser, loading} = useAuth();

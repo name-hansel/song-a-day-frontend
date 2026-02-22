@@ -2,7 +2,7 @@ import './App.css'
 import {AuthProvider} from "./auth/AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 import PrivateRoute from "./auth/PrivateRoute.tsx";
-import Home from "./pages/Home.tsx";
+import Home from "./pages/home/Home.tsx";
 
 function App() {
     return (

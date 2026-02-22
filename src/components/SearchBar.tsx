@@ -10,7 +10,8 @@ export default function SearchBar() {
     const debouncedQuery = useDebounce(query, 300);
 
     useEffect(() => {
-        if (!debouncedQuery.trim()) {
+        const searchQuery = debouncedQuery.trim();
+        if (!searchQuery || searchQuery.length < 2) {
             setSearchResult([]);
             return;
         }
@@ -49,7 +50,13 @@ export default function SearchBar() {
             <ul>
                 {
                     searchResult.map((track: TrackSearchResult) => (
-                        <li key={track.spotifyId}>{track.trackName}</li>
+                        <li key={track.spotifyId}>
+                            <div>
+                                <h2>{track.trackName}</h2>
+                                <h4>{track.albumName}</h4>
+                                <h4>{track.artistName}</h4>
+                            </div>
+                        </li>
                     ))
                 }
             </ul>

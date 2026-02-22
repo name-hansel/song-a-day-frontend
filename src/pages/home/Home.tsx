@@ -1,5 +1,5 @@
-import {useAuth} from "../auth/AuthContext.tsx";
-import SearchBar from "../components/SearchBar.tsx";
+import {useAuth} from "../../auth/AuthContext.tsx";
+import SearchBar from "../../components/SearchBar.tsx";
 
 export default function Home() {
     const {appUser, logout} = useAuth();
