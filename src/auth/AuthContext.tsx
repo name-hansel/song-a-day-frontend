@@ -1,4 +1,10 @@
-import {createContext, type ReactNode, useContext, useEffect, useState} from "react";
+import {
+    createContext,
+    type ReactNode,
+    useContext,
+    useEffect,
+    useState
+} from "react";
 import {getAppUser, logoutAppUser} from "../api/auth.ts";
 import type {AppUser} from "../types/AppUser.ts";
 
@@ -40,7 +46,8 @@ export function AuthProvider({children}: { children: ReactNode }) {
     }, []);
 
     return <>
-        <AuthContext.Provider value={{appUser, setAppUser, loading, setLoading, logout}}>
+        <AuthContext.Provider
+            value={{appUser, setAppUser, loading, setLoading, logout}}>
             {children}
         </AuthContext.Provider>
     </>

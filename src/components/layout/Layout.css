@@ -4,57 +4,9 @@
     flex-direction: column;
 }
 
-.layout-header {
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid var(--color-text-dark);
-    justify-content: space-between;
-}
-
-.layout-title {
-    font-family: "Bowlby One", sans-serif;
-    letter-spacing: 2px;
-    color: var(--color-text-dark);
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.layout-header-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.layout-username {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--color-text-light);
-}
-
-.layout-logout-button {
-    font-family: inherit;
-    font-size: 0.8rem;
-    font-weight: 500;
-
-    background-color: var(--color-text-light);
-    color: var(--color-bg-primary);
-    border: 1px solid var(--color-text-dark);
-
-    padding: 0.65rem 1.25rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.layout-logout-button:hover {
-    background-color: var(--color-text-dark);
-}
-
 .layout-main {
     flex: 1;
-    padding: 2rem;
+    padding: 0 2rem;
     width: 100%;
     box-sizing: border-box;
 }

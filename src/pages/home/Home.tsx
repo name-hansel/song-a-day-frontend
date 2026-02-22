@@ -1,6 +1,7 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
-import SearchBar from "../../components/SearchBar.tsx";
 import Layout from "../../components/layout/Layout.tsx";
+import TodaySongHeader
+    from "../../components/TodaySongHeader/TodaySongHeader.tsx";
 
 export default function Home() {
     const {appUser, logout} = useAuth();
@@ -11,10 +12,10 @@ export default function Home() {
 
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <div>
-                <h2>{appUser.timezone}</h2>
-                <SearchBar/>
-            </div>
+            <TodaySongHeader date={appUser.formattedDateForToday}/>
+            {/*<div>*/}
+            {/*    <SearchBar/>*/}
+            {/*</div>*/}
         </Layout>
     );
 }

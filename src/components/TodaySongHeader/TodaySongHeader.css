@@ -1,0 +1,25 @@
+.today-song-header {
+    width: 100%;
+    display: flex;
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-text-light);
+    border: 1px solid var(--color-text-dark);
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.today-song {
+    color: var(--color-bg-primary);
+    font-weight: 600;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    font-style: italic;
+    margin: 0;
+}
+
+.today-song-day {
+    font-size: 1.4rem;
+}
