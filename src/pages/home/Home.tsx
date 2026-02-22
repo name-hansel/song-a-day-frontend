@@ -1,5 +1,6 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
 import SearchBar from "../../components/SearchBar.tsx";
+import Layout from "../../components/layout/Layout.tsx";
 
 export default function Home() {
     const {appUser, logout} = useAuth();
@@ -9,11 +10,11 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h2>{appUser.appUserName}</h2>
-            <h2>{appUser.timezone}</h2>
-            <SearchBar/>
-            <button onClick={logout}>Logout</button>
-        </div>
+        <Layout displayName={appUser.appUserName} onLogout={logout}>
+            <div>
+                <h2>{appUser.timezone}</h2>
+                <SearchBar/>
+            </div>
+        </Layout>
     );
 }
