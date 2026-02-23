@@ -7,6 +7,7 @@
     background-color: transparent;
     padding: 0.6rem 1rem 0.6rem 1.25rem;
     cursor: pointer;
+    min-width: 0;
 }
 
 .search-item:last-child {
@@ -46,6 +47,12 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+}
+
+.search-item-detail {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .search-item-title {

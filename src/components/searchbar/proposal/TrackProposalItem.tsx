@@ -23,9 +23,12 @@ export default function TrackProposalItem({track, setSong}: {
                 className="search-item-image"
             />
             <div className="search-item-details">
-                <div className="search-item-title">{track.trackName}</div>
-                <div className="search-item-artist">{track.artistName}</div>
-                <div className="search-item-album">{track.albumName}</div>
+                <div
+                    className="search-item-detail search-item-title">{track.trackName}</div>
+                <div
+                    className="search-item-detail search-item-artist">{track.artistName}</div>
+                <div
+                    className="search-item-detail search-item-album">{track.albumName}</div>
             </div>
         </div>
     )
