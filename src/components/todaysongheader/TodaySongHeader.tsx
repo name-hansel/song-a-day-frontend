@@ -13,7 +13,6 @@ export default function TodaySongHeader({song, setSong}: {
             {
                 !song && <SearchBar setSong={setSong}/>
             }
-            {/*<h2 className="today-song today-song-day">{date?.toLowerCase()}</h2>*/}
         </section>
     );
 }
