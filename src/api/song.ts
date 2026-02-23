@@ -12,3 +12,8 @@ export async function getSongOfDayForAppUser() {
     const response = await api.get<SongOfDay | null>("/song-a-day");
     return response.data;
 }
+
+export async function deleteSongOfDayForAppUser() {
+    const response = await api.delete("/song-a-day");
+    console.log(response)
+}

@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import "./Layout.css";
-import MainHeader from "../MainHeader/MainHeader.tsx";
+import MainHeader from "../mainheader/MainHeader.tsx";
 
 export default function Layout({children, displayName, onLogout}: {
     children: ReactNode, displayName: string, onLogout: () => Promise<void>

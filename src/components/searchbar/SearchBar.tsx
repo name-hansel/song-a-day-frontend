@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
-import {useDebounce} from "../hooks/useDebounce.ts";
-import {searchForTracks, type TrackSearch} from "../api/search.ts";
+import {useDebounce} from "../../hooks/useDebounce.ts";
+import {searchForTracks, type TrackSearch} from "../../api/search.ts";
+import "./SearchBar.css";
+import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
 
 export default function SearchBar() {
     const [query, setQuery] = useState("");
@@ -38,28 +40,28 @@ export default function SearchBar() {
     }, [debouncedQuery]);
 
     return (
-        <div>
+        <div className="search-wrapper">
             <input value={query}
                    onChange={e => {
                        setQuery(e.target.value);
                    }}
-                   placeholder="Search for tracks..."/>
-            {searchLoading && <p>Loading...</p>}
+                   placeholder="Search for tracks..."
+                   className="search-input"/>
+            {/*TODO: Change to icon for both loading and search */}
+            <span
+                className="search-icon">{searchLoading ? "loading..." : "search"}</span>
             {error && <p>{error}</p>}
-
-            <ul>
-                {
-                    searchResult.map((track: TrackSearch) => (
-                        <li key={track.spotifyId}>
-                            <div>
-                                <h2>{track.trackName}</h2>
-                                <h4>{track.albumName}</h4>
-                                <h4>{track.artistName}</h4>
-                            </div>
-                        </li>
-                    ))
-                }
-            </ul>
+            {
+                !searchLoading && searchResult.length > 0 && (
+                    <div className="search-results">
+                        {
+                            searchResult.map((track: TrackSearch) => (
+                                <TrackProposalItem track={track}/>
+                            ))
+                        }
+                    </div>
+                )
+            }
         </div>
     )
 }

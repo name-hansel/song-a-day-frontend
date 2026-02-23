@@ -1,7 +1,9 @@
-import type {SongOfDay} from "../../../api/song.ts";
+import {type SongOfDay} from "../../../api/song.ts";
 import "./SongOfDayItem.css";
 
-export default function SongOfDayItem({song}: { song: SongOfDay }) {
+export default function SongOfDayItem({song, removeSong}: {
+    song: SongOfDay, removeSong: () => Promise<void>
+}) {
     return (
         <div className="song-card">
             <div className="song-image-wrapper">
@@ -21,6 +23,9 @@ export default function SongOfDayItem({song}: { song: SongOfDay }) {
                     <p className="logged-at">
                         logged at: {song.addedAtTime}
                     </p>
+                    <button onClick={removeSong}>
+                        remove song of day
+                    </button>
                 </div>
             </div>
         </div>

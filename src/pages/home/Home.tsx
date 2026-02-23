@@ -1,9 +1,9 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
 import Layout from "../../components/layout/Layout.tsx";
 import TodaySongHeader
-    from "../../components/TodaySongHeader/TodaySongHeader.tsx";
+    from "../../components/todaysongheader/TodaySongHeader.tsx";
 import SongOfDayContainer
-    from "../../components/SongOfDay/SongOfDayContainer/SongOfDayContainer.tsx";
+    from "../../components/SongOfDay/songofdaycontainer/SongOfDayContainer.tsx";
 
 export default function Home() {
     const {appUser, logout} = useAuth();
@@ -14,7 +14,7 @@ export default function Home() {
 
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <TodaySongHeader date={appUser.formattedDateForToday}/>
+            <TodaySongHeader/>
             <SongOfDayContainer/>
         </Layout>
     );

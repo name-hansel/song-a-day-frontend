@@ -1,5 +1,5 @@
 import "./SongOfDayContainer.css";
-import SongOfDay from "../SongOfDay/SongOfDay.tsx";
+import SongOfDay from "../songofday/SongOfDay.tsx";
 
 export default function SongOfDayContainer() {
     return (

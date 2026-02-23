@@ -1,8 +1,9 @@
 .container {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
     padding: 2rem;
     box-sizing: border-box;
     background-color: var(--color-bg-secondary);

@@ -1,7 +1,11 @@
 import "./SongOfDay.css"
 import {useEffect, useState} from "react";
-import {getSongOfDayForAppUser, type SongOfDay} from "../../../api/song.ts";
-import SongOfDayItem from "../SongOfDayItem/SongOfDayItem.tsx";
+import {
+    deleteSongOfDayForAppUser,
+    getSongOfDayForAppUser,
+    type SongOfDay
+} from "../../../api/song.ts";
+import SongOfDayItem from "../songofdayitem/SongOfDayItem.tsx";
 
 export default function SongOfDay() {
     const [songOfDay, setSongOfDay] = useState<SongOfDay | null>(null);
@@ -23,6 +27,11 @@ export default function SongOfDay() {
         getSongOfDay();
     }, []);
 
+    async function removeSongForAppUser() {
+        await deleteSongOfDayForAppUser();
+        setSongOfDay(null);
+    }
+
     if (loading) {
         return <h1 className="msg">Loading...</h1>
     }
@@ -32,10 +41,15 @@ export default function SongOfDay() {
     }
 
     if (!songOfDay) {
-        return <h1 className="msg">No song yet!</h1>
+        return (
+            <>
+                <p className="msg">No song logged yet!</p>
+            </>
+        )
     }
 
     return (
-        <SongOfDayItem song={songOfDay}/>
+        <SongOfDayItem song={songOfDay}
+                       removeSong={removeSongForAppUser}/>
     )
 }
