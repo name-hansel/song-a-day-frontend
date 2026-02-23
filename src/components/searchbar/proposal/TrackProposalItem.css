@@ -4,9 +4,9 @@
     align-items: center;
     gap: 0.75rem;
     border-bottom: 1px solid var(--color-text-light);
-    cursor: pointer;
     background-color: transparent;
     padding: 0.6rem 1rem 0.6rem 1.25rem;
+    cursor: pointer;
 }
 
 .search-item:last-child {
@@ -59,3 +59,4 @@
     font-size: 0.85rem;
     color: var(--color-text-light);
 }
+

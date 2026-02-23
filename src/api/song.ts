@@ -8,12 +8,21 @@ export type SongOfDay = {
     addedAtTime: string;
 }
 
+const path = "/song-a-day";
+
 export async function getSongOfDayForAppUser() {
-    const response = await api.get<SongOfDay | null>("/song-a-day");
+    const response = await api.get<SongOfDay | null>(path);
     return response.data;
 }
 
 export async function deleteSongOfDayForAppUser() {
-    const response = await api.delete("/song-a-day");
-    console.log(response)
+    await api.delete(path);
+}
+
+export async function logSongOfDayForAppUser(spotifyId: string) {
+    const response = await api.put<SongOfDay>(path, {
+        spotifyId
+    });
+
+    return response.data;
 }

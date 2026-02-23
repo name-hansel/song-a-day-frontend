@@ -4,8 +4,11 @@ import TodaySongHeader
     from "../../components/todaysongheader/TodaySongHeader.tsx";
 import SongOfDayContainer
     from "../../components/SongOfDay/songofdaycontainer/SongOfDayContainer.tsx";
+import {useState} from "react";
+import {type SongOfDay} from "../../api/song.ts";
 
 export default function Home() {
+    const [song, setSong] = useState<SongOfDay | null>(null);
     const {appUser, logout} = useAuth();
 
     if (!appUser) {
@@ -14,8 +17,8 @@ export default function Home() {
 
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <TodaySongHeader/>
-            <SongOfDayContainer/>
+            <TodaySongHeader song={song} setSong={setSong}/>
+            <SongOfDayContainer song={song} setSong={setSong}/>
         </Layout>
     );
 }
