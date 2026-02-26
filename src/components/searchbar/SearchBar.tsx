@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../hooks/useDebounce.ts";
 import {searchForTracks, type TrackSearch} from "../../api/search.ts";
 import "./SearchBar.css";
@@ -13,7 +13,10 @@ export default function SearchBar({setSong}: {
     const [searchResult, setSearchResult] = useState<TrackSearch[]>([]);
     const [searchLoading, setSearchLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showProposals, setShowProposals] = useState(false);
     const debouncedQuery = useDebounce(query, 300);
+
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const searchQuery = debouncedQuery.trim();
@@ -42,21 +45,38 @@ export default function SearchBar({setSong}: {
         search();
         return () => controller.abort();
     }, [debouncedQuery]);
+    useEffect(() => {
+        function handleFocusLost(event: MouseEvent) {
+            if (
+                containerRef.current &&
+                !containerRef.current.contains(event.target as Node)
+            ) {
+                setShowProposals(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleFocusLost);
+
+        return () => {
+            document.removeEventListener("mousedown", handleFocusLost);
+        };
+    }, []);
 
     return (
-        <div className="search-wrapper">
+        <div className="search-wrapper" ref={containerRef}>
             <input value={query}
                    onChange={e => {
                        setQuery(e.target.value);
                    }}
                    placeholder="Search for tracks..."
-                   className="search-input"/>
+                   className="search-input"
+                   onFocus={() => setShowProposals(true)}/>
             {/*TODO: Change to icon for both loading and search */}
             <span
                 className="search-icon">{searchLoading ? "loading..." : "search"}</span>
             {error && <p>{error}</p>}
             {
-                !searchLoading && searchResult.length > 0 && (
+                !searchLoading && showProposals && searchResult.length > 0 && (
                     <div className="search-results">
                         {
                             searchResult.map((track: TrackSearch) => (
