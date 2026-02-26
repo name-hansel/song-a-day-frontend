@@ -65,6 +65,20 @@
     letter-spacing: 1px;
 }
 
+.track-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.track-link:visited,
+.track-link:hover,
+.track-link:active,
+.track-link:focus {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
 @media (max-width: 700px) {
     .song-card {
         flex-direction: column;

@@ -15,7 +15,11 @@ export default function SongOfDayItem({song, removeSong}: {
             </div>
             <div className="song-details">
                 <div className="track-details">
-                    <h3 className="song-title">{song.trackInformation.trackName}</h3>
+                    <a target="_blank"
+                       className="song-title track-link"
+                       href={song.trackInformation.spotifyUrl}><h3
+                        className="song-title">{song.trackInformation.trackName}</h3>
+                    </a>
                     <p className="song-artist">{song.trackInformation.artistName}</p>
                     <p className="song-album">{song.trackInformation.albumName}</p>
                 </div>

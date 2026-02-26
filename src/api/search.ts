@@ -6,6 +6,7 @@ export type TrackSearch = {
     artistName: string;
     albumName: string;
     imageUrl: string;
+    spotifyUrl: string;
 }
 
 export async function searchForTracks(query: string, signal?: AbortSignal) {
