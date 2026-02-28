@@ -26,3 +26,8 @@ export async function logSongOfDayForAppUser(spotifyId: string) {
 
     return response.data;
 }
+
+export async function getUserSongHistoryForWeek() {
+    const response = await api.get<SongOfDay[]>(path + "/history");
+    return response.data;
+}

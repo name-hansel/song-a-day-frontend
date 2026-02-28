@@ -1,13 +1,13 @@
 import {useAuth} from "./AuthContext.tsx";
 import type {ReactElement} from "react";
 import Login from "../pages/login/Login.tsx";
+import Spinner from "../pages/spinner/Spinner.tsx";
 
 export default function PrivateRoute({children}: { children: ReactElement }) {
     const {appUser, loading} = useAuth();
 
-    // TODO: Spinner here
     if (loading) {
-        return <h2>Loading...</h2>
+        return <Spinner/>;
     }
 
     if (!appUser) {

@@ -8,6 +8,7 @@ import {
     type SongOfDay
 } from "../../../api/song.ts";
 import SongOfDayItem from "../songofdayitem/SongOfDayItem.tsx";
+import Spinner from "../../../pages/spinner/Spinner.tsx";
 
 export default function SongOfDay({song, setSong}: {
     song: SongOfDay | null;
@@ -37,7 +38,7 @@ export default function SongOfDay({song, setSong}: {
     }
 
     if (loading) {
-        return <h1 className="msg">Loading...</h1>
+        return <Spinner/>
     }
 
     if (error) {
