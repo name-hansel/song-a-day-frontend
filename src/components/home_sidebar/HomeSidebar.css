@@ -1,19 +1,18 @@
 .home-sidebar {
     width: 260px;
-    padding: 2rem 0.75rem 1rem 0.5rem;
+    padding: 0.75rem 1rem;
     display: flex;
     flex-direction: column;
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
     justify-content: flex-end;
     border-top: none;
+    gap: 1rem;
 }
 
 .sidebar-title {
     font-size: 1rem;
-    letter-spacing: 0.08em;
     font-family: "Bowlby One", sans-serif;
-    margin-bottom: 1.5rem;
     font-weight: 500;
     color: var(--color-text-primary);
 }
@@ -29,7 +28,13 @@
 .sidebar-content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     position: relative;
     width: 100%;
+    flex-grow: 1;
     gap: 1rem;
+}
+
+.sidebar-content > * {
+    flex: 1 1 auto;
 }
