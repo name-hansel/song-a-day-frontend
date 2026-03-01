@@ -20,7 +20,7 @@ export default function Home() {
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
             <div className="home-layout">
-                <HomeSidebar/>
+                <HomeSidebar songForToday={song}/>
                 <div className="home-main">
                     <TodaySongHeader song={song} setSong={setSong}/>
                     <SongOfDayContainer song={song} setSong={setSong}/>

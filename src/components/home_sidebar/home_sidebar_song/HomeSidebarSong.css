@@ -45,8 +45,7 @@
 }
 
 .sidebar-card-date {
-    font-size: 0.6rem;
-    letter-spacing: 0.03em;
+    font-size: 0.7rem;
     color: var(--color-text-secondary);
 }
 
@@ -55,6 +54,9 @@
     color: var(--color-text-primary);
     border-radius: var(--border-radius);
     transition: background-color 0.2s ease, transform 0.15s ease;
+    display: flex;
+    border: 1px var(--color-border) solid;
+    align-items: center;
 }
 
 .sidebar-card-latest .sidebar-card-date,
@@ -63,5 +65,5 @@
 }
 
 .sidebar-card-latest:hover {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-hover);
 }

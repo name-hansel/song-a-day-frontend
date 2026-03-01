@@ -4,7 +4,9 @@ import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
 
-export default function HomeSidebar() {
+export default function HomeSidebar({songForToday}: {
+    songForToday: SongOfDay | null
+}) {
     const [songHistory, setSongHistory] = useState<SongOfDay[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -23,7 +25,7 @@ export default function HomeSidebar() {
         }
 
         getSongHistory();
-    }, [])
+    }, [songForToday])
 
     return (
         <aside className="home-sidebar">

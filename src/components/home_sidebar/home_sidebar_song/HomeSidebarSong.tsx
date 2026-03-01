@@ -5,6 +5,13 @@ export default function HomeSidebarSong({song, isLatest}: {
     song?: SongOfDay,
     isLatest: boolean
 }) {
+    function formatDate(dateString: string): string {
+        const date: Date = new Date(dateString);
+        const day: string = date.toLocaleDateString("en-US", {day: "2-digit"});
+        const month: string = date.toLocaleDateString("en-US", {month: "long"});
+        return `${day} ${month}`;
+    }
+
     return (
         <div
             className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""}`}>
@@ -18,7 +25,7 @@ export default function HomeSidebarSong({song, isLatest}: {
                         {(
                             <>
                                 <div
-                                    className="sidebar-card-date">{isLatest ? "Today" : song.songDate}</div>
+                                    className="sidebar-card-date">{isLatest ? "Today" : formatDate(song.songDate)}</div>
                                 <div
                                     className="sidebar-card-title"
                                     title={song.trackInformation.trackName}
