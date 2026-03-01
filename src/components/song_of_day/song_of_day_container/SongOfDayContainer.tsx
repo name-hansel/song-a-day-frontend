@@ -10,18 +10,21 @@ export default function SongOfDayContainer({
                                                song,
                                                setSong,
                                                pendingSong,
-                                               onConfirmationCancel
+                                               onConfirmationCancel,
+                                               handleConfirmation
                                            }: {
     song: SongOfDayType | null,
     setSong: React.Dispatch<React.SetStateAction<SongOfDayType | null>>,
     pendingSong?: TrackSearch | null,
-    onConfirmationCancel: () => void
+    onConfirmationCancel: () => void,
+    handleConfirmation: (trackId: string) => void
 }) {
     return (
         <div className="container">
             {
-                pendingSong ? <LogSongConfirmation
-                        onConfirmationCancel={onConfirmationCancel}/> :
+                pendingSong ? <LogSongConfirmation pendingSong={pendingSong}
+                                                   handleConfirmation={handleConfirmation}
+                                                   onConfirmationCancel={onConfirmationCancel}/> :
                     <SongOfDay song={song} setSong={setSong}/>
             }
         </div>

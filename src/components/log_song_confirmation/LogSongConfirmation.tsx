@@ -1,8 +1,67 @@
-export default function LogSongConfirmation({onConfirmationCancel}: {
-    onConfirmationCancel: () => void;
+import {useState} from "react";
+import type {TrackSearch} from "../../api/search.ts";
+import "./LogSongConfirmation.css"
+
+export default function LogSongConfirmation({
+                                                onConfirmationCancel,
+                                                pendingSong,
+                                                handleConfirmation
+                                            }: {
+    onConfirmationCancel: () => void,
+    pendingSong: TrackSearch,
+    handleConfirmation: (trackId: string) => void
 }) {
-    return <div>
-        <h1>Need confirmation</h1>
-        <button onClick={() => onConfirmationCancel()}>Cancel</button>
+    const [comment, setComment] = useState("");
+
+    return <div className="log-song-confirmation-card">
+        <div className="song-image-wrapper">
+            <img src={pendingSong.imageUrl} alt={pendingSong.trackName}
+                 className="song-image"/>
+        </div>
+
+        <div className="song-details">
+            <div className="track-details">
+                <h2 className="song-title">{pendingSong.trackName}</h2>
+                <p className="song-artist">{pendingSong.artistName}</p>
+                <p className="song-album">{pendingSong.albumName}</p>
+            </div>
+
+            <div className="song-metainfo">
+                <label className="log-label">
+                    Date:
+                    <input
+                        type="date"
+                        // value={today}
+                        disabled
+                        className="log-date-picker"
+                    />
+                </label>
+
+                <label className="log-label">
+                    Comment:
+                    <textarea
+                        className="log-comment"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="Write a comment or diary entry..."
+                    />
+                </label>
+
+                <div className="confirmation-actions">
+                    <button
+                        className="confirm-button"
+                        onClick={() => {
+                            handleConfirmation(pendingSong.spotifyId)
+                        }}
+                    >
+                        Confirm
+                    </button>
+                    <button className="cancel-button"
+                            onClick={onConfirmationCancel}>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 }

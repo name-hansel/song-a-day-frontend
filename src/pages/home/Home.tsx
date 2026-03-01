@@ -5,7 +5,7 @@ import TodaySongHeader
 import SongOfDayContainer
     from "../../components/song_of_day/song_of_day_container/SongOfDayContainer.tsx";
 import {useEffect, useState} from "react";
-import {type SongOfDay} from "../../api/song.ts";
+import {logSongOfDayForAppUser, type SongOfDay} from "../../api/song.ts";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import "./Home.css"
 import type {TrackSearch} from "../../api/search.ts";
@@ -39,6 +39,14 @@ export default function Home() {
         navigate("/");
     }
 
+    const handleConfirmation = (trackId: string) => {
+        logSongOfDayForAppUser(trackId).then((loggedSong) => {
+            setSong(loggedSong);
+            setPendingSong(null);
+            navigate("/");
+        })
+    }
+
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
             <div className="home-layout">
@@ -50,6 +58,7 @@ export default function Home() {
                                      handleSelectProposal={handleSelectProposal}/>
                     <SongOfDayContainer song={song} setSong={setSong}
                                         pendingSong={pendingSong}
+                                        handleConfirmation={handleConfirmation}
                                         onConfirmationCancel={handleConfirmationCancel}/>
                 </div>
             </div>
