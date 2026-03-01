@@ -17,6 +17,10 @@
     background-color: var(--color-accent);
 }
 
+.empty-sidebar-card {
+    opacity: 50%;
+}
+
 .sidebar-card-image {
     width: 42px;
     height: 42px;
