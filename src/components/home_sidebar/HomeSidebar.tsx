@@ -37,16 +37,9 @@ export default function HomeSidebar() {
                 error && <p>Error</p>
             }
             {
-                <div className="sidebar-timeline">
-                    {songHistory.map((song: SongOfDay, index: number) => (
-                        <div key={index} className="timeline-item">
-                            <div
-                                className="timeline-dot"
-                                data-first={index === 0 ? "true" : undefined}
-                                data-last={index === songHistory.length - 1 ? "true" : undefined}
-                            />
-                            <HomeSidebarSong song={song}/>
-                        </div>
+                <div className="sidebar-content">
+                    {songHistory.map((song: SongOfDay) => (
+                        <HomeSidebarSong song={song}/>
                     ))}
                 </div>
             }
