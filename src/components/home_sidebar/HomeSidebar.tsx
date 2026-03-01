@@ -38,8 +38,9 @@ export default function HomeSidebar() {
             }
             {
                 <div className="sidebar-content">
-                    {songHistory.map((song: SongOfDay) => (
-                        <HomeSidebarSong song={song}/>
+                    {songHistory.map((song: SongOfDay, index: number) => (
+                        <HomeSidebarSong song={song}
+                                         isLatest={index === songHistory.length - 1}/>
                     ))}
                 </div>
             }

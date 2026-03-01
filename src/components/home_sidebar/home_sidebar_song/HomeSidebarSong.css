@@ -15,7 +15,6 @@
 
 .sidebar-card:hover {
     background-color: var(--color-accent);
-    transform: translateX(2px);
 }
 
 .sidebar-card-image {
@@ -49,4 +48,20 @@
     font-size: 0.6rem;
     letter-spacing: 0.03em;
     color: var(--color-text-secondary);
+}
+
+.sidebar-card-latest {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar-card-latest .sidebar-card-date,
+.sidebar-card-latest .sidebar-card-title {
+    color: var(--color-text-primary);
+}
+
+.sidebar-card-latest:hover {
+    background-color: var(--color-accent);
 }
