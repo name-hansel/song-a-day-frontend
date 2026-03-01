@@ -9,6 +9,11 @@ function App() {
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/log/:trackId" element={
+                        <PrivateRoute>
+                            <Home/>
+                        </PrivateRoute>
+                    }/>
                     <Route path="/" element={
                         <PrivateRoute>
                             <Home/>

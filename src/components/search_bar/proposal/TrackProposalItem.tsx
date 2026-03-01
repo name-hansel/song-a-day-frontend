@@ -1,22 +1,20 @@
 import type {TrackSearch} from "../../../api/search.ts";
 import "./TrackProposalItem.css";
-import {
-    logSongOfDayForAppUser,
-    type SongOfDay as SongOfDayType
-} from "../../../api/song.ts";
-import * as React from "react";
 
-export default function TrackProposalItem({track, setSong}: {
-    track: TrackSearch;
-    setSong: React.Dispatch<React.SetStateAction<SongOfDayType | null>>
+export default function TrackProposalItem({
+                                              track,
+                                              handleSelectProposal,
+                                              hideProposals
+                                          }: {
+    track: TrackSearch,
+    handleSelectProposal: (song: TrackSearch) => void,
+    hideProposals: () => void
 }) {
-    async function logSong() {
-        const data = await logSongOfDayForAppUser(track.spotifyId);
-        setSong(data);
-    }
-
     return (
-        <div className="search-item" id={track.spotifyId} onClick={logSong}>
+        <div className="search-item" id={track.spotifyId} onClick={() => {
+            hideProposals();
+            handleSelectProposal(track);
+        }}>
             <img
                 src={track.imageUrl}
                 alt="Album cover"

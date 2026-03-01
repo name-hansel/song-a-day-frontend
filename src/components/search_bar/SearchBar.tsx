@@ -1,13 +1,11 @@
-import * as React from "react";
 import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../hooks/useDebounce.ts";
 import {searchForTracks, type TrackSearch} from "../../api/search.ts";
 import "./SearchBar.css";
 import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
-import type {SongOfDay as SongOfDayType} from "../../api/song.ts";
 
-export default function SearchBar({setSong}: {
-    setSong: React.Dispatch<React.SetStateAction<SongOfDayType | null>>
+export default function SearchBar({handleSelectProposal}: {
+    handleSelectProposal: (song: TrackSearch) => void
 }) {
     const [query, setQuery] = useState("");
     const [searchResult, setSearchResult] = useState<TrackSearch[]>([]);
@@ -81,7 +79,9 @@ export default function SearchBar({setSong}: {
                         {
                             searchResult.map((track: TrackSearch) => (
                                 <TrackProposalItem key={track.spotifyId}
-                                                   track={track} setSong={setSong}/>
+                                                   track={track}
+                                                   hideProposals={() => setShowProposals(false)}
+                                                   handleSelectProposal={handleSelectProposal}/>
                             ))
                         }
                     </div>
