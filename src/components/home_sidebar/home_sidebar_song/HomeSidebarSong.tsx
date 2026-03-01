@@ -14,7 +14,7 @@ export default function HomeSidebarSong({song, isLatest}: {
 
     return (
         <div
-            className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""}`}>
+            className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${!song && "empty-sidebar-card"}`}>
             {
                 song && <>
                     <img

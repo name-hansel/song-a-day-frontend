@@ -77,7 +77,7 @@ export default function SongOfDay({song, setSong}: {
                     </p>
                     <button className="remove-button"
                             onClick={removeSongForAppUser}>
-                        remove song of day
+                        remove
                     </button>
                 </div>
             </div>

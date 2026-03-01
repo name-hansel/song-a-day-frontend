@@ -7,10 +7,13 @@
     background-color: var(--color-bg-tertiary);
     transition: background-color 0.2s ease,
     transform 0.15s ease;
+}
+
+.sidebar-card:not(.empty-sidebar-card) {
     cursor: pointer;
 }
 
-.sidebar-card:hover {
+.sidebar-card:not(.empty-sidebar-card):hover {
     background-color: var(--color-accent);
 }
 
