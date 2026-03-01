@@ -12,7 +12,7 @@
     font-size: 1.8rem;
     letter-spacing: 2px;
     margin: 0;
-    color: var(--color-text-dark);
+    color: var(--color-text-primary);
 }
 
 .today-song-title {
@@ -22,6 +22,7 @@
 .today-song-day {
     font-size: 1.4rem;
     font-style: italic;
+    color: var(--color-text-secondary);
 }
 
 @media (max-width: 768px) {

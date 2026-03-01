@@ -7,11 +7,11 @@ export default function Login() {
     };
 
     return (
-        <div className="home-container">
-            <header className="home-header">
+        <div className="login-container">
+            <header className="login-header">
                 <h1>song a day</h1>
             </header>
-            <main className="home-main">
+            <main className="login-main">
                 <button onClick={login}>Login with Spotify</button>
             </main>
         </div>

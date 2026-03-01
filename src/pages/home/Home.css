@@ -14,10 +14,4 @@
     .home-layout {
         flex-direction: column;
     }
-
-    .home-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--color-text-light);
-    }
 }

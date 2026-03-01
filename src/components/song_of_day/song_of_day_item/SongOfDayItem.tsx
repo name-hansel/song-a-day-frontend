@@ -27,7 +27,7 @@ export default function SongOfDayItem({song, removeSong}: {
                     <p className="logged-at">
                         logged at: {song.addedAtTime}
                     </p>
-                    <button onClick={removeSong}>
+                    <button className="remove-button" onClick={removeSong}>
                         remove song of day
                     </button>
                 </div>

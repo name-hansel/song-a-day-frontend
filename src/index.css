@@ -1,10 +1,18 @@
 :root {
-    --color-bg-primary: #F6FEDB;
-    --color-bg-accent: #E6D3A3;
-    --color-bg-secondary: #D8D174;
+    /* Background hierarchy (very tight tonal spacing) */
+    --color-bg-primary: #0D1117; /* base background (GitHub base) */
+    --color-bg-secondary: #161B22; /* cards / panels */
+    --color-bg-tertiary: #1C2128; /* hover / elevated surfaces */
 
-    --color-text-light: #B6C454;
-    --color-text-dark: #91972A;
+    /* Text */
+    --color-text-primary: #C9D1D9; /* main text */
+    --color-text-secondary: #8B949E; /* muted metadata */
+
+    /* Border */
+    --color-border: #21262D; /* subtle divider */
+
+    /* Accent (muted indigo instead of GitHub blue) */
+    --color-accent: #2F3B63; /* selected / active state */
 
     --border-radius: 6px;
 }

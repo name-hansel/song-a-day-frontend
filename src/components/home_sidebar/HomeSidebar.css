@@ -1,11 +1,11 @@
 .home-sidebar {
     width: 260px;
     padding: 2rem 1.25rem;
-
     display: flex;
     flex-direction: column;
-
-    background-color: var(--color-text-dark);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-top: none;
 }
 
 .sidebar-title {
@@ -13,11 +13,19 @@
     letter-spacing: 0.08em;
     margin-bottom: 1.5rem;
     font-weight: 500;
-    color: var(--color-bg-primary);
+    color: var(--color-text-primary);
 }
 
 .sidebar-cards {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
+}
+
+@media (max-width: 900px) {
+    .home-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
 }
