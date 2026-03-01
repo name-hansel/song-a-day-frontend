@@ -11,6 +11,7 @@
 .sidebar-title {
     font-size: 1rem;
     letter-spacing: 0.08em;
+    font-family: "Bowlby One", sans-serif;
     margin-bottom: 1.5rem;
     font-weight: 500;
     color: var(--color-text-primary);

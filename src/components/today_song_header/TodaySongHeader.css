@@ -8,21 +8,13 @@
 }
 
 .today-song {
-    font-weight: 400;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
     margin: 0;
     color: var(--color-text-primary);
 }
 
 .today-song-title {
-    font-weight: 800;
-}
-
-.today-song-day {
-    font-size: 1.4rem;
-    font-style: italic;
-    color: var(--color-text-secondary);
+    font-family: "Bowlby One", sans-serif;
+    letter-spacing: 2px;
 }
 
 @media (max-width: 768px) {

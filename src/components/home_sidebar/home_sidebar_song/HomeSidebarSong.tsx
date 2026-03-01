@@ -1,4 +1,4 @@
-import type {SongOfDay} from "../../api/song.ts";
+import type {SongOfDay} from "../../../api/song.ts";
 import "./HomeSidebarSong.css"
 
 export default function HomeSidebarSong({song}: {

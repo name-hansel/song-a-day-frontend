@@ -2,7 +2,7 @@ import "./HomeSidebar.css"
 import {getUserSongHistoryForWeek, type SongOfDay} from "../../api/song.ts";
 import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
-import HomeSidebarSong from "./HomeSidebarSong.tsx";
+import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
 
 export default function HomeSidebar() {
     const [songHistory, setSongHistory] = useState<SongOfDay[]>([]);
