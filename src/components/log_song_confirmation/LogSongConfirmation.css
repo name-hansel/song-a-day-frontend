@@ -1,15 +1,12 @@
 .log-song-confirmation-card {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 2rem;
     border-radius: var(--border-radius);
     box-sizing: border-box;
-    width: 100%; /* full width */
-    padding: 24px;
+    width: 85%;
     background-color: var(--color-bg-primary);
-    color: var(--color-text-primary);
-    flex-wrap: wrap;
+    padding: 1.5rem;
 }
 
 .song-image-wrapper {
@@ -29,7 +26,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: space-between; /* track-details top, meta-info bottom */
 }
 
 .track-details > * {
@@ -44,6 +41,7 @@
     margin: 0 0 0.5rem 0;
     font-size: 1.75rem;
     font-weight: 800;
+    color: var(--color-text-primary);
     letter-spacing: 1px;
 }
 
@@ -51,6 +49,7 @@
 .song-album {
     margin: 0.25rem 0;
     font-size: 1.2rem;
+    color: var(--color-text-primary);
 }
 
 .song-album {
@@ -62,14 +61,16 @@
 .song-metainfo {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 8px; /* space between fields */
+    align-items: flex-start;
 }
 
 .log-label {
     display: flex;
     flex-direction: column;
+    font-weight: 600;
     font-size: 0.9rem;
+    color: var(--color-text-primary);
 }
 
 .log-date-picker,
@@ -81,11 +82,18 @@
     background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
     font-size: 0.9rem;
+    width: 100%;
 }
 
 .log-comment {
-    resize: vertical;
     min-height: 80px;
+    resize: vertical;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 8px;
 }
 
 .confirm-button,
@@ -144,9 +152,4 @@
         width: 200px;
         height: 200px;
     }
-}
-
-.msg {
-    font-size: 1rem;
-    color: var(--color-text-secondary);
 }

@@ -1,6 +1,5 @@
 .song-card {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 2rem;
     border-radius: var(--border-radius);
@@ -23,6 +22,8 @@
 .song-details {
     flex: 1;
     min-width: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .track-details > * {
@@ -53,11 +54,6 @@
     font-style: italic;
     font-weight: 400;
     font-size: 1rem;
-}
-
-.song-metainfo {
-    justify-self: end;
-    align-self: end;
 }
 
 .logged-at {
@@ -99,6 +95,9 @@
     color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.05s ease;
+
+    width: auto; /* keeps button intrinsic size */
+    align-self: flex-start; /* aligns to start */
 }
 
 .remove-button:hover {
@@ -110,6 +109,13 @@
 .remove-button:active {
     transform: translateY(1px);
     box-shadow: 0 0 0 2px rgba(192, 122, 140, 0.22);
+}
+
+.song-metainfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* space between logged-at and button */
+    align-items: flex-start; /* keep children aligned to start, prevents button stretching */
 }
 
 @media (max-width: 700px) {

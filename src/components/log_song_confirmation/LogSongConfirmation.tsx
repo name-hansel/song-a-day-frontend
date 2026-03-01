@@ -27,26 +27,18 @@ export default function LogSongConfirmation({
             </div>
 
             <div className="song-metainfo">
-                <label className="log-label">
-                    Date:
-                    <input
-                        type="date"
-                        // value={today}
-                        disabled
-                        className="log-date-picker"
-                    />
-                </label>
-
-                <label className="log-label">
-                    Comment:
-                    <textarea
-                        className="log-comment"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        placeholder="Write a comment or diary entry..."
-                    />
-                </label>
-
+                <input
+                    type="date"
+                    // value={today}
+                    disabled
+                    className="log-date-picker"
+                />
+                <textarea
+                    className="log-comment"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="Write a comment or diary entry..."
+                />
                 <div className="confirmation-actions">
                     <button
                         className="confirm-button"

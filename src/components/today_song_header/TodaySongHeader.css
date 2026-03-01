@@ -13,8 +13,9 @@
 }
 
 .today-song-title {
+    font-size: 2rem;
     font-family: "Bowlby One", sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 0.3rem;
 }
 
 @media (max-width: 768px) {
