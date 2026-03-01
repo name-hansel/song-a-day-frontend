@@ -11,11 +11,12 @@ export default function HomeSidebarSong({song}: {
                 alt={song.trackInformation.trackName}
                 className="sidebar-card-image"
             />
-
             <div className="sidebar-card-content">
                 <div className="sidebar-card-date">{song.songDate}</div>
-                <div className="sidebar-card-title"
-                     title={song.trackInformation.trackName}>
+                <div
+                    className="sidebar-card-title"
+                    title={song.trackInformation.trackName}
+                >
                     {song.trackInformation.trackName}
                 </div>
             </div>
