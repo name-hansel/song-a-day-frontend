@@ -1,0 +1,23 @@
+.home-sidebar {
+    width: 260px;
+    padding: 2rem 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--color-text-dark);
+}
+
+.sidebar-title {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    color: var(--color-bg-primary);
+}
+
+.sidebar-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}

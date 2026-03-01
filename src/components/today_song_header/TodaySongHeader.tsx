@@ -1,5 +1,5 @@
 import "./TodaySongHeader.css";
-import SearchBar from "../searchbar/SearchBar.tsx";
+import SearchBar from "../search_bar/SearchBar.tsx";
 import type {SongOfDay as SongOfDayType} from "../../api/song.ts";
 import * as React from "react";
 

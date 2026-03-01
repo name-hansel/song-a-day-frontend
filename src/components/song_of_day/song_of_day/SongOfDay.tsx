@@ -7,7 +7,7 @@ import {
     type SongOfDay as SongOfDayType,
     type SongOfDay
 } from "../../../api/song.ts";
-import SongOfDayItem from "../songofdayitem/SongOfDayItem.tsx";
+import SongOfDayItem from "../song_of_day_item/SongOfDayItem.tsx";
 import Spinner from "../../../pages/spinner/Spinner.tsx";
 
 export default function SongOfDay({song, setSong}: {

@@ -1,5 +1,5 @@
 import "./SongOfDayContainer.css";
-import SongOfDay from "../songofday/SongOfDay.tsx";
+import SongOfDay from "../song_of_day/SongOfDay.tsx";
 import {type SongOfDay as SongOfDayType} from "../../../api/song.ts";
 import * as React from "react";
 
@@ -10,7 +10,6 @@ export default function SongOfDayContainer({song, setSong}: {
     return (
         <div className="container">
             <SongOfDay song={song} setSong={setSong}/>
-            {/*TODO: sidebar here*/}
         </div>
     )
 }
