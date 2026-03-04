@@ -18,7 +18,7 @@ export default function LogSongConfirmation() {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [comment, setComment] = useState("");
+    const [memory, setMemory] = useState("");
     const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
     const {trackId} = useParams();
 
@@ -60,7 +60,7 @@ export default function LogSongConfirmation() {
         if (!trackId) return;
 
         try {
-            const loggedSong = await logSongOfDayForAppUser(trackId);
+            const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim());
             setSong(loggedSong);
             showToast("Song logged successfully!");
             navigate("/");
@@ -106,10 +106,11 @@ export default function LogSongConfirmation() {
                                     disabled
                                     className="log-date-picker"/>
                                 <textarea
-                                    className="log-comment"
-                                    value={comment}
-                                    onChange={(e) => setComment(e.target.value)}
-                                    placeholder="Write a comment or diary entry..."/>
+                                    className="log-memory"
+                                    value={memory}
+                                    onChange={(e) => setMemory(e.target.value)}
+                                    placeholder="Enter a memory..."
+                                    maxLength={160}/>
                                 <div className="confirmation-actions">
                                     <button
                                         className="confirm-button"

@@ -74,20 +74,26 @@
 }
 
 .log-date-picker,
-.log-comment {
-    margin-top: 4px;
+.log-memory {
+    margin-top: 1rem;
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
     background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     width: auto;
 }
 
-.log-comment {
+.log-memory {
     min-height: 80px;
-    resize: vertical;
+    padding: 0.8rem 1.2rem;
+    width: 320px;
+    resize: none;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    color: var(--color-text-secondary);
 }
 
 .confirmation-actions {
