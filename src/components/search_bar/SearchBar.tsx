@@ -4,6 +4,7 @@ import {searchForTracks, type TrackSearch} from "../../api/search.ts";
 import "./SearchBar.css";
 import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
+import {Search, X} from "lucide-react";
 
 export default function SearchBar({onSelect}: {
     onSelect: (trackId: string) => void
@@ -72,9 +73,18 @@ export default function SearchBar({onSelect}: {
                    placeholder="Search for tracks..."
                    className="search-input"
                    onFocus={() => setShowProposals(true)}/>
-            {/*TODO: Change to icon for both loading and search */}
-            <span
-                className="search-icon">{searchLoading ? "loading..." : "search"}</span>
+            <div className="search-icons">
+                {searchLoading &&
+                    <span className="loading-text">Loading...</span>}
+                {!searchLoading && !query && <Search size={18}/>}
+                {query && !searchLoading && (
+                    <X
+                        size={18}
+                        className="cursor-pointer"
+                        onClick={() => setQuery("")}
+                    />
+                )}
+            </div>
             {error && <p>{error}</p>}
             {
                 !searchLoading && showProposals && searchResult.length > 0 && (
