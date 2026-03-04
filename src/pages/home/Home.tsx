@@ -2,49 +2,29 @@ import {useAuth} from "../../auth/AuthContext.tsx";
 import Layout from "../../components/layout/Layout.tsx";
 import TodaySongHeader
     from "../../components/today_song_header/TodaySongHeader.tsx";
-import SongOfDayContainer
-    from "../../components/song_of_day/song_of_day_container/SongOfDayContainer.tsx";
-import {useEffect, useState} from "react";
-import {logSongOfDayForAppUser, type SongOfDay} from "../../api/song.ts";
+import * as React from "react";
+import {useState} from "react";
+import {type SongOfDay} from "../../api/song.ts";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import "./Home.css"
-import type {TrackSearch} from "../../api/search.ts";
-import {useNavigate, useParams} from "react-router";
+import {Outlet, useNavigate} from "react-router";
+
+export type SongOfDayContext = {
+    song: SongOfDay | null;
+    setSong: React.Dispatch<React.SetStateAction<SongOfDay | null>>;
+}
 
 export default function Home() {
     const [song, setSong] = useState<SongOfDay | null>(null);
     const {appUser, logout} = useAuth();
-    const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
-
     const navigate = useNavigate();
-    const {trackId} = useParams<{ trackId: string }>();
-
-    useEffect(() => {
-        if (!pendingSong && trackId) {
-            // TODO: Fetch from backend
-        }
-    }, [trackId, pendingSong, navigate]);
 
     if (!appUser) {
         return null;
     }
 
-    const handleSelectProposal = (song: TrackSearch) => {
-        setPendingSong(song);
-        navigate(`/log/${song.spotifyId}`)
-    }
-
-    const handleConfirmationCancel = () => {
-        setPendingSong(null);
-        navigate("/");
-    }
-
-    const handleConfirmation = (trackId: string) => {
-        logSongOfDayForAppUser(trackId).then((loggedSong) => {
-            setSong(loggedSong);
-            setPendingSong(null);
-            navigate("/");
-        })
+    const onSelect = (trackId: string) => {
+        navigate(`/log/${trackId}`);
     }
 
     return (
@@ -53,13 +33,10 @@ export default function Home() {
                 <HomeSidebar songForToday={song}/>
 
                 <div className="home-main">
-                    <TodaySongHeader song={song}
-                                     pendingSong={pendingSong}
-                                     handleSelectProposal={handleSelectProposal}/>
-                    <SongOfDayContainer song={song} setSong={setSong}
-                                        pendingSong={pendingSong}
-                                        handleConfirmation={handleConfirmation}
-                                        onConfirmationCancel={handleConfirmationCancel}/>
+                    <TodaySongHeader onSelect={onSelect}/>
+                    <div className="container">
+                        <Outlet context={{song, setSong}}/>
+                    </div>
                 </div>
             </div>
         </Layout>

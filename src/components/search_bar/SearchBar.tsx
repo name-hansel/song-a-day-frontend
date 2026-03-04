@@ -4,8 +4,8 @@ import {searchForTracks, type TrackSearch} from "../../api/search.ts";
 import "./SearchBar.css";
 import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
 
-export default function SearchBar({handleSelectProposal}: {
-    handleSelectProposal: (song: TrackSearch) => void
+export default function SearchBar({onSelect}: {
+    onSelect: (trackId: string) => void
 }) {
     const [query, setQuery] = useState("");
     const [searchResult, setSearchResult] = useState<TrackSearch[]>([]);
@@ -40,7 +40,7 @@ export default function SearchBar({handleSelectProposal}: {
             }
         }
 
-        search();
+        void search();
         return () => controller.abort();
     }, [debouncedQuery]);
     useEffect(() => {
@@ -81,7 +81,11 @@ export default function SearchBar({handleSelectProposal}: {
                                 <TrackProposalItem key={track.spotifyId}
                                                    track={track}
                                                    hideProposals={() => setShowProposals(false)}
-                                                   handleSelectProposal={handleSelectProposal}/>
+                                                   onSelect={() => {
+                                                       setQuery("");
+                                                       onSelect(track.spotifyId);
+                                                   }}
+                                />
                             ))
                         }
                     </div>

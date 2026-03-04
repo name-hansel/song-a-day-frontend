@@ -7,7 +7,9 @@ export default function MainHeader({displayName, onLogout}: {
 }) {
     return (
         <header className="layout-header">
-            <h1 className="layout-title">SaD</h1>
+            <h1 className="layout-title" onClick={() => {
+                window.location.href = "/";
+            }}>SaD</h1>
             <Clock/>
             <div className="layout-header-right">
                 <span className="layout-username">{displayName}</span>

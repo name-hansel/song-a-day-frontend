@@ -3,22 +3,24 @@ import {AuthProvider} from "./auth/AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 import PrivateRoute from "./auth/PrivateRoute.tsx";
 import Home from "./pages/home/Home.tsx";
+import LogSongConfirmation
+    from "./components/log_song_confirmation/LogSongConfirmation.tsx";
+import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
 
 function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/log/:trackId" element={
+                    <Route element={
                         <PrivateRoute>
                             <Home/>
                         </PrivateRoute>
-                    }/>
-                    <Route path="/" element={
-                        <PrivateRoute>
-                            <Home/>
-                        </PrivateRoute>
-                    }/>
+                    }>
+                        <Route index element={<SongOfDay/>}/>
+                        <Route path="/log/:trackId"
+                               element={<LogSongConfirmation/>}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

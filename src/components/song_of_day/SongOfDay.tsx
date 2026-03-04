@@ -1,18 +1,15 @@
 import "./SongOfDay.css"
-import * as React from "react";
 import {useEffect, useState} from "react";
 import {
     deleteSongOfDayForAppUser,
-    getSongOfDayForAppUser,
-    type SongOfDay as SongOfDayType,
-    type SongOfDay
-} from "../../../api/song.ts";
-import Spinner from "../../../pages/spinner/Spinner.tsx";
+    getSongOfDayForAppUser
+} from "../../api/song.ts";
+import Spinner from "../../pages/spinner/Spinner.tsx";
+import {useOutletContext} from "react-router";
+import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 
-export default function SongOfDay({song, setSong}: {
-    song: SongOfDay | null;
-    setSong: React.Dispatch<React.SetStateAction<SongOfDayType | null>>
-}) {
+export default function SongOfDay() {
+    const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -28,8 +25,8 @@ export default function SongOfDay({song, setSong}: {
             }
         }
 
-        getSongOfDay();
-    }, []);
+        void getSongOfDay();
+    }, [setSong]);
 
     async function removeSongForAppUser() {
         await deleteSongOfDayForAppUser();

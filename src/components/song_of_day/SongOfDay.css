@@ -54,6 +54,7 @@
     font-style: italic;
     font-weight: 400;
     font-size: 1rem;
+    color: var(--color-text-secondary);
 }
 
 .logged-at {

@@ -10,12 +10,17 @@ export type TrackSearch = {
 }
 
 export async function searchForTracks(query: string, signal?: AbortSignal) {
-    const response = await api.get<TrackSearch[]>("/spotify/search-track", {
+    const response = await api.get<TrackSearch[]>("/spotify/search-tracks", {
         params: {
             q: query
         },
         signal
     });
 
+    return response.data;
+}
+
+export async function searchForTrack(trackId: string) {
+    const response = await api.get<TrackSearch>(`/spotify/search-track/${trackId}`);
     return response.data;
 }

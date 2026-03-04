@@ -3,17 +3,17 @@ import "./TrackProposalItem.css";
 
 export default function TrackProposalItem({
                                               track,
-                                              handleSelectProposal,
-                                              hideProposals
+                                              hideProposals,
+                                              onSelect
                                           }: {
     track: TrackSearch,
-    handleSelectProposal: (song: TrackSearch) => void,
-    hideProposals: () => void
+    hideProposals: () => void,
+    onSelect: (trackId: string) => void
 }) {
     return (
         <div className="search-item" id={track.spotifyId} onClick={() => {
             hideProposals();
-            handleSelectProposal(track);
+            onSelect(track.spotifyId);
         }}>
             <img
                 src={track.imageUrl}
