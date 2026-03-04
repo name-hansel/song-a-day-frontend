@@ -7,6 +7,7 @@ import {
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useOutletContext} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
+import {getErrorMessage} from "../../api/messages.ts";
 
 export default function SongOfDay() {
     const {song, setSong} = useOutletContext<SongOfDayContext>();
@@ -18,8 +19,10 @@ export default function SongOfDay() {
             try {
                 const data = await getSongOfDayForAppUser();
                 setSong(data);
-            } catch {
-                setError("Failed to load data");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(getErrorMessage(err.message));
+                }
             } finally {
                 setLoading(false);
             }
@@ -74,7 +77,7 @@ export default function SongOfDay() {
                     </p>
                     <button className="remove-button"
                             onClick={removeSongForAppUser}>
-                        remove
+                        Remove
                     </button>
                 </div>
             </div>

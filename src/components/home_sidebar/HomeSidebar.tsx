@@ -3,6 +3,7 @@ import {getUserSongHistoryForWeek, type SongOfDay} from "../../api/song.ts";
 import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
+import {getErrorMessage} from "../../api/messages.ts";
 
 export default function HomeSidebar({songForToday}: {
     songForToday: SongOfDay | null
@@ -17,14 +18,16 @@ export default function HomeSidebar({songForToday}: {
                 setLoading(true);
                 const data = await getUserSongHistoryForWeek();
                 setSongHistory(data);
-            } catch {
-                setError("Failed to load data");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(getErrorMessage(err.message));
+                }
             } finally {
                 setLoading(false);
             }
         }
 
-        getSongHistory();
+        void getSongHistory();
     }, [songForToday])
 
     return (
@@ -42,6 +45,7 @@ export default function HomeSidebar({songForToday}: {
                 <div className="sidebar-content">
                     {songHistory.map((song: SongOfDay, index: number) => (
                         <HomeSidebarSong song={song}
+                                         key={index}
                                          isLatest={index === songHistory.length - 1}/>
                     ))}
                 </div>

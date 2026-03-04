@@ -6,6 +6,7 @@ import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {searchForTrack, type TrackSearch} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
 import Spinner from "../../pages/spinner/Spinner.tsx";
+import {getErrorMessage} from "../../api/messages.ts";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();
@@ -13,7 +14,7 @@ export default function LogSongConfirmation() {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>("");
+    const [error, setError] = useState<string | null>(null);
     const [comment, setComment] = useState("");
     const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
     const {trackId} = useParams();
@@ -28,8 +29,10 @@ export default function LogSongConfirmation() {
 
                 const song = await searchForTrack(trackId);
                 setPendingSong(song);
-            } catch {
-                setError("Failed to load data");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(getErrorMessage(err.message));
+                }
             } finally {
                 setLoading(false);
             }
@@ -50,13 +53,18 @@ export default function LogSongConfirmation() {
         return formatter.format(now);
     }
 
-    function onConfirmation() {
+    async function onConfirmation() {
         if (!trackId) return;
 
-        logSongOfDayForAppUser(trackId).then((loggedSong) => {
+        try {
+            const loggedSong = await logSongOfDayForAppUser(trackId);
             setSong(loggedSong);
             navigate("/");
-        })
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(getErrorMessage(err.message));
+            }
+        }
     }
 
     function onCancel() {

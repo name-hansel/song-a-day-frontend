@@ -1,4 +1,4 @@
-import {api} from "./common.ts";
+import {api, handleError} from "./common.ts";
 
 export type TrackSearch = {
     spotifyId: string;
@@ -10,17 +10,24 @@ export type TrackSearch = {
 }
 
 export async function searchForTracks(query: string, signal?: AbortSignal) {
-    const response = await api.get<TrackSearch[]>("/spotify/search-tracks", {
-        params: {
-            q: query
-        },
-        signal
-    });
-
-    return response.data;
+    try {
+        const response = await api.get<TrackSearch[]>("/spotify/search-tracks", {
+            params: {
+                q: query
+            },
+            signal
+        });
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
 }
 
 export async function searchForTrack(trackId: string) {
-    const response = await api.get<TrackSearch>(`/spotify/search-track/${trackId}`);
-    return response.data;
+    try {
+        const response = await api.get(`/spotify/search-track/${trackId}`);
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
 }

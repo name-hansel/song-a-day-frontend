@@ -3,6 +3,7 @@ import {useDebounce} from "../../hooks/useDebounce.ts";
 import {searchForTracks, type TrackSearch} from "../../api/search.ts";
 import "./SearchBar.css";
 import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
+import {getErrorMessage} from "../../api/messages.ts";
 
 export default function SearchBar({onSelect}: {
     onSelect: (trackId: string) => void
@@ -33,8 +34,10 @@ export default function SearchBar({onSelect}: {
 
                 const data = await searchForTracks(debouncedQuery);
                 setSearchResult(data);
-            } catch {
-                setError("Search failed.");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(getErrorMessage(err.message));
+                }
             } finally {
                 setSearchLoading(false);
             }
