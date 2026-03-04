@@ -9,11 +9,13 @@ import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
+import {useToast} from "../../context/ToastContext.tsx";
 
 export default function SongOfDay() {
     const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const {showToast} = useToast();
 
     useEffect(() => {
         async function getSongOfDay() {
@@ -35,6 +37,7 @@ export default function SongOfDay() {
     async function removeSongForAppUser() {
         await deleteSongOfDayForAppUser();
         setSong(null);
+        showToast("Song removed successfully");
     }
 
     return (

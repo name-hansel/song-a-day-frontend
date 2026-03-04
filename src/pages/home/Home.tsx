@@ -8,6 +8,7 @@ import {type SongOfDay} from "../../api/song.ts";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import "./Home.css"
 import {Outlet, useNavigate} from "react-router";
+import {ToastProvider} from "../../context/ToastContext.tsx";
 
 export type SongOfDayContext = {
     song: SongOfDay | null;
@@ -28,17 +29,19 @@ export default function Home() {
     }
 
     return (
-        <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <div className="home-layout">
-                <HomeSidebar songForToday={song}/>
+        <ToastProvider>
+            <Layout displayName={appUser.appUserName} onLogout={logout}>
+                <div className="home-layout">
+                    <HomeSidebar songForToday={song}/>
 
-                <div className="home-main">
-                    <TodaySongHeader onSelect={onSelect}/>
-                    <div className="container">
-                        <Outlet context={{song, setSong}}/>
+                    <div className="home-main">
+                        <TodaySongHeader onSelect={onSelect}/>
+                        <div className="container">
+                            <Outlet context={{song, setSong}}/>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </ToastProvider>
     );
 }

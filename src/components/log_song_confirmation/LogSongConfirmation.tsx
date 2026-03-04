@@ -8,10 +8,12 @@ import {logSongOfDayForAppUser} from "../../api/song.ts";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
+import {useToast} from "../../context/ToastContext.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();
     const {appUser} = useAuth();
+    const {showToast} = useToast();
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
@@ -60,6 +62,7 @@ export default function LogSongConfirmation() {
         try {
             const loggedSong = await logSongOfDayForAppUser(trackId);
             setSong(loggedSong);
+            showToast("Song logged successfully!");
             navigate("/");
         } catch (err: unknown) {
             if (err instanceof Error) {
