@@ -6,12 +6,15 @@ import Home from "./pages/home/Home.tsx";
 import LogSongConfirmation
     from "./components/log_song_confirmation/LogSongConfirmation.tsx";
 import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
+import Login from "./pages/login/Login.tsx";
 
 function App() {
     return (
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/login" element={<Login/>}/>
+
                     <Route element={
                         <PrivateRoute>
                             <Home/>

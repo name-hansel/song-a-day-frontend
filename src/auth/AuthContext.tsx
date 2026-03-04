@@ -42,7 +42,7 @@ export function AuthProvider({children}: { children: ReactNode }) {
     }
 
     useEffect(() => {
-        loadAppUser();
+        void loadAppUser();
     }, []);
 
     return <>
