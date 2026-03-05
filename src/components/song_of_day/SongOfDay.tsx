@@ -51,7 +51,8 @@ export default function SongOfDay() {
                     loading && <Spinner/>
                 }
                 {
-                    !song && <h1 className="msg">No song logged yet</h1>
+                    !loading && !song &&
+                    <h1 className="msg">No song logged yet</h1>
                 }
                 {
                     song && <div className="song-card">
