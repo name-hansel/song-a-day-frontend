@@ -6,6 +6,7 @@ export type SongOfDay = {
     songDate: string;
     trackInformation: TrackSearch;
     addedAtTime: string;
+    memory: string;
 }
 
 const path = "/song-a-day";

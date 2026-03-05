@@ -55,32 +55,28 @@ export default function SongOfDay() {
                     <h1 className="msg">No song logged yet</h1>
                 }
                 {
-                    song && <div className="song-card">
-                        <div className="song-image-wrapper">
-                            <img
-                                src={song.trackInformation.imageUrl}
-                                alt="Song cover"
-                                className="song-image"
-                            />
+                    song && <div className="song-of-day-entry">
+                        <div className="song-of-day-entry-left">
+                            <img src={song.trackInformation.imageUrl}
+                                 alt={`${song.trackInformation.trackName} image`}
+                                 className="song-of-day-entry-image"/>
+                            <button className="song-of-day-remove-btn"
+                                    onClick={removeSongForAppUser}>Remove
+                            </button>
                         </div>
-                        <div className="song-details">
-                            <div className="track-details">
-                                <a target="_blank"
-                                   className="song-title track-link"
-                                   href={song.trackInformation.spotifyUrl}><h3
-                                    className="song-title">{song.trackInformation.trackName}</h3>
-                                </a>
-                                <p className="song-artist">{song.trackInformation.artistName}</p>
-                                <p className="song-album">{song.trackInformation.albumName}</p>
+                        {/*TODO left (image) right (details + text area) bottom (remove + logged at)*/}
+                        <div className="song-of-day-entry-right">
+                            <div className="song-of-day-entry-track-info">
+                                <h2 className="song-of-day-track-name">{song.trackInformation.trackName}</h2>
+                                <p className="song-of-day-artist-name">{song.trackInformation.artistName}</p>
+                                <p className="song-of-day-album-name">{song.trackInformation.albumName}</p>
                             </div>
-                            <div className="song-metainfo">
-                                <p className="logged-at">
-                                    logged at: {song.addedAtTime}
-                                </p>
-                                <button className="remove-button"
-                                        onClick={removeSongForAppUser}>
-                                    Remove
-                                </button>
+                            <div className="song-of-day-entry-info">
+                                <textarea disabled
+                                          value={song.memory}
+                                          className="song-of-day-memory"/>
+                                <p className="song-of-day-logged-at">Logged
+                                    at: {song.addedAtTime}</p>
                             </div>
                         </div>
                     </div>
