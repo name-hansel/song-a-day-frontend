@@ -5,6 +5,8 @@ import {Outlet} from "react-router";
 import {useState} from "react";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import type {SongOfDay} from "../../api/song.ts";
+import TodaySongHeader
+    from "../../components/today_song_header/TodaySongHeader.tsx";
 
 export function SongOfDay() {
     const [song, setSong] = useState<SongOfDay | null>(null);
@@ -21,6 +23,7 @@ export function SongOfDay() {
                     <HomeSidebar/>
 
                     <div className="home-main">
+                        <TodaySongHeader date={song?.songDate}/>
                         <div className="container">
                             <Outlet context={{song, setSong}}/>
                         </div>

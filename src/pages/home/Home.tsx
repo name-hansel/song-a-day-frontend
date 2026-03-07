@@ -16,7 +16,7 @@ export type SongOfDayContext = {
 }
 
 export default function Home() {
-    const [song, setSong] = useState<SongOfDay | null>(null);
+    const [song, setSong] = useState<SongOfDay>();
     const {appUser, logout} = useAuth();
     const navigate = useNavigate();
 

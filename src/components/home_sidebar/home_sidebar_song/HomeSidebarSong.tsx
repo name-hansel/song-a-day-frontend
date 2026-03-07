@@ -2,6 +2,7 @@ import type {SongOfDay} from "../../../api/song.ts";
 import "./HomeSidebarSong.css"
 import {Link, useParams} from "react-router";
 import {ArrowRight} from "lucide-react";
+import {formatToReadableDate} from "../../../utils/DateUtils.ts";
 
 export default function HomeSidebarSong({song, isLatest}: {
     song?: SongOfDay,
@@ -9,12 +10,6 @@ export default function HomeSidebarSong({song, isLatest}: {
 }) {
     const {date} = useParams();
 
-    function formatDateForSidebar(dateString: string): string {
-        const date: Date = new Date(dateString);
-        const day: string = date.toLocaleDateString("en-US", {day: "2-digit"});
-        const month: string = date.toLocaleDateString("en-US", {month: "long"});
-        return `${day} ${month}`;
-    }
 
     if (!song) {
         if (!isLatest) {
@@ -25,12 +20,15 @@ export default function HomeSidebarSong({song, isLatest}: {
                      to="/">
             Log song for today <ArrowRight size={16}/>
         </Link>
+    }
 
+    function isSelected() {
+        return date ? date === song?.songDate : isLatest;
     }
 
     return (
         <Link to={isLatest ? '/' : `/song-a-day/${song.songDate}`}
-              className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${date === song.songDate ? "selected-card" : ""}`}>
+              className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${isSelected() ? "selected-card" : ""}`}>
             <img
                 src={song.trackInformation.imageUrl}
                 alt={song.trackInformation.trackName}
@@ -39,7 +37,7 @@ export default function HomeSidebarSong({song, isLatest}: {
                 {(
                     <>
                         <div
-                            className="sidebar-card-date">{isLatest ? "Today" : formatDateForSidebar(song.songDate)}</div>
+                            className="sidebar-card-date">{isLatest ? "Today" : formatToReadableDate(song.songDate)}</div>
                         <div
                             className="sidebar-card-title"
                             title={song.trackInformation.trackName}
