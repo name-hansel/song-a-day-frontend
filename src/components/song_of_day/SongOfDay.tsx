@@ -85,7 +85,7 @@ export default function SongOfDay() {
                     loading && <Spinner/>
                 }
                 {
-                    !loading && !song &&
+                    !loading && !song && !error &&
                     <h1 className="msg">No song logged yet</h1>
                 }
                 {
