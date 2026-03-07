@@ -20,7 +20,7 @@ export default function HomeSidebarSong({song, isLatest}: {
     }
 
     return (
-        <Link to={`/song-a-day/${song.songDate}`}
+        <Link to={isLatest ? '/' : `/song-a-day/${song.songDate}`}
               className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${date === song.songDate ? "selected-card" : ""}`}>
             <img
                 src={song.trackInformation.imageUrl}
