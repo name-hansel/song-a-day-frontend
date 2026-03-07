@@ -1,4 +1,5 @@
 import "./SongOfDay.css"
+import "../common/SongOfDay.css";
 import {useEffect, useState} from "react";
 import {
     deleteSongOfDayForAppUser,

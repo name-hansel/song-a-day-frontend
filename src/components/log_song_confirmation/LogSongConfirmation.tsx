@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import "./LogSongConfirmation.css"
+import "../common/SongOfDay.css";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import {useNavigate, useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
@@ -87,23 +88,23 @@ export default function LogSongConfirmation() {
                 }
                 {
                     pendingSong &&
-                    <div className="log-song-confirmation-entry">
-                        <div className="log-song-confirmation-entry-content">
+                    <div className="song-of-day-entry">
+                        <div className="song-of-day-entry-content">
                             <img
                                 src={pendingSong.imageUrl}
                                 alt={`${pendingSong.trackName} image`}
-                                className="log-song-confirmation-entry-image"
+                                className="song-of-day-entry-image"
                             />
-                            <div className="log-song-confirmation-entry-text">
+                            <div className="song-of-day-entry-text">
                                 <div
-                                    className="log-song-confirmation-entry-track-info">
-                                    <h2 className="log-song-confirmation-track-name">
+                                    className="song-of-day-entry-track-info">
+                                    <h2 className="song-of-day-track-name">
                                         {pendingSong.trackName}
                                     </h2>
-                                    <p className="log-song-confirmation-artist-name">
+                                    <p className="song-of-day-artist-name">
                                         {pendingSong.artistName}
                                     </p>
-                                    <p className="log-song-confirmation-album-name">
+                                    <p className="song-of-day-album-name">
                                         {pendingSong.albumName}
                                     </p>
                                 </div>
@@ -112,11 +113,11 @@ export default function LogSongConfirmation() {
                                     onChange={(e) => setMemory(e.target.value)}
                                     placeholder="Enter a memory..."
                                     maxLength={160}
-                                    className="log-song-confirmation-memory"
+                                    className="song-of-day-memory"
                                 />
                             </div>
                         </div>
-                        <div className="log-song-confirmation-entry-footer">
+                        <div className="song-of-day-entry-footer">
                             <div
                                 className="log-song-confirmation-entry-footer-confirm">
                                 <button
