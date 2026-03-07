@@ -3,7 +3,8 @@ import "../common/SongOfDay.css";
 import {useEffect, useState} from "react";
 import {
     deleteSongOfDayForAppUser,
-    getSongOfDayForAppUser
+    getSongOfDayForAppUser,
+    updateMemoryForSong
 } from "../../api/song.ts";
 import {useOutletContext} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
@@ -11,12 +12,15 @@ import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
+import {Check, Pencil, X} from "lucide-react";
 
 export default function SongOfDay() {
     const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [confirmingRemove, setConfirmingRemove] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [draftMemory, setDraftMemory] = useState(song?.memory ?? "");
     const {showToast} = useToast();
 
     useEffect(() => {
@@ -42,6 +46,33 @@ export default function SongOfDay() {
         showToast("Song removed successfully");
     }
 
+    function startEdit() {
+        setDraftMemory(song?.memory ?? "")
+        setIsEditing(true)
+    }
+
+    function cancelEdit() {
+        setDraftMemory(song?.memory ?? "")
+        setIsEditing(false)
+    }
+
+    async function confirmEdit() {
+        if (!song) return;
+
+        try {
+            setLoading(true);
+            setIsEditing(false);
+            const updatedSong = await updateMemoryForSong(song.uuid, draftMemory);
+            setSong(updatedSong);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(getErrorMessage(err.message));
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <>
             {
@@ -57,7 +88,7 @@ export default function SongOfDay() {
                     <h1 className="msg">No song logged yet</h1>
                 }
                 {
-                    song &&
+                    !loading && song &&
                     <div className="song-of-day-entry">
                         <div className="song-of-day-entry-content">
                             <img
@@ -79,11 +110,39 @@ export default function SongOfDay() {
                                     </p>
                                 </div>
                                 {
-                                    song.memory && <textarea
-                                        disabled
-                                        value={song.memory}
-                                        className="song-of-day-memory"
-                                    />
+                                    song.memory &&
+                                    <>
+                                        <textarea
+                                            disabled={!isEditing}
+                                            value={isEditing ? draftMemory : song.memory}
+                                            onChange={(e) => setDraftMemory(e.target.value)}
+                                            className="song-of-day-memory"/>
+                                        <div
+                                            className="song-of-day-memory-header">
+                                            {
+                                                !isEditing && <button
+                                                    className="song-of-day-memory-edit"
+                                                    onClick={startEdit}>
+                                                    <Pencil size={18}/>
+                                                </button>
+                                            }
+                                            {
+                                                isEditing &&
+                                                <>
+                                                    <button
+                                                        onClick={confirmEdit}
+                                                        className="song-of-day-memory-edit">
+                                                        <Check size={18}/>
+                                                    </button>
+                                                    <button
+                                                        className="song-of-day-memory-edit"
+                                                        onClick={cancelEdit}>
+                                                        <X size={18}/>
+                                                    </button>
+                                                </>
+                                            }
+                                        </div>
+                                    </>
                                 }
                             </div>
                         </div>

@@ -41,7 +41,18 @@ export async function logSongOfDayForAppUser(spotifyId: string, memory: string) 
 
 export async function getUserSongHistoryForWeek() {
     try {
-        const response = await api.get<SongOfDay[]>(path + "/history");
+        const response = await api.get<SongOfDay[]>(`${path}/history`);
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
+}
+
+export async function updateMemoryForSong(songUuid: string, updatedMemory: string) {
+    try {
+        const response = await api.patch<SongOfDay>(`${path}/memory/${songUuid}`, {
+            updatedMemory
+        });
         return response.data;
     } catch (err: unknown) {
         handleError(err);
