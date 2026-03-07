@@ -1,6 +1,7 @@
 import type {SongOfDay} from "../../../api/song.ts";
 import "./HomeSidebarSong.css"
 import {Link, useParams} from "react-router";
+import {ArrowRight} from "lucide-react";
 
 export default function HomeSidebarSong({song, isLatest}: {
     song?: SongOfDay,
@@ -16,7 +17,15 @@ export default function HomeSidebarSong({song, isLatest}: {
     }
 
     if (!song) {
-        return <div className="sidebar-card empty-sidebar-card"></div>;
+        if (!isLatest) {
+            return <div className="sidebar-card empty-sidebar-card"></div>;
+        }
+
+        return <Link className="sidebar-card empty-sidebar-card latest-empty"
+                     to="/">
+            Log song for today <ArrowRight size={16}/>
+        </Link>
+
     }
 
     return (

@@ -20,7 +20,7 @@
     background-color: var(--color-accent);
 }
 
-.empty-sidebar-card {
+.empty-sidebar-card:not(.latest-empty) {
     opacity: 50%;
 }
 
@@ -75,5 +75,15 @@
 }
 
 .selected-card {
+    border: 2px solid var(--color-accent);
+}
+
+.latest-empty {
+    color: var(--color-text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.latest-empty:hover {
     border: 2px solid var(--color-accent);
 }
