@@ -110,7 +110,6 @@ export default function SongOfDay() {
                                     </p>
                                 </div>
                                 {
-                                    song.memory &&
                                     <>
                                         <textarea
                                             disabled={!isEditing}
