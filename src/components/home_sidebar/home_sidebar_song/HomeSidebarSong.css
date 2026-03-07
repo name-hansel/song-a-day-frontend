@@ -41,7 +41,6 @@
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--color-text-primary);
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -60,6 +59,7 @@
     display: flex;
     border: 1px var(--color-border) solid;
     align-items: center;
+    min-height: 42px;;
 }
 
 .sidebar-card-latest .sidebar-card-date,
@@ -67,6 +67,6 @@
     color: var(--color-text-primary);
 }
 
-.sidebar-card-latest:hover {
+.sidebar-card-latest:not(.empty-sidebar-card):hover {
     background-color: var(--color-accent-hover);
 }
