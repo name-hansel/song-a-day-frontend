@@ -6,7 +6,7 @@ import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 
 export default function HomeSidebar({songForToday}: {
-    songForToday: SongOfDay | null
+    songForToday?: SongOfDay
 }) {
     const [songHistory, setSongHistory] = useState<SongOfDay[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

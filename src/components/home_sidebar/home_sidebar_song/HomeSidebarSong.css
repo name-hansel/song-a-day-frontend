@@ -9,6 +9,7 @@
     transform 0.15s ease;
     text-decoration: none;
     color: inherit;
+    border: 2px solid transparent;
 }
 
 .sidebar-card:not(.empty-sidebar-card) {
@@ -59,7 +60,7 @@
     border-radius: var(--border-radius);
     transition: background-color 0.2s ease, transform 0.15s ease;
     display: flex;
-    border: 1px var(--color-border) solid;
+    border: 2px var(--color-border) solid;
     align-items: center;
     min-height: 42px;;
 }
@@ -71,4 +72,8 @@
 
 .sidebar-card-latest:not(.empty-sidebar-card):hover {
     background-color: var(--color-accent-hover);
+}
+
+.selected-card {
+    border: 2px solid var(--color-accent);
 }

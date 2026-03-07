@@ -1,11 +1,13 @@
 import type {SongOfDay} from "../../../api/song.ts";
 import "./HomeSidebarSong.css"
-import {Link} from "react-router";
+import {Link, useParams} from "react-router";
 
 export default function HomeSidebarSong({song, isLatest}: {
     song?: SongOfDay,
     isLatest: boolean
 }) {
+    const {date} = useParams();
+
     function formatDateForSidebar(dateString: string): string {
         const date: Date = new Date(dateString);
         const day: string = date.toLocaleDateString("en-US", {day: "2-digit"});
@@ -18,8 +20,8 @@ export default function HomeSidebarSong({song, isLatest}: {
     }
 
     return (
-        <Link to={isLatest ? "/" : `/song-a-day/${song.songDate}`}
-              className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""}`}>
+        <Link to={`/song-a-day/${song.songDate}`}
+              className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${date === song.songDate ? "selected-card" : ""}`}>
             <img
                 src={song.trackInformation.imageUrl}
                 alt={song.trackInformation.trackName}

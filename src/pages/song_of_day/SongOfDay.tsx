@@ -18,7 +18,7 @@ export function SongOfDay() {
         <ToastProvider>
             <Layout displayName={appUser.appUserName} onLogout={logout}>
                 <div className="home-layout">
-                    <HomeSidebar songForToday={song}/>
+                    <HomeSidebar/>
 
                     <div className="home-main">
                         <div className="container">
