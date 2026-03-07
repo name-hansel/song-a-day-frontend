@@ -96,6 +96,11 @@
     color: var(--color-text-secondary);
 }
 
+.log-memory:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
 .confirmation-actions {
     display: flex;
     gap: 0.75rem;
