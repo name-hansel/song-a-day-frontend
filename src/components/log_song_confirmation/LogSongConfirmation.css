@@ -1,19 +1,21 @@
-.log-song-confirmation-card {
+.log-song-confirmation-entry {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1.2rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    box-sizing: border-box;
-    width: 85%;
-    background-color: var(--color-bg-primary);
-    padding: 1.5rem;
+    padding: 2rem;
+    max-width: 900px;
 }
 
-.song-image-wrapper {
-    flex: 0 0 auto;
+.log-song-confirmation-entry-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
 }
 
-.song-image {
+.log-song-confirmation-entry-image {
     width: 300px;
     height: 300px;
     object-fit: cover;
@@ -21,61 +23,84 @@
     border: 1px solid var(--color-border);
 }
 
-.song-details {
-    flex: 1;
-    min-width: 0;
+.log-song-confirmation-entry-text {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* track-details top, meta-info bottom */
+    height: 300px;
+    gap: 0.8rem;
 }
 
-.track-details > * {
+.log-song-confirmation-entry-track-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    font-weight: 600;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+    gap: 0.2rem;
+}
+
+.log-song-confirmation-track-name {
     color: var(--color-text-primary);
-}
-
-.song-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     font-weight: 800;
-    color: var(--color-text-primary);
-    letter-spacing: 1px;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 0.4rem 0;
 }
 
-.song-artist,
-.song-album {
-    margin: 0.25rem 0;
-    font-size: 1.2rem;
+.log-song-confirmation-artist-name {
+    font-size: 1.15rem;
     color: var(--color-text-primary);
+    margin: 0.4rem 0;
 }
 
-.song-album {
+.log-song-confirmation-album-name {
     font-style: italic;
-    font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text-secondary);
+    opacity: 0.85;
+    margin: 0.4rem 0;
 }
 
-.song-metainfo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* space between fields */
-    align-items: flex-start;
-}
-
-.log-label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 600;
+.log-song-confirmation-memory {
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.9rem 1rem;
+    resize: none;
+    overflow-y: auto;
     font-size: 0.9rem;
-    color: var(--color-text-primary);
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+    flex: 1;
+    margin-top: 0.4rem;
+    min-height: 0;
+    line-height: 1.6;
 }
 
-.log-date-picker,
-.log-memory {
-    margin-top: 1rem;
+.log-song-confirmation-entry-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+}
+
+.log-song-confirmation-confirm-btn {
+    background: var(--color-accent);
+    transition: all 0.15s ease;
+    margin-right: 0.5rem;
+}
+
+.log-song-confirmation-confirm-btn:hover {
+    background: var(--color-accent);
+}
+
+.log-song-confirmation-date-picker {
     padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
@@ -83,84 +108,4 @@
     color: var(--color-text-primary);
     font-size: 0.8rem;
     width: auto;
-}
-
-.log-memory {
-    min-height: 80px;
-    padding: 0.8rem 1.2rem;
-    width: 320px;
-    resize: none;
-    overflow-y: auto;
-    font-size: 0.9rem;
-    letter-spacing: 0.1rem;
-    color: var(--color-text-secondary);
-}
-
-.log-memory:focus {
-    outline: none;
-    border-color: var(--color-accent);
-}
-
-.confirmation-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 8px;
-}
-
-.confirm-button,
-.cancel-button {
-    font-family: inherit;
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.6rem 1.8rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    border: 1px solid var(--color-border);
-    transition: background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.05s ease;
-}
-
-.confirm-button {
-    background-color: var(--color-accent);
-    color: var(--color-text-primary);
-}
-
-.confirm-button:hover {
-    background-color: var(--color-accent-hover);
-}
-
-.confirm-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 0 0 2px rgba(192, 122, 140, 0.22);
-}
-
-.cancel-button {
-    background-color: transparent;
-    color: var(--color-text-secondary);
-}
-
-.cancel-button:hover {
-    background-color: rgba(192, 122, 140, 0.14);
-    border-color: var(--color-accent);
-    color: var(--color-text-primary);
-}
-
-.cancel-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 0 0 2px rgba(192, 122, 140, 0.22);
-}
-
-@media (max-width: 700px) {
-    .log-song-confirmation-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .song-image {
-        width: 200px;
-        height: 200px;
-    }
 }

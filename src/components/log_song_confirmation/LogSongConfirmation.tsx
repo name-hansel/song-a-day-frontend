@@ -86,46 +86,58 @@ export default function LogSongConfirmation() {
                     loading && <Spinner/>
                 }
                 {
-                    pendingSong && <>
-                        <div className="song-image-wrapper">
-                            <img src={pendingSong.imageUrl}
-                                 alt={pendingSong.trackName}
-                                 className="song-image"/>
-                        </div>
-                        <div className="song-details">
-                            <div className="track-details">
-                                <h2 className="song-title">{pendingSong.trackName}</h2>
-                                <p className="song-artist">{pendingSong.artistName}</p>
-                                <p className="song-album">{pendingSong.albumName}</p>
+                    pendingSong &&
+                    <div className="log-song-confirmation-entry">
+                        <div className="log-song-confirmation-entry-content">
+                            <img
+                                src={pendingSong.imageUrl}
+                                alt={`${pendingSong.trackName} image`}
+                                className="log-song-confirmation-entry-image"
+                            />
+                            <div className="log-song-confirmation-entry-text">
+                                <div
+                                    className="log-song-confirmation-entry-track-info">
+                                    <h2 className="log-song-confirmation-track-name">
+                                        {pendingSong.trackName}
+                                    </h2>
+                                    <p className="log-song-confirmation-artist-name">
+                                        {pendingSong.artistName}
+                                    </p>
+                                    <p className="log-song-confirmation-album-name">
+                                        {pendingSong.albumName}
+                                    </p>
+                                </div>
+                                <textarea
+                                    value={memory}
+                                    onChange={(e) => setMemory(e.target.value)}
+                                    placeholder="Enter a memory..."
+                                    maxLength={160}
+                                    className="log-song-confirmation-memory"
+                                />
                             </div>
-
-                            <div className="song-metainfo">
+                        </div>
+                        <div className="log-song-confirmation-entry-footer">
+                            <div
+                                className="log-song-confirmation-entry-footer-confirm">
+                                <button
+                                    className="log-song-confirmation-confirm-btn"
+                                    onClick={onConfirmation}
+                                >
+                                    Confirm
+                                </button>
                                 <input
                                     type="date"
                                     value={getTodayForTimezone(appUser?.timezone)}
                                     disabled
-                                    className="log-date-picker"/>
-                                <textarea
-                                    className="log-memory"
-                                    value={memory}
-                                    onChange={(e) => setMemory(e.target.value)}
-                                    placeholder="Enter a memory..."
-                                    maxLength={160}/>
-                                <div className="confirmation-actions">
-                                    <button
-                                        className="confirm-button"
-                                        onClick={onConfirmation}
-                                    >
-                                        Confirm
-                                    </button>
-                                    <button className="cancel-button"
-                                            onClick={onCancel}>
-                                        Cancel
-                                    </button>
-                                </div>
+                                    className="log-song-confirmation-date-picker"/>
                             </div>
+                            <button
+                                className="log-song-confirmation-cancel-btn"
+                                onClick={onCancel}>
+                                Cancel
+                            </button>
                         </div>
-                    </>
+                    </div>
                 }
             </div>
         </div>
