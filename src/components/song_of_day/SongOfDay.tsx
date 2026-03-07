@@ -66,7 +66,8 @@ export default function SongOfDay() {
                             />
                             <div className="song-of-day-entry-text">
                                 <div className="song-of-day-entry-track-info">
-                                    <h2 className="song-of-day-track-name">
+                                    <h2 className="song-of-day-track-name"
+                                        title={song.trackInformation.trackName}>
                                         {song.trackInformation.trackName}
                                     </h2>
                                     <p className="song-of-day-artist-name">

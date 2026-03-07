@@ -17,3 +17,8 @@
     font-size: 0.8rem;
     width: auto;
 }
+
+.song-of-day-memory:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}

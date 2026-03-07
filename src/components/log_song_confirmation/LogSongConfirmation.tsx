@@ -98,7 +98,8 @@ export default function LogSongConfirmation() {
                             <div className="song-of-day-entry-text">
                                 <div
                                     className="song-of-day-entry-track-info">
-                                    <h2 className="song-of-day-track-name">
+                                    <h2 className="song-of-day-track-name"
+                                        title={pendingSong.trackName}>
                                         {pendingSong.trackName}
                                     </h2>
                                     <p className="song-of-day-artist-name">

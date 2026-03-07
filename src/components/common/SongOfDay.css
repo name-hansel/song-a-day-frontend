@@ -41,21 +41,22 @@
 
 .song-of-day-track-name {
     color: var(--color-text-primary);
-    font-size: 1.7rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     line-height: 1.25;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin: 0 0 0.4rem 0;
+    margin: 0 0 0.2rem 0;
+    font-family: "Bowlby One", sans-serif;
 }
 
 .song-of-day-artist-name {
     font-size: 1.15rem;
     color: var(--color-text-primary);
-    margin: 0.4rem 0;
+    margin: 0.2rem 0;
 }
 
 .song-of-day-album-name {
@@ -64,7 +65,7 @@
     letter-spacing: 0.06em;
     color: var(--color-text-secondary);
     opacity: 0.85;
-    margin: 0.4rem 0;
+    margin: 0.2rem 0;
 }
 
 .song-of-day-memory {
