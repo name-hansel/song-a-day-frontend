@@ -16,6 +16,7 @@ export default function SongOfDay() {
     const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [confirmingRemove, setConfirmingRemove] = useState(false);
     const {showToast} = useToast();
 
     useEffect(() => {
@@ -77,20 +78,45 @@ export default function SongOfDay() {
                                         {song.trackInformation.albumName}
                                     </p>
                                 </div>
-                                <textarea
-                                    disabled
-                                    value={song.memory}
-                                    className="song-of-day-memory"
-                                />
+                                {
+                                    song.memory && <textarea
+                                        disabled
+                                        value={song.memory}
+                                        className="song-of-day-memory"
+                                    />
+                                }
                             </div>
                         </div>
                         <div className="song-of-day-entry-footer">
-                            <button
-                                className="song-of-day-remove-btn"
-                                onClick={removeSongForAppUser}
-                            >
-                                Remove
-                            </button>
+                            <div className="song-of-day-footer-left">
+                                {
+                                    confirmingRemove ?
+                                        <div
+                                            className="song-of-day-remove-confirm">
+                                            <button
+                                                className="song-of-day-confirm-btn"
+                                                onClick={removeSongForAppUser}
+                                            >
+                                                Confirm
+                                            </button>
+                                            <button
+                                                className="song-of-day-cancel-btn"
+                                                onClick={() => setConfirmingRemove(false)}
+                                            >
+                                                Cancel
+                                            </button>
+                                            <span
+                                                className="song-of-day-remove-text">
+                                                Are you sure?
+                                            </span>
+                                        </div> : <button
+                                            className="song-of-day-remove-btn"
+                                            onClick={() => setConfirmingRemove(true)}
+                                        >
+                                            Remove
+                                        </button>
+                                }
+                            </div>
                             <p className="song-of-day-logged-at">
                                 Logged at: {song.addedAtTime}
                             </p>
