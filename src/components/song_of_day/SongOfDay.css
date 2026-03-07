@@ -19,6 +19,21 @@
     color: var(--color-text-secondary);
 }
 
+.song-of-day-remove-confirm {
+    animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .song-of-day-logged-at {
     font-size: 0.75rem;
     letter-spacing: 0.08em;
