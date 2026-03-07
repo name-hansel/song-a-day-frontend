@@ -6,7 +6,7 @@ import {
     getSongOfDayForAppUser,
     updateMemoryForSong
 } from "../../api/song.ts";
-import {useOutletContext} from "react-router";
+import {useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
@@ -15,6 +15,7 @@ import {useToast} from "../../context/ToastContext.tsx";
 import {Check, Pencil, X} from "lucide-react";
 
 export default function SongOfDay() {
+    const {date} = useParams();
     const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -26,7 +27,7 @@ export default function SongOfDay() {
     useEffect(() => {
         async function getSongOfDay() {
             try {
-                const data = await getSongOfDayForAppUser();
+                const data = await getSongOfDayForAppUser(date);
                 setSong(data);
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -38,7 +39,7 @@ export default function SongOfDay() {
         }
 
         void getSongOfDay();
-    }, [setSong]);
+    }, [date, setSong]);
 
     async function removeSongForAppUser() {
         await deleteSongOfDayForAppUser();

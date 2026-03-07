@@ -43,11 +43,13 @@ export default function HomeSidebar({songForToday}: {
             }
             {
                 <div className="sidebar-content">
-                    {songHistory.map((song: SongOfDay, index: number) => (
-                        <HomeSidebarSong song={song}
-                                         key={index}
-                                         isLatest={index === songHistory.length - 1}/>
-                    ))}
+                    {
+                        songHistory && songHistory.map((song: SongOfDay, index: number) => (
+                            <HomeSidebarSong song={song}
+                                             key={index}
+                                             isLatest={index === songHistory.length - 1}/>
+                        ))
+                    }
                 </div>
             }
         </aside>

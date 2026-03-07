@@ -11,9 +11,9 @@ export type SongOfDay = {
 
 const path = "/song-a-day";
 
-export async function getSongOfDayForAppUser() {
+export async function getSongOfDayForAppUser(date?: string) {
     try {
-        const response = await api.get<SongOfDay | null>(path);
+        const response = await api.get<SongOfDay | null>(`${path}${date ? `/${date}` : ''}`);
         return response.data;
     } catch (err: unknown) {
         handleError(err);

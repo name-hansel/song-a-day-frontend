@@ -7,6 +7,8 @@
     background-color: var(--color-bg-tertiary);
     transition: background-color 0.2s ease,
     transform 0.15s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .sidebar-card:not(.empty-sidebar-card) {

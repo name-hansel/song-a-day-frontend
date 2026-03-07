@@ -6,6 +6,7 @@ const errorMessages: Record<string, string> = {
     ACCESS_TOKEN_EXPIRED: "Please login again",
     USER_NOT_FOUND: "User not found",
     SONG_OF_DAY_NOT_FOUND: "Song of the day not found. Please try again.",
+    INVALID_DATE: "Invalid date entered",
     DEFAULT: "Something went wrong. Please try again."
 }
 
