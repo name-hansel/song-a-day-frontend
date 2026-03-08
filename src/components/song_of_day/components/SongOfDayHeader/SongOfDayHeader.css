@@ -1,0 +1,14 @@
+.song-of-day-header {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+}
+
+.song-of-day-header-date {
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text-secondary);
+}

@@ -18,6 +18,7 @@ import SongOfDayImage from "./components/SongOfDayImage/SongOfDayImage.tsx";
 import SongOfDayFooterRemove
     from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
 import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
+import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
 
 export default function SongOfDay() {
     const {date} = useParams();
@@ -82,6 +83,7 @@ export default function SongOfDay() {
                 {
                     !loading && song &&
                     <div className="song-of-day-entry">
+                        <SongOfDayHeader date={song.songDate}/>
                         <div className="song-of-day-entry-content">
                             <SongOfDayImage
                                 trackInformation={song.trackInformation}/>
