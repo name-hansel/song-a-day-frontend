@@ -77,7 +77,7 @@ export default function SongOfDay() {
                 }
                 {
                     !loading && !song && !error &&
-                    <h1 className="msg">No song logged yet</h1>
+                    <h1 className="msg">No song logged yet :(</h1>
                 }
                 {
                     !loading && song &&

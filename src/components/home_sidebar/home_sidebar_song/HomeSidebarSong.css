@@ -86,4 +86,5 @@
 
 .latest-empty:hover {
     border: 2px solid var(--color-accent);
+    color: var(--color-accent);
 }
