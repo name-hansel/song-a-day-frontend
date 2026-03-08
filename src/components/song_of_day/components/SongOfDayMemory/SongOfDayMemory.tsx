@@ -10,7 +10,7 @@ export default function SongOfDayMemory({
                                         }: {
     isEditableByDefault: boolean,
     memory: string,
-    setMemory: (memory: string) => void,
+    setMemory?: (memory: string) => void,
     confirmEdit?: (draftMemory: string) => Promise<void>
 }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -27,13 +27,20 @@ export default function SongOfDayMemory({
     }
 
     if (isEditableByDefault) {
-        return <textarea
+        if (!setMemory) return;
+
+        return <><textarea
             value={memory}
             onChange={(e) => setMemory(e.target.value)}
             placeholder="Enter a memory..."
             maxLength={160}
-            className="song-of-day-memory"
-        />
+            className="song-of-day-memory"/>
+            <div className="song-of-day-memory-editing-div">
+                <div className="song-of-day-memory-chars">
+                    {`${memory.length}/160`}
+                </div>
+            </div>
+        </>
     }
 
     if (!confirmEdit) {
@@ -48,18 +55,22 @@ export default function SongOfDayMemory({
                 value={isEditing ? draftMemory : memory}
                 onChange={(e) => setDraftMemory(e.target.value)}
                 className="song-of-day-memory"/>
-            <div
-                className="song-of-day-memory-header">
-                {
-                    !isEditing && <button
+            {
+                !isEditing && <div className="song-of-day-memory-edit-div">
+                    <button
                         className="song-of-day-memory-edit"
                         onClick={startEdit}>
                         <Pencil size={18}/>
                     </button>
-                }
-                {
-                    isEditing &&
-                    <>
+                </div>
+            }
+            {
+                isEditing &&
+                <div className="song-of-day-memory-editing-div">
+                    <div className="song-of-day-memory-chars">
+                        {`${draftMemory.length}/160`}
+                    </div>
+                    <div className="song-of-day-memory-edit-btns">
                         <button
                             onClick={() => {
                                 setIsEditing(false);
@@ -73,9 +84,9 @@ export default function SongOfDayMemory({
                             onClick={cancelEdit}>
                             <X size={18}/>
                         </button>
-                    </>
-                }
-            </div>
+                    </div>
+                </div>
+            }
         </>
     )
 }

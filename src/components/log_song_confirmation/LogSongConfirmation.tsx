@@ -36,6 +36,7 @@ export default function LogSongConfirmation() {
             try {
                 setLoading(true);
                 setError(null);
+                setMemory("");
 
                 const song = await searchForTrack(trackId);
                 setPendingSong(song);

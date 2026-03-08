@@ -20,6 +20,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    gap: 1rem;
 }
 
 .song-of-day-memory-edit:hover {
@@ -27,9 +28,24 @@
     background-color: transparent;
 }
 
-.song-of-day-memory-header {
+.song-of-day-memory-edit-div {
     display: flex;
     justify-content: flex-end;
-    margin-top: 0.25rem;
+}
+
+.song-of-day-memory-editing-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.song-of-day-memory-chars {
+    font-size: 0.75rem;
+    letter-spacing: 0.1rem;
+    color: var(--color-text-secondary);
+}
+
+.song-of-day-memory-edit-btns {
+    display: flex;
+    justify-content: space-between;
     gap: 1rem;
 }
