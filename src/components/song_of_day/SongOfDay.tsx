@@ -113,6 +113,7 @@ export default function SongOfDay() {
                                 {
                                     <>
                                         <textarea
+                                            maxLength={160}
                                             disabled={!isEditing}
                                             value={isEditing ? draftMemory : song.memory}
                                             onChange={(e) => setDraftMemory(e.target.value)}
