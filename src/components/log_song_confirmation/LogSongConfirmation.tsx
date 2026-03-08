@@ -10,6 +10,12 @@ import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
+import SongOfDayImage
+    from "../song_of_day/components/SongOfDayImage/SongOfDayImage.tsx";
+import SongOfDayDetails
+    from "../song_of_day/components/SongOfDayDetails/SongOfDayDetails.tsx";
+import SongOfDayMemory
+    from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();
@@ -90,32 +96,13 @@ export default function LogSongConfirmation() {
                     pendingSong &&
                     <div className="song-of-day-entry">
                         <div className="song-of-day-entry-content">
-                            <img
-                                src={pendingSong.imageUrl}
-                                alt={`${pendingSong.trackName} image`}
-                                className="song-of-day-entry-image"
-                            />
+                            <SongOfDayImage trackInformation={pendingSong}/>
                             <div className="song-of-day-entry-text">
-                                <div
-                                    className="song-of-day-entry-track-info">
-                                    <h2 className="song-of-day-track-name"
-                                        title={pendingSong.trackName}>
-                                        {pendingSong.trackName}
-                                    </h2>
-                                    <p className="song-of-day-artist-name">
-                                        {pendingSong.artistName}
-                                    </p>
-                                    <p className="song-of-day-album-name">
-                                        {pendingSong.albumName}
-                                    </p>
-                                </div>
-                                <textarea
-                                    value={memory}
-                                    onChange={(e) => setMemory(e.target.value)}
-                                    placeholder="Enter a memory..."
-                                    maxLength={160}
-                                    className="song-of-day-memory"
-                                />
+                                <SongOfDayDetails
+                                    trackInformation={pendingSong}/>
+                                <SongOfDayMemory isEditableByDefault
+                                                 memory={memory}
+                                                 setMemory={setMemory}/>
                             </div>
                         </div>
                         <div className="song-of-day-entry-footer">

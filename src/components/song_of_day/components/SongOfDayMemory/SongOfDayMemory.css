@@ -1,0 +1,35 @@
+.song-of-day-memory {
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.7rem 0.9rem;
+    resize: none;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+    flex: 1;
+    margin-top: 0.4rem;
+    min-height: 0;
+    line-height: 1.6;
+}
+
+.song-of-day-memory-edit {
+    font-size: 0.75rem;
+    background: var(--color-bg-secondary);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.song-of-day-memory-edit:hover {
+    color: var(--color-accent);
+    background-color: transparent;
+}
+
+.song-of-day-memory-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+    gap: 1rem;
+}

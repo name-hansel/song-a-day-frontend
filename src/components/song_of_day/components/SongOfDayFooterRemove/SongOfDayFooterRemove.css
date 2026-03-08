@@ -1,0 +1,40 @@
+.song-of-day-remove-btn {
+    background: transparent;
+    transition: all 0.15s ease;
+}
+
+.song-of-day-remove-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text-primary);
+}
+
+.song-of-day-remove-confirm {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.song-of-day-remove-text {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.song-of-day-remove-confirm {
+    animation: fadeIn 0.15s ease;
+}
+
+.song-of-day-footer-left {
+    display: flex;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
