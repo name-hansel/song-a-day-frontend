@@ -5,7 +5,6 @@
     flex-direction: column;
     background-color: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
-    justify-content: flex-end;
     border-top: none;
     gap: 1rem;
 }

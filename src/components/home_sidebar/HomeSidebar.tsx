@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
+import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 
 export default function HomeSidebar({songForToday}: {
     songForToday?: SongOfDay
@@ -39,17 +40,16 @@ export default function HomeSidebar({songForToday}: {
                 loading && <Spinner/>
             }
             {
-                error && <p>Error</p>
+                error && <ErrorBanner message={error}/>
             }
             {
+                !error &&
                 <div className="sidebar-content">
-                    {
-                        songHistory && songHistory.map((song: SongOfDay, index: number) => (
-                            <HomeSidebarSong song={song}
-                                             key={index}
-                                             isLatest={index === songHistory.length - 1}/>
-                        ))
-                    }
+                    {songHistory && songHistory.map((song: SongOfDay, index: number) => (
+                        <HomeSidebarSong song={song}
+                                         key={index}
+                                         isLatest={index === songHistory.length - 1}/>
+                    ))}
                 </div>
             }
         </aside>
