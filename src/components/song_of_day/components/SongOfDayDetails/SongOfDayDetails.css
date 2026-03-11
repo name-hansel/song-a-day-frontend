@@ -6,6 +6,15 @@
     gap: 0.2rem;
 }
 
+.song-of-day-track-name,
+.song-of-day-track-name:link,
+.song-of-day-track-name:visited,
+.song-of-day-track-name:hover,
+.song-of-day-track-name:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 .song-of-day-track-name {
     color: var(--color-text-primary);
     font-size: 1.5rem;

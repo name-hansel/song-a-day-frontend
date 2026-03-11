@@ -6,7 +6,8 @@ export default function SongOfDayDetails({trackInformation}: {
 }) {
     return (
         <div className="song-of-day-entry-track-info">
-            <a href={trackInformation.spotifyUrl} target="_blank">
+            <a href={trackInformation.spotifyUrl}
+               className="song-of-day-track-name" target="_blank">
                 <h2 className="song-of-day-track-name"
                     title={trackInformation.trackName}>
                     {trackInformation.trackName}
