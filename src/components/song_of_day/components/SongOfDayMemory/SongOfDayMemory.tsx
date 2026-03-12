@@ -6,12 +6,14 @@ export default function SongOfDayMemory({
                                             isEditableByDefault,
                                             memory,
                                             setMemory,
-                                            confirmEdit
+                                            confirmEdit,
+                                            isEditingMemoryAllowed
                                         }: {
     isEditableByDefault: boolean,
     memory: string,
     setMemory?: (memory: string) => void,
-    confirmEdit?: (draftMemory: string) => Promise<void>
+    confirmEdit?: (draftMemory: string) => Promise<void>,
+    isEditingMemoryAllowed?: boolean
 }) {
     const [isEditing, setIsEditing] = useState(false);
     const [draftMemory, setDraftMemory] = useState(memory ?? "");
@@ -56,7 +58,8 @@ export default function SongOfDayMemory({
                 onChange={(e) => setDraftMemory(e.target.value)}
                 className="song-of-day-memory"/>
             {
-                !isEditing && <div className="song-of-day-memory-edit-div">
+                !isEditing && isEditingMemoryAllowed &&
+                <div className="song-of-day-memory-edit-div">
                     <button
                         className="song-of-day-memory-edit"
                         onClick={startEdit}>

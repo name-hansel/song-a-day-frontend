@@ -19,6 +19,8 @@ import SongOfDayFooterRemove
     from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
 import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
+import {useAuth} from "../../auth/AuthContext.tsx";
+import {getTodayForTimezone} from "../../utils/DateUtils.ts";
 
 export default function SongOfDay() {
     const {date} = useParams();
@@ -27,11 +29,16 @@ export default function SongOfDay() {
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
 
+    const {appUser} = useAuth();
+    const timezone = appUser?.timezone;
+    const [isEditingMemoryAllowed, setIsEditingMemoryAllowed] = useState(false);
+
     useEffect(() => {
         async function getSongOfDay() {
             try {
                 const data = await getSongOfDayForAppUser(date);
                 setSong(data);
+                setIsEditingMemoryAllowed(getTodayForTimezone(timezone) === song?.songDate);
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     setError(getErrorMessage(err.message));
@@ -42,7 +49,7 @@ export default function SongOfDay() {
         }
 
         void getSongOfDay();
-    }, [date, setSong]);
+    }, [date, setSong, song?.songDate, timezone]);
 
     async function removeSongForAppUser() {
         await deleteSongOfDayForAppUser();
@@ -92,7 +99,8 @@ export default function SongOfDay() {
                                     trackInformation={song.trackInformation}/>
                                 <SongOfDayMemory isEditableByDefault={false}
                                                  memory={song.memory}
-                                                 confirmEdit={confirmEdit}/>
+                                                 confirmEdit={confirmEdit}
+                                                 isEditingMemoryAllowed={isEditingMemoryAllowed}/>
                             </div>
                         </div>
                         <div className="song-of-day-entry-footer">

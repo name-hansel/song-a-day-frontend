@@ -15,3 +15,14 @@ export function formatDateForSongOfDay(dateString: string): string {
         year: "numeric"
     });
 }
+
+export function getTodayForTimezone(timezone: string | undefined): string {
+    const formatter = new Intl.DateTimeFormat("en-CA", {
+        timeZone: timezone,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
+
+    return formatter.format(new Date());
+}
