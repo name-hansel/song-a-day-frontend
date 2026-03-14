@@ -19,10 +19,17 @@
 .layout-header-right {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 1rem;
 }
 
 .layout-username {
     font-size: 1.2rem;
     color: var(--color-text-secondary);
+}
+
+.settings-btn {
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    border: none;
+    padding: 0;
 }

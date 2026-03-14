@@ -8,6 +8,7 @@ import LogSongConfirmation
 import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
 import {SongOfDay as SongOfDayPage} from "./pages/song_of_day/SongOfDay.tsx";
 import Login from "./pages/login/Login.tsx";
+import Settings from "./pages/settings/Settings.tsx";
 
 function App() {
     return (
@@ -34,8 +35,12 @@ function App() {
                             </PrivateRoute>
                         }
                         path="/song-a-day/:date">
-                        <Route index element={<SongOfDay/>}/>
+                        <Route index element={
+                            <PrivateRoute><SongOfDay/></PrivateRoute>}/>
                     </Route>
+                    {/*  Settings  */}
+                    <Route path="/settings"
+                           element={<PrivateRoute><Settings/></PrivateRoute>}/>
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

@@ -1,7 +1,7 @@
 import {ToastProvider} from "../../context/ToastContext.tsx";
 import Layout from "../../components/layout/Layout.tsx";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
-import {Outlet} from "react-router";
+import {Navigate, Outlet} from "react-router";
 import {useState} from "react";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import type {SongOfDay} from "../../types/SongOfDay.ts";
@@ -11,7 +11,7 @@ export function SongOfDay() {
     const {appUser, logout} = useAuth();
 
     if (!appUser) {
-        return null;
+        return <Navigate to="/login" replace/>;
     }
 
     return (
@@ -20,10 +20,8 @@ export function SongOfDay() {
                 <div className="home-layout">
                     <HomeSidebar/>
 
-                    <div className="home-main">
-                        <div className="container">
-                            <Outlet context={{song, setSong}}/>
-                        </div>
+                    <div className="container">
+                        <Outlet context={{song, setSong}}/>
                     </div>
                 </div>
             </Layout>
