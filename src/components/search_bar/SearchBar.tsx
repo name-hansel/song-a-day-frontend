@@ -1,10 +1,11 @@
 import {useEffect, useRef, useState} from "react";
 import {useDebounce} from "../../hooks/useDebounce.ts";
-import {searchForTracks, type TrackSearch} from "../../api/search.ts";
+import {searchForTracks} from "../../api/search.ts";
 import "./SearchBar.css";
 import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import {Search, X} from "lucide-react";
+import type {TrackSearch} from "../../types/TrackSearch.ts";
 
 export default function SearchBar({onSelect}: {
     onSelect: (trackId: string) => void

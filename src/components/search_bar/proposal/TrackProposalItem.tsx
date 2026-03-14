@@ -1,5 +1,5 @@
-import type {TrackSearch} from "../../../api/search.ts";
 import "./TrackProposalItem.css";
+import type {TrackSearch} from "../../../types/TrackSearch.ts";
 
 export default function TrackProposalItem({
                                               track,
@@ -16,7 +16,7 @@ export default function TrackProposalItem({
             onSelect(track.spotifyId);
         }}>
             <img
-                src={track.imageUrl}
+                src={track.smallImageUrl}
                 alt="Album cover"
                 className="search-item-image"
             />

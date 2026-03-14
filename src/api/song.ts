@@ -1,13 +1,5 @@
 import {api, handleError} from "./common.ts";
-import type {TrackSearch} from "./search.ts";
-
-export type SongOfDay = {
-    uuid: string;
-    songDate: string;
-    trackInformation: TrackSearch;
-    addedAtTime: string;
-    memory: string;
-}
+import type {SongOfDay} from "../types/SongOfDay.ts";
 
 const path = "/song-a-day";
 

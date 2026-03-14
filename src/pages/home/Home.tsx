@@ -4,11 +4,11 @@ import TodaySongHeader
     from "../../components/today_song_header/TodaySongHeader.tsx";
 import * as React from "react";
 import {useState} from "react";
-import {type SongOfDay} from "../../api/song.ts";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import "./Home.css"
 import {Outlet, useNavigate} from "react-router";
 import {ToastProvider} from "../../context/ToastContext.tsx";
+import type {SongOfDay} from "../../types/SongOfDay.ts";
 
 export type SongOfDayContext = {
     song: SongOfDay | null;

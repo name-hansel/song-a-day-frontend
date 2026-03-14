@@ -1,13 +1,5 @@
 import {api, handleError} from "./common.ts";
-
-export type TrackSearch = {
-    spotifyId: string;
-    trackName: string;
-    artistName: string;
-    albumName: string;
-    imageUrl: string;
-    spotifyUrl: string;
-}
+import type {TrackSearch} from "../types/TrackSearch.ts";
 
 export async function searchForTracks(query: string, signal?: AbortSignal) {
     try {

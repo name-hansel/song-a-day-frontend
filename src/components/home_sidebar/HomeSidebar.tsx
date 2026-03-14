@@ -1,10 +1,11 @@
 import "./HomeSidebar.css"
-import {getUserSongHistoryForWeek, type SongOfDay} from "../../api/song.ts";
 import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
+import type {SongOfDay} from "../../types/SongOfDay.ts";
+import {getUserSongHistoryForWeek} from "../../api/song.ts";
 
 export default function HomeSidebar({songForToday}: {
     songForToday?: SongOfDay

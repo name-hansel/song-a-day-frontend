@@ -4,7 +4,7 @@ import "../common/SongOfDay.css";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import {useNavigate, useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
-import {searchForTrack, type TrackSearch} from "../../api/search.ts";
+import {searchForTrack} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
@@ -16,6 +16,7 @@ import SongOfDayDetails
     from "../song_of_day/components/SongOfDayDetails/SongOfDayDetails.tsx";
 import SongOfDayMemory
     from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
+import type {TrackSearch} from "../../types/TrackSearch.ts";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();

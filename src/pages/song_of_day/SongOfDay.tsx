@@ -4,7 +4,7 @@ import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import {Outlet} from "react-router";
 import {useState} from "react";
 import {useAuth} from "../../auth/AuthContext.tsx";
-import type {SongOfDay} from "../../api/song.ts";
+import type {SongOfDay} from "../../types/SongOfDay.ts";
 
 export function SongOfDay() {
     const [song, setSong] = useState<SongOfDay | null>(null);

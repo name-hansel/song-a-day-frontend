@@ -1,8 +1,8 @@
-import type {SongOfDay} from "../../../api/song.ts";
 import "./HomeSidebarSong.css"
 import {Link, useParams} from "react-router";
 import {ArrowRight} from "lucide-react";
 import {formatToReadableDate} from "../../../utils/DateUtils.ts";
+import type {SongOfDay} from "../../../types/SongOfDay.ts";
 
 export default function HomeSidebarSong({song, isLatest}: {
     song?: SongOfDay,
@@ -30,7 +30,7 @@ export default function HomeSidebarSong({song, isLatest}: {
         <Link to={isLatest ? '/' : `/song-a-day/${song.songDate}`}
               className={`sidebar-card ${isLatest ? "sidebar-card-latest" : ""} ${isSelected() ? "selected-card" : ""}`}>
             <img
-                src={song.trackInformation.imageUrl}
+                src={song.trackInformation.smallImageUrl}
                 alt={song.trackInformation.trackName}
                 className="sidebar-card-image"/>
             <div className="sidebar-card-content">
