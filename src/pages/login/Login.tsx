@@ -1,6 +1,14 @@
 import "./Login.css";
+import {useAuth} from "../../auth/AuthContext.tsx";
+import {useNavigate} from "react-router";
 
 export default function Login() {
+    const {appUser} = useAuth();
+    const navigate = useNavigate();
+
+    if (appUser) {
+        navigate("/");
+    }
 
     const login = () => {
         window.location.href = "http://127.0.0.1:8080/oauth2/authorization/spotify";

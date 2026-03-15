@@ -10,6 +10,7 @@ import {SongOfDay as SongOfDayPage} from "./pages/song_of_day/SongOfDay.tsx";
 import Login from "./pages/login/Login.tsx";
 import Settings from "./pages/settings/Settings.tsx";
 import {ToastProvider} from "./context/ToastContext.tsx";
+import NotFound from "./pages/not_found/NotFound.tsx";
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                         <Route path="/settings"
                                element={
                                    <PrivateRoute><Settings/></PrivateRoute>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
