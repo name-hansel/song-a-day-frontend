@@ -8,9 +8,11 @@ import ErrorBanner from "../../components/error_banner/ErrorBanner.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import {getTimezones, saveTimezone} from "../../api/settings.ts";
 import type {Timezone} from "../../types/Timezone.ts";
+import {useToast} from "../../context/ToastContext.tsx";
 
 export default function Settings() {
     const {appUser, logout} = useAuth();
+    const {showToast} = useToast();
     const navigate = useNavigate();
     const [timezone, setTimezone] = useState(appUser?.timezone);
     const [timezones, setTimezones] = useState<Timezone[]>([]);
@@ -46,7 +48,11 @@ export default function Settings() {
         try {
             const savedTimezone = await saveTimezone(timezone);
             setTimezone(savedTimezone.value);
-            // TODO: Show toast and update clock on main header
+            showToast("Settings saved successfully!");
+            if (newUser) {
+                navigate("/");
+            }
+            // TODO: Update clock on main header
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
