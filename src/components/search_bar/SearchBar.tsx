@@ -6,6 +6,7 @@ import TrackProposalItem from "./proposal/TrackProposalItem.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import {Search, X} from "lucide-react";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
+import {useToast} from "../../context/ToastContext.tsx";
 
 export default function SearchBar({onSelect}: {
     onSelect: (trackId: string) => void
@@ -13,9 +14,9 @@ export default function SearchBar({onSelect}: {
     const [query, setQuery] = useState("");
     const [searchResult, setSearchResult] = useState<TrackSearch[]>([]);
     const [searchLoading, setSearchLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [showProposals, setShowProposals] = useState(false);
     const debouncedQuery = useDebounce(query, 300);
+    const {showToast} = useToast();
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,14 +32,13 @@ export default function SearchBar({onSelect}: {
         async function search() {
             try {
                 setSearchLoading(true);
-                setError(null);
                 setSearchResult([]);
 
                 const data = await searchForTracks(debouncedQuery);
                 setSearchResult(data);
             } catch (err: unknown) {
                 if (err instanceof Error) {
-                    setError(getErrorMessage(err.message));
+                    showToast(getErrorMessage(err.message));
                 }
             } finally {
                 setSearchLoading(false);
@@ -47,7 +47,8 @@ export default function SearchBar({onSelect}: {
 
         void search();
         return () => controller.abort();
-    }, [debouncedQuery]);
+    }, [debouncedQuery, showToast]);
+
     useEffect(() => {
         function handleFocusLost(event: MouseEvent) {
             if (
@@ -86,7 +87,6 @@ export default function SearchBar({onSelect}: {
                     />
                 )}
             </div>
-            {error && <p>{error}</p>}
             {
                 !searchLoading && showProposals && searchResult.length > 0 && (
                     <div className="search-results">
