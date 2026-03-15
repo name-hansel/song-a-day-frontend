@@ -60,15 +60,15 @@ export default function Settings() {
 
     return (
         <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <div className="home-layout">
+            <div className="settings-layout">
+                {
+                    newUser &&
+                    <div className="settings-banner">
+                        <ErrorBanner
+                            message={"Please confirm your timezone."}/>
+                    </div>
+                }
                 <section className="settings-card">
-                    {
-                        newUser &&
-                        <div className="settings-banner">
-                            <ErrorBanner
-                                message={"Please confirm your timezone."}/>
-                        </div>
-                    }
                     <h1 className="settings-title">Settings</h1>
 
                     <div className="settings-content">
