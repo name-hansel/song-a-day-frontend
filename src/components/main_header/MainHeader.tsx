@@ -1,6 +1,6 @@
 import "./MainHeader.css";
 import Clock from "./clock/Clock.tsx";
-import {Settings} from "lucide-react";
+import {LogOutIcon, Settings} from "lucide-react";
 import {Link, useLocation} from "react-router";
 
 export default function MainHeader({displayName, onLogout}: {
@@ -20,14 +20,16 @@ export default function MainHeader({displayName, onLogout}: {
                 <span className="layout-username">{displayName}</span>
                 {
                     !isSettingsPage &&
-                    <Link to="/settings" className="settings-btn"><Settings
+                    <Link title="Settings" to="/settings"
+                          className="settings-btn"><Settings
                         size={18}/></Link>
                 }
                 <button
-                    className="layout-logout-button"
+                    title="Logout"
+                    className="layout-logout-button settings-btn"
                     onClick={onLogout}
                 >
-                    Logout
+                    <LogOutIcon size={18}/>
                 </button>
             </div>
         </header>

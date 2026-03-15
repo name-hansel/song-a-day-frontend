@@ -25,6 +25,7 @@
 .layout-username {
     font-size: 1rem;
     color: var(--color-text-secondary);
+    letter-spacing: 1px;
 }
 
 .settings-btn {
