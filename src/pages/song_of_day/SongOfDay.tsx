@@ -1,4 +1,3 @@
-import {ToastProvider} from "../../context/ToastContext.tsx";
 import Layout from "../../components/layout/Layout.tsx";
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import {Navigate, Outlet} from "react-router";
@@ -15,16 +14,14 @@ export function SongOfDay() {
     }
 
     return (
-        <ToastProvider>
-            <Layout displayName={appUser.appUserName} onLogout={logout}>
-                <div className="home-layout">
-                    <HomeSidebar/>
+        <Layout displayName={appUser.appUserName} onLogout={logout}>
+            <div className="home-layout">
+                <HomeSidebar/>
 
-                    <div className="container">
-                        <Outlet context={{song, setSong}}/>
-                    </div>
+                <div className="container">
+                    <Outlet context={{song, setSong}}/>
                 </div>
-            </Layout>
-        </ToastProvider>
+            </div>
+        </Layout>
     );
 }

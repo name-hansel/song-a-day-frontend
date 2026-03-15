@@ -1,6 +1,5 @@
-import {ToastProvider} from "../../context/ToastContext.tsx";
 import {useAuth} from "../../auth/AuthContext.tsx";
-import {Navigate, useNavigate} from "react-router";
+import {Navigate, useNavigate, useSearchParams} from "react-router";
 import Layout from "../../components/layout/Layout.tsx";
 import {useEffect, useState} from "react";
 import "./Settings.css"
@@ -18,6 +17,9 @@ export default function Settings() {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const [params] = useSearchParams();
+    const newUser = params.get("newUser") === "true";
 
     useEffect(() => {
         async function loadTimezones() {
@@ -57,56 +59,61 @@ export default function Settings() {
     }
 
     return (
-        <ToastProvider>
-            <Layout displayName={appUser.appUserName} onLogout={logout}>
-                <div className="home-layout">
-                    <section className="settings-card">
-                        <h1 className="settings-title">Settings</h1>
-
-                        <div className="settings-content">
-                            {
-                                error && <ErrorBanner message={error}/>
-                            }
-                            {
-                                loading && <Spinner/>
-                            }
-                            {
-                                !loading && !error &&
-                                <label className="settings-field">
-                                    <span className="settings-label">Select your timezone</span>
-
-                                    <select
-                                        className="settings-select"
-                                        value={timezone}
-                                        onChange={(e) => setTimezone(e.target.value)}
-                                    >
-                                        {
-                                            timezones.map(tz => (
-                                                <option key={tz.value}
-                                                        value={tz.value}>
-                                                    {tz.label}
-                                                </option>
-                                            ))
-                                        }
-                                    </select>
-                                </label>
-                            }
+        <Layout displayName={appUser.appUserName} onLogout={logout}>
+            <div className="home-layout">
+                <section className="settings-card">
+                    {
+                        newUser &&
+                        <div className="settings-banner">
+                            <ErrorBanner
+                                message={"Please confirm your timezone."}/>
                         </div>
+                    }
+                    <h1 className="settings-title">Settings</h1>
 
-                        <footer className="settings-actions">
-                            <button className="settings-button-primary"
-                                    onClick={onSave}
-                            >
-                                Save
-                            </button>
-                            <button className="settings-button-secondary"
-                                    onClick={() => navigate(-1)}>
-                                Cancel
-                            </button>
-                        </footer>
-                    </section>
-                </div>
-            </Layout>
-        </ToastProvider>
+                    <div className="settings-content">
+                        {
+                            error && <ErrorBanner message={error}/>
+                        }
+                        {
+                            loading && <Spinner/>
+                        }
+                        {
+                            !loading && !error &&
+                            <label className="settings-field">
+                                <span className="settings-label">Select your timezone</span>
+
+                                <select
+                                    className="settings-select"
+                                    value={timezone}
+                                    onChange={(e) => setTimezone(e.target.value)}
+                                >
+                                    {
+                                        timezones.map(tz => (
+                                            <option key={tz.value}
+                                                    value={tz.value}>
+                                                {tz.label}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            </label>
+                        }
+                    </div>
+
+                    <footer className="settings-actions">
+                        <button className="settings-button-primary"
+                                onClick={onSave}
+                        >
+                            Save
+                        </button>
+                        <button className="settings-button-secondary"
+                                onClick={() => navigate(-1)}>
+                            Cancel
+                        </button>
+                    </footer>
+                </section>
+            </div>
+        </Layout>
     )
 }
