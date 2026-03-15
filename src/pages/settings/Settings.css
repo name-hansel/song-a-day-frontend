@@ -5,7 +5,7 @@
 
     max-width: 850px;
     min-height: 340px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 1.8rem;
 
     background: var(--color-bg-secondary);
