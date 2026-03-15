@@ -7,6 +7,7 @@ import {getErrorMessage} from "../../api/messages.ts";
 import {Search, X} from "lucide-react";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
 import {useToast} from "../../context/ToastContext.tsx";
+import Spinner from "../../pages/spinner/Spinner.tsx";
 
 export default function SearchBar({onSelect}: {
     onSelect: (trackId: string) => void
@@ -77,7 +78,8 @@ export default function SearchBar({onSelect}: {
                    onFocus={() => setShowProposals(true)}/>
             <div className="search-icons">
                 {searchLoading &&
-                    <span className="loading-text">Loading...</span>}
+                    <span className="loading-text"><Spinner
+                        size={"1rem"}/></span>}
                 {!searchLoading && !query && <Search size={18}/>}
                 {query && !searchLoading && (
                     <X
