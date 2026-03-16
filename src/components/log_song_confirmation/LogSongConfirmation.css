@@ -1,11 +1,5 @@
 .log-song-confirmation-confirm-btn {
-    background: var(--color-accent);
-    transition: all 0.15s ease;
     margin-right: 0.5rem;
-}
-
-.log-song-confirmation-confirm-btn:hover {
-    background: var(--color-accent);
 }
 
 .log-song-confirmation-date-picker {

@@ -9,7 +9,7 @@
     transform 0.15s ease;
     text-decoration: none;
     color: inherit;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .sidebar-card:not(.empty-sidebar-card) {
@@ -17,7 +17,7 @@
 }
 
 .sidebar-card:not(.empty-sidebar-card):hover {
-    background-color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 .empty-sidebar-card:not(.latest-empty) {
@@ -60,7 +60,6 @@
     border-radius: var(--border-radius);
     transition: background-color 0.2s ease, transform 0.15s ease;
     display: flex;
-    border: 2px var(--color-border) solid;
     align-items: center;
     min-height: 42px;;
 }
@@ -75,7 +74,7 @@
 }
 
 .selected-card {
-    border: 2px solid var(--color-accent);
+    border: 1px solid var(--color-border);
 }
 
 .latest-empty {
