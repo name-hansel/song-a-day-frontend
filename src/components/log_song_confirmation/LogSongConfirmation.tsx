@@ -90,47 +90,45 @@ export default function LogSongConfirmation() {
             <ErrorBanner message={error} onClose={() => setError(null)}/>
         }
         <div className="page-centered-content">
-            <div className="log-song-confirmation-card">
-                {
-                    loading && <Spinner/>
-                }
-                {
-                    pendingSong &&
-                    <div className="song-of-day-entry">
-                        <div className="song-of-day-entry-content">
-                            <SongOfDayImage trackInformation={pendingSong}/>
-                            <div className="song-of-day-entry-text">
-                                <SongOfDayDetails
-                                    trackInformation={pendingSong}/>
-                                <SongOfDayMemory isEditableByDefault
-                                                 memory={memory}
-                                                 setMemory={setMemory}/>
-                            </div>
-                        </div>
-                        <div className="song-of-day-entry-footer">
-                            <div
-                                className="log-song-confirmation-entry-footer-confirm">
-                                <button
-                                    className="log-song-confirmation-confirm-btn"
-                                    onClick={onConfirmation}
-                                >
-                                    Confirm
-                                </button>
-                                <input
-                                    type="date"
-                                    value={getTodayForTimezone(appUser?.timezone)}
-                                    disabled
-                                    className="log-song-confirmation-date-picker"/>
-                            </div>
-                            <button
-                                className="log-song-confirmation-cancel-btn"
-                                onClick={onCancel}>
-                                Cancel
-                            </button>
+            {
+                loading && <Spinner/>
+            }
+            {
+                pendingSong &&
+                <div className="song-of-day-entry">
+                    <div className="song-of-day-entry-content">
+                        <SongOfDayImage trackInformation={pendingSong}/>
+                        <div className="song-of-day-entry-text">
+                            <SongOfDayDetails
+                                trackInformation={pendingSong}/>
+                            <SongOfDayMemory isEditableByDefault
+                                             memory={memory}
+                                             setMemory={setMemory}/>
                         </div>
                     </div>
-                }
-            </div>
+                    <div className="song-of-day-entry-footer">
+                        <div
+                            className="log-song-confirmation-entry-footer-confirm">
+                            <button
+                                className="log-song-confirmation-confirm-btn"
+                                onClick={onConfirmation}
+                            >
+                                Confirm
+                            </button>
+                            <input
+                                type="date"
+                                value={getTodayForTimezone(appUser?.timezone)}
+                                disabled
+                                className="log-song-confirmation-date-picker"/>
+                        </div>
+                        <button
+                            className="log-song-confirmation-cancel-btn"
+                            onClick={onCancel}>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            }
         </div>
     </>
 }
