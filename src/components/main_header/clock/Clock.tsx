@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useAuth} from "../../../auth/AuthContext.tsx";
 import "./Clock.css";
+import {MusicIcon} from "lucide-react";
 
 export default function Clock() {
     const {appUser} = useAuth();
@@ -27,5 +28,5 @@ export default function Clock() {
         return () => clearInterval(interval);
     }, [timezone]);
 
-    return <span className="timestamp">{time}</span>;
+    return <span className="timestamp">{!appUser?.hasLoggedSongToday && <MusicIcon size={18}/>}{time}</span>;
 }

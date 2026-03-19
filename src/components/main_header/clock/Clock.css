@@ -1,4 +1,8 @@
 .timestamp {
     color: var(--color-text-primary);
     font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
