@@ -10,17 +10,14 @@ import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
-import SongOfDayImage
-    from "../song_of_day/components/SongOfDayImage/SongOfDayImage.tsx";
-import SongOfDayDetails
-    from "../song_of_day/components/SongOfDayDetails/SongOfDayDetails.tsx";
-import SongOfDayMemory
-    from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
+import SongOfDayImage from "../song_of_day/components/SongOfDayImage/SongOfDayImage.tsx";
+import SongOfDayDetails from "../song_of_day/components/SongOfDayDetails/SongOfDayDetails.tsx";
+import SongOfDayMemory from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();
-    const {appUser} = useAuth();
+    const {appUser, setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
 
@@ -71,6 +68,9 @@ export default function LogSongConfirmation() {
         try {
             const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim());
             setSong(loggedSong);
+            setAppUser(prev => prev ? {
+                ...prev, hasLoggedSongToday: true
+            } : prev)
             showToast("Song logged successfully!");
             navigate("/");
         } catch (err: unknown) {

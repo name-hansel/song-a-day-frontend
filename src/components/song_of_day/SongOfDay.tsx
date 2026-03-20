@@ -1,22 +1,16 @@
 import "./SongOfDay.css"
 import "../common/SongOfDay.css";
 import {useEffect, useState} from "react";
-import {
-    deleteSongOfDayForAppUser,
-    getSongOfDayForAppUser,
-    updateMemoryForSong
-} from "../../api/song.ts";
+import {deleteSongOfDayForAppUser, getSongOfDayForAppUser, updateMemoryForSong} from "../../api/song.ts";
 import {useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
-import SongOfDayDetails
-    from "./components/SongOfDayDetails/SongOfDayDetails.tsx";
+import SongOfDayDetails from "./components/SongOfDayDetails/SongOfDayDetails.tsx";
 import SongOfDayImage from "./components/SongOfDayImage/SongOfDayImage.tsx";
-import SongOfDayFooterRemove
-    from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
+import SongOfDayFooterRemove from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
 import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
 import {useAuth} from "../../auth/AuthContext.tsx";
@@ -29,16 +23,16 @@ export default function SongOfDay() {
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
 
-    const {appUser} = useAuth();
+    const {appUser, setAppUser} = useAuth();
     const timezone = appUser?.timezone;
-    const [isEditingMemoryAllowed, setIsEditingMemoryAllowed] = useState(false);
+    const [isSongForToday, setIsSongForToday] = useState(false);
 
     useEffect(() => {
         async function getSongOfDay() {
             try {
                 const data = await getSongOfDayForAppUser(date);
                 setSong(data);
-                setIsEditingMemoryAllowed(getTodayForTimezone(timezone) === song?.songDate);
+                setIsSongForToday(getTodayForTimezone(timezone) === song?.songDate);
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     setError(getErrorMessage(err.message));
@@ -54,6 +48,9 @@ export default function SongOfDay() {
     async function removeSongForAppUser() {
         await deleteSongOfDayForAppUser();
         setSong(null);
+        setAppUser(prev =>
+            prev ? {...prev, hasLoggedSongToday: false} : prev
+        );
         showToast("Song removed successfully");
     }
 
@@ -100,7 +97,7 @@ export default function SongOfDay() {
                                 <SongOfDayMemory isEditableByDefault={false}
                                                  memory={song.memory}
                                                  confirmEdit={confirmEdit}
-                                                 isEditingMemoryAllowed={isEditingMemoryAllowed}/>
+                                                 isEditingMemoryAllowed={isSongForToday}/>
                             </div>
                         </div>
                         <div className="song-of-day-entry-footer">

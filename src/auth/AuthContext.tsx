@@ -1,16 +1,10 @@
-import {
-    createContext,
-    type ReactNode,
-    useContext,
-    useEffect,
-    useState
-} from "react";
+import {createContext, type ReactNode, useContext, useEffect, useState} from "react";
 import {getAppUser, logoutAppUser} from "../api/auth.ts";
 import type {AppUser} from "../types/AppUser.ts";
 
 interface AuthContextType {
     appUser: AppUser | null;
-    setAppUser: (appUser: AppUser | null) => void;
+    setAppUser: React.Dispatch<React.SetStateAction<AppUser | null>>;
     loading: boolean;
     setLoading: (isLoading: boolean) => void;
     logout: () => Promise<void>;
