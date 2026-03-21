@@ -102,7 +102,7 @@ export default function SongOfDay() {
                         </div>
                         <div className="song-of-day-entry-footer">
                             <SongOfDayFooterRemove
-                                removeSongForAppUser={removeSongForAppUser}/>
+                                removeSongForAppUser={removeSongForAppUser} isRemoveAllowed={isSongForToday}/>
                             <p className="song-of-day-logged-at">
                                 Logged at: {song.addedAtTime}
                             </p>

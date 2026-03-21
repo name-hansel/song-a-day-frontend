@@ -1,15 +1,16 @@
 import {useState} from "react";
 import "./SongOfDayFooterRemove.css"
 
-export default function SongOfDayFooterRemove({removeSongForAppUser}: {
-    removeSongForAppUser?: () => Promise<void>
+export default function SongOfDayFooterRemove({removeSongForAppUser, isRemoveAllowed}: {
+    removeSongForAppUser?: () => Promise<void>,
+    isRemoveAllowed: boolean
 }) {
     const [confirmingRemove, setConfirmingRemove] = useState(false);
 
     return (
         <div className="song-of-day-footer-left">
             {
-                confirmingRemove ?
+                isRemoveAllowed && (confirmingRemove ?
                     <div
                         className="song-of-day-remove-confirm">
                         <button
@@ -33,7 +34,7 @@ export default function SongOfDayFooterRemove({removeSongForAppUser}: {
                         onClick={() => setConfirmingRemove(true)}
                     >
                         Remove
-                    </button>
+                    </button>)
             }
         </div>
     )
