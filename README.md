@@ -4,11 +4,11 @@
 React (TypeScript) frontend for an application where you can log your song of the day. Provides a responsive user interface for managing song entries, integrating with the backend API for authentication and data persistence.
 
 ## Tech Stack
-Frontend: React (TypeScript)
-Styling: CSS
-HTTP Client: Axios
-State Management: React Hooks
-Authentication: JWT (HTTP-only cookies)
+Frontend: React (TypeScript)  
+Styling: CSS  
+HTTP Client: Axios  
+State Management: React Hooks  
+Authentication: JWT (HTTP-only cookies)  
 
 ## Features
 - Spotify-based authentication (via backend OAuth flow)
