@@ -1,73 +1,32 @@
-# React + TypeScript + Vite
+# Song A Day
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+React (TypeScript) frontend for an application where you can log your song of the day. Provides a responsive user interface for managing song entries, integrating with the backend API for authentication and data persistence.
 
-Currently, two official plugins are available:
+## Tech Stack
+Frontend: React (TypeScript)
+Styling: CSS
+HTTP Client: Axios
+State Management: React Hooks
+Authentication: JWT (HTTP-only cookies)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Spotify-based authentication (via backend OAuth flow)
+- Create, view, and delete daily song entries
+- Display track metadata (title, artist, album)
+- Responsive and minimal UI design
 
-## React Compiler
+## Authentication Flow
+- Authentication handled via backend (Spotify OAuth)
+- Access and refresh tokens stored in HTTP-only cookies
+- Axios interceptor:
+  - Automatically retries failed requests on 401 (token expiry)
+  - Calls refresh endpoint to obtain new access token
+  - Logs out user if refresh token is expired
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Future improvements
+- Deployment!
+- Sidebar enhancements
+- Add logo
+- Smoother interface (with animations?)
+- Add more functionality (in tandem with the backend)
