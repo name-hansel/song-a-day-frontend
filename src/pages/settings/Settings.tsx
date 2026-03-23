@@ -63,7 +63,7 @@ export default function Settings() {
     }
 
     async function handleDeleteAccount() {
-        console.log("Delete account here");
+        // TODO: Plug in API route here
     }
 
     if (!appUser) {
