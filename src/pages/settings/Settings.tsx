@@ -9,6 +9,7 @@ import {getErrorMessage} from "../../api/messages.ts";
 import {getTimezones, saveTimezone} from "../../api/settings.ts";
 import type {Timezone} from "../../types/Timezone.ts";
 import {useToast} from "../../context/ToastContext.tsx";
+import ConfirmModal from "../../components/confirm_modal/ConfirmModal.tsx";
 
 export default function Settings() {
     const {appUser, logout} = useAuth();
@@ -16,6 +17,7 @@ export default function Settings() {
     const navigate = useNavigate();
     const [timezone, setTimezone] = useState(appUser?.timezone);
     const [timezones, setTimezones] = useState<Timezone[]>([]);
+    const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -58,6 +60,10 @@ export default function Settings() {
                 setError(getErrorMessage(err.message));
             }
         }
+    }
+
+    async function handleDeleteAccount() {
+        console.log("Delete account here");
     }
 
     if (!appUser) {
@@ -106,7 +112,22 @@ export default function Settings() {
                             </label>
                         }
                     </div>
-
+                    <div className="settings-danger">
+                        <div className="settings-danger-text">
+                            <span className="settings-danger-title">
+                                Delete account
+                            </span>
+                            <span className="settings-danger-subtext">
+                                This action is permanent and cannot be undone.
+                            </span>
+                        </div>
+                        <button
+                            className="settings-button-danger"
+                            onClick={() => setShowDeleteAccountModal(true)}
+                        >
+                            Delete Account
+                        </button>
+                    </div>
                     <footer className="settings-actions">
                         <button className="settings-button-primary"
                                 onClick={onSave}
@@ -120,6 +141,17 @@ export default function Settings() {
                     </footer>
                 </section>
             </div>
+            {
+                showDeleteAccountModal && <ConfirmModal
+                    title="Delete account?"
+                    message="This will permanently delete your account and all data."
+                    confirmButtonText="Delete"
+                    cancelButtonText="Cancel"
+                    danger
+                    onCancel={() => setShowDeleteAccountModal(false)}
+                    onConfirm={handleDeleteAccount}
+                />
+            }
         </Layout>
     )
 }
