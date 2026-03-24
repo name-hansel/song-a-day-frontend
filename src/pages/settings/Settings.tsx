@@ -121,22 +121,24 @@ export default function Settings() {
                             </label>
                         }
                     </div>
-                    <div className="settings-danger">
-                        <div className="settings-danger-text">
+                    {
+                        !newUser && <div className="settings-danger">
+                            <div className="settings-danger-text">
                             <span className="settings-danger-title">
                                 Delete account
                             </span>
-                            <span className="settings-danger-subtext">
+                                <span className="settings-danger-subtext">
                                 This action is permanent and cannot be undone.
                             </span>
+                            </div>
+                            <button
+                                className="settings-button-danger"
+                                onClick={() => setShowDeleteAccountModal(true)}
+                            >
+                                Delete Account
+                            </button>
                         </div>
-                        <button
-                            className="settings-button-danger"
-                            onClick={() => setShowDeleteAccountModal(true)}
-                        >
-                            Delete Account
-                        </button>
-                    </div>
+                    }
                     <footer className="settings-actions">
                         <button className="settings-button-primary"
                                 onClick={onSave}
