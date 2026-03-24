@@ -1,0 +1,12 @@
+.common-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    height: 100%;
+}
+
+.common-button svg {
+    width: 16px;
+    height: 16px;
+}

@@ -16,3 +16,9 @@
     outline: none;
     border-color: var(--color-accent);
 }
+
+.log-song-confirmation-entry-footer-confirm {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}

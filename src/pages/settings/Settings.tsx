@@ -4,7 +4,7 @@ import Layout from "../../components/layout/Layout.tsx";
 import {useEffect, useState} from "react";
 import "./Settings.css"
 import Spinner from "../spinner/Spinner.tsx";
-import ErrorBanner from "../../components/error_banner/ErrorBanner.tsx";
+import ErrorBanner from "../../components/common/error_banner/ErrorBanner.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import {getTimezones, saveTimezone} from "../../api/settings.ts";
 import type {Timezone} from "../../types/Timezone.ts";

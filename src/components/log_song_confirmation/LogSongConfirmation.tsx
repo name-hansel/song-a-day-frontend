@@ -7,13 +7,14 @@ import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {searchForTrack} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
 import {getErrorMessage} from "../../api/messages.ts";
-import ErrorBanner from "../error_banner/ErrorBanner.tsx";
+import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
 import SongOfDayImage from "../song_of_day/components/SongOfDayImage/SongOfDayImage.tsx";
 import SongOfDayDetails from "../song_of_day/components/SongOfDayDetails/SongOfDayDetails.tsx";
 import SongOfDayMemory from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
+import Button from "../common/button/Button.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useOutletContext<SongOfDayContext>();
@@ -22,6 +23,7 @@ export default function LogSongConfirmation() {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
+    const [confirmLoading, setConfirmLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [memory, setMemory] = useState("");
     const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
@@ -66,6 +68,7 @@ export default function LogSongConfirmation() {
         if (!trackId) return;
 
         try {
+            setConfirmLoading(true);
             const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim());
             setSong(loggedSong);
             setAppUser(prev => prev ? {
@@ -77,6 +80,8 @@ export default function LogSongConfirmation() {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
             }
+        } finally {
+            setConfirmLoading(false);
         }
     }
 
@@ -109,23 +114,16 @@ export default function LogSongConfirmation() {
                     <div className="song-of-day-entry-footer">
                         <div
                             className="log-song-confirmation-entry-footer-confirm">
-                            <button
-                                className="log-song-confirmation-confirm-btn"
-                                onClick={onConfirmation}
-                            >
-                                Confirm
-                            </button>
+                            <Button className={"log-song-confirmation-confirm-btn"} onClick={onConfirmation}
+                                    buttonText={"Confirm"} loading={confirmLoading}/>
                             <input
                                 type="date"
                                 value={getTodayForTimezone(appUser?.timezone)}
                                 disabled
                                 className="log-song-confirmation-date-picker"/>
                         </div>
-                        <button
-                            className="log-song-confirmation-cancel-btn"
-                            onClick={onCancel}>
-                            Cancel
-                        </button>
+                        <Button className={"log-song-confirmation-cancel-btn"} onClick={onCancel}
+                                buttonText={"Cancel"}/>
                     </div>
                 </div>
             }

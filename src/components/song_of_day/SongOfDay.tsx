@@ -5,7 +5,7 @@ import {deleteSongOfDayForAppUser, getSongOfDayForAppUser, updateMemoryForSong} 
 import {useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
-import ErrorBanner from "../error_banner/ErrorBanner.tsx";
+import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
 import SongOfDayDetails from "./components/SongOfDayDetails/SongOfDayDetails.tsx";
