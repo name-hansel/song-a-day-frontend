@@ -9,7 +9,7 @@ import {getErrorMessage} from "../../api/messages.ts";
 import {getTimezones, saveTimezone} from "../../api/settings.ts";
 import type {Timezone} from "../../types/Timezone.ts";
 import {useToast} from "../../context/ToastContext.tsx";
-import ConfirmModal from "../../components/confirm_modal/ConfirmModal.tsx";
+import ConfirmModal from "../../components/common/confirm_modal/ConfirmModal.tsx";
 import {deleteUserAccount} from "../../api/auth.ts";
 import Button from "../../components/common/button/Button.tsx";
 
@@ -23,6 +23,7 @@ export default function Settings() {
 
     const [loading, setLoading] = useState(false);
     const [saveLoading, setSaveLoading] = useState(false);
+    const [deleteAccountLoading, setDeleteAccountLoading] = useState(false);
     const [error, setError] = useState("");
 
     const [params] = useSearchParams();
@@ -70,6 +71,7 @@ export default function Settings() {
 
     async function handleDeleteAccount() {
         try {
+            setDeleteAccountLoading(true);
             await deleteUserAccount();
             setAppUser(null);
             showToast("Account deleted successfully.");
@@ -77,6 +79,8 @@ export default function Settings() {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
             }
+        } finally {
+            setDeleteAccountLoading(false);
         }
     }
 
@@ -163,6 +167,7 @@ export default function Settings() {
                     danger
                     onCancel={() => setShowDeleteAccountModal(false)}
                     onConfirm={handleDeleteAccount}
+                    confirmLoading={deleteAccountLoading}
                 />
             }
         </Layout>
