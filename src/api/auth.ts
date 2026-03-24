@@ -1,9 +1,10 @@
 import type {AppUser} from "../types/AppUser.ts";
-import {api} from "./common.ts";
+import {api, handleError} from "./common.ts";
 
 const REFRESH_TOKEN_API_URL = "/auth/refresh-access-token";
 const GET_CURRENT_USER_API_URL = "/app-user/me";
 const LOGOUT_API_URL = "/auth/logout";
+const DELETE_USER_ACCOUNT_URL = "/app-user";
 
 let refreshPromise: Promise<void> | null = null;
 
@@ -44,3 +45,11 @@ api.interceptors.response.use(
 
 export const getAppUser = () => api.get<AppUser>(GET_CURRENT_USER_API_URL);
 export const logoutAppUser = () => api.post(LOGOUT_API_URL);
+
+export async function deleteUserAccount() {
+    try {
+        await api.delete(DELETE_USER_ACCOUNT_URL);
+    } catch (err: unknown) {
+        handleError(err);
+    }
+}

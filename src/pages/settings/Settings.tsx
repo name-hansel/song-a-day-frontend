@@ -10,9 +10,10 @@ import {getTimezones, saveTimezone} from "../../api/settings.ts";
 import type {Timezone} from "../../types/Timezone.ts";
 import {useToast} from "../../context/ToastContext.tsx";
 import ConfirmModal from "../../components/confirm_modal/ConfirmModal.tsx";
+import {deleteUserAccount} from "../../api/auth.ts";
 
 export default function Settings() {
-    const {appUser, logout} = useAuth();
+    const {appUser, setAppUser, logout} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
     const [timezone, setTimezone] = useState(appUser?.timezone);
@@ -63,7 +64,15 @@ export default function Settings() {
     }
 
     async function handleDeleteAccount() {
-        // TODO: Plug in API route here
+        try {
+            await deleteUserAccount();
+            setAppUser(null);
+            showToast("Account deleted successfully.");
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(getErrorMessage(err.message));
+            }
+        }
     }
 
     if (!appUser) {
