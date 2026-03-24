@@ -20,6 +20,7 @@ export default function SongOfDay() {
     const {date} = useParams();
     const {song, setSong} = useOutletContext<SongOfDayContext>();
     const [loading, setLoading] = useState(true);
+    const [removeLoading, setRemoveLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
 
@@ -46,12 +47,21 @@ export default function SongOfDay() {
     }, [date, setSong, song?.songDate, timezone]);
 
     async function removeSongForAppUser() {
-        await deleteSongOfDayForAppUser();
-        setSong(null);
-        setAppUser(prev =>
-            prev ? {...prev, hasLoggedSongToday: false} : prev
-        );
-        showToast("Song removed successfully");
+        try {
+            setRemoveLoading(true);
+            await deleteSongOfDayForAppUser();
+            setSong(null);
+            setAppUser(prev =>
+                prev ? {...prev, hasLoggedSongToday: false} : prev
+            );
+            showToast("Song removed successfully");
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(getErrorMessage(err.message));
+            }
+        } finally {
+            setRemoveLoading(false);
+        }
     }
 
     async function confirmEdit(draftMemory: string) {
@@ -102,7 +112,8 @@ export default function SongOfDay() {
                         </div>
                         <div className="song-of-day-entry-footer">
                             <SongOfDayFooterRemove
-                                removeSongForAppUser={removeSongForAppUser} isRemoveAllowed={isSongForToday}/>
+                                removeSongForAppUser={removeSongForAppUser} isRemoveAllowed={isSongForToday}
+                                removeLoading={removeLoading}/>
                             <p className="song-of-day-logged-at">
                                 Logged at: {song.addedAtTime}
                             </p>

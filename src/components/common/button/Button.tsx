@@ -9,13 +9,12 @@ export default function Button({
                                }: {
     buttonText: string;
     className: string;
-    onClick: () => void;
+    onClick: () => void | Promise<void>;
     loading?: boolean;
 }) {
     return <button className={`${className} common-button`} onClick={onClick} disabled={loading}>
         {
-            loading && <Spinner/>
+            loading ? <Spinner/> : <span className="common-button-text">{buttonText}</span>
         }
-        <span className="common-button-text">{buttonText}</span>
     </button>
 }
