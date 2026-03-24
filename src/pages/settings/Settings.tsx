@@ -11,6 +11,7 @@ import type {Timezone} from "../../types/Timezone.ts";
 import {useToast} from "../../context/ToastContext.tsx";
 import ConfirmModal from "../../components/confirm_modal/ConfirmModal.tsx";
 import {deleteUserAccount} from "../../api/auth.ts";
+import Button from "../../components/common/button/Button.tsx";
 
 export default function Settings() {
     const {appUser, setAppUser, logout} = useAuth();
@@ -21,6 +22,7 @@ export default function Settings() {
     const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
 
     const [loading, setLoading] = useState(false);
+    const [saveLoading, setSaveLoading] = useState(false);
     const [error, setError] = useState("");
 
     const [params] = useSearchParams();
@@ -49,6 +51,7 @@ export default function Settings() {
         }
 
         try {
+            setSaveLoading(true);
             const savedTimezone = await saveTimezone(timezone);
             setTimezone(savedTimezone.value);
             showToast("Settings saved successfully!");
@@ -60,6 +63,8 @@ export default function Settings() {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
             }
+        } finally {
+            setSaveLoading(false);
         }
     }
 
@@ -140,11 +145,8 @@ export default function Settings() {
                         </div>
                     }
                     <footer className="settings-actions">
-                        <button className="settings-button-primary"
-                                onClick={onSave}
-                        >
-                            Save
-                        </button>
+                        <Button className={"settings-button-primary"} onClick={onSave} buttonText={"Save"}
+                                loading={saveLoading}/>
                         <button className="settings-button-secondary"
                                 onClick={() => navigate(-1)}>
                             Cancel
