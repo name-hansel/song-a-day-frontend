@@ -5,5 +5,6 @@ export type SongOfDay = {
     songDate: string;
     trackInformation: TrackSearch;
     addedAtTime: string;
+    updatedAtTime: string;
     memory: string;
 }

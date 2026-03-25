@@ -114,8 +114,10 @@ export default function SongOfDay() {
                             <SongOfDayFooterRemove
                                 removeSongForAppUser={removeSongForAppUser} isRemoveAllowed={isSongForToday}
                                 removeLoading={removeLoading}/>
-                            <p className="song-of-day-logged-at">
-                                Logged at: {song.addedAtTime}
+                            <p className="song-of-day-timestamp">
+                                {
+                                    song.updatedAtTime === song.addedAtTime ? `Logged at: ${song.addedAtTime}` : `Updated at: ${song.updatedAtTime}`
+                                }
                             </p>
                         </div>
                     </div>
