@@ -1,0 +1,26 @@
+.month-group {
+    margin-bottom: 2rem;
+}
+
+.month-header {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    letter-spacing: 2px;
+}
+
+.month-header span {
+    padding-right: 0.5rem;
+}
+
+.month-header::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+    opacity: 0.6;
+}

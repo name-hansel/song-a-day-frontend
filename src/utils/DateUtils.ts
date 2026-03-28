@@ -26,3 +26,10 @@ export function getTodayForTimezone(timezone: string | undefined): string {
 
     return formatter.format(new Date());
 }
+
+export function getDateNumericFromDate(dateString: string) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+        day: "2-digit",
+    });
+}
