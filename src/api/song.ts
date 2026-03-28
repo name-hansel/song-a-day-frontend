@@ -1,5 +1,6 @@
 import {api, handleError} from "./common.ts";
 import type {SongOfDay} from "../types/SongOfDay.ts";
+import type {SongHistory} from "../types/SongHistory.ts";
 
 const path = "/song-a-day";
 
@@ -45,6 +46,15 @@ export async function updateMemoryForSong(songUuid: string, updatedMemory: strin
         const response = await api.patch<SongOfDay>(`${path}/memory/${songUuid}`, {
             updatedMemory
         });
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
+}
+
+export async function getUserSongHistory() {
+    try {
+        const response = await api.get<SongHistory>(`${path}/history`);
         return response.data;
     } catch (err: unknown) {
         handleError(err);

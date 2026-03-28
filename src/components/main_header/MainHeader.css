@@ -33,7 +33,7 @@
     letter-spacing: 1px;
 }
 
-.settings-btn {
+.main-header-btn {
     color: var(--color-text-secondary);
     background-color: transparent;
     border: none;

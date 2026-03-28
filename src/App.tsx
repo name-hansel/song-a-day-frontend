@@ -3,14 +3,14 @@ import {AuthProvider} from "./auth/AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 import PrivateRoute from "./auth/PrivateRoute.tsx";
 import Home from "./pages/home/Home.tsx";
-import LogSongConfirmation
-    from "./components/log_song_confirmation/LogSongConfirmation.tsx";
+import LogSongConfirmation from "./components/log_song_confirmation/LogSongConfirmation.tsx";
 import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
 import {SongOfDay as SongOfDayPage} from "./pages/song_of_day/SongOfDay.tsx";
 import Login from "./pages/login/Login.tsx";
 import Settings from "./pages/settings/Settings.tsx";
 import {ToastProvider} from "./context/ToastContext.tsx";
 import NotFound from "./pages/not_found/NotFound.tsx";
+import History from "./pages/history/History.tsx";
 
 function App() {
     return (
@@ -46,6 +46,12 @@ function App() {
                                element={
                                    <PrivateRoute><Settings/></PrivateRoute>}/>
                         <Route path="*" element={<NotFound/>}/>
+                        {/*  History  */}
+                        <Route path="/history" element={
+                            <PrivateRoute>
+                                <History/>
+                            </PrivateRoute>
+                        }/>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
