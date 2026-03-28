@@ -33,7 +33,7 @@ export async function logSongOfDayForAppUser(spotifyId: string, memory: string) 
 
 export async function getUserSongHistoryForWeek() {
     try {
-        const response = await api.get<SongOfDay[]>(`${path}/history`);
+        const response = await api.get<SongOfDay[]>(`${path}/weekly-history`);
         return response.data;
     } catch (err: unknown) {
         handleError(err);
