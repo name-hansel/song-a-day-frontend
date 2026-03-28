@@ -10,7 +10,7 @@ import Login from "./pages/login/Login.tsx";
 import Settings from "./pages/settings/Settings.tsx";
 import {ToastProvider} from "./context/ToastContext.tsx";
 import NotFound from "./pages/not_found/NotFound.tsx";
-import History from "./pages/history/History.tsx";
+import SongHistory from "./pages/history/SongHistory.tsx";
 
 function App() {
     return (
@@ -46,10 +46,10 @@ function App() {
                                element={
                                    <PrivateRoute><Settings/></PrivateRoute>}/>
                         <Route path="*" element={<NotFound/>}/>
-                        {/*  History  */}
+                        {/*  SongHistory  */}
                         <Route path="/history" element={
                             <PrivateRoute>
-                                <History/>
+                                <SongHistory/>
                             </PrivateRoute>
                         }/>
                     </Routes>

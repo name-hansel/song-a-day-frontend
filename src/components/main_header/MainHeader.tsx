@@ -18,7 +18,7 @@ export default function MainHeader({displayName, onLogout}: {
             <Clock/>
             <div className="layout-header-right">
                 <span className="layout-username">{displayName}</span>
-                <Link title="History" to="/history" className="main-header-btn">
+                <Link title="SongHistory" to="/history" className="main-header-btn">
                     <History size={18}/>
                 </Link>
                 {

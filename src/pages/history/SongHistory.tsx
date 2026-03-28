@@ -8,8 +8,11 @@ import {getUserSongHistory} from "../../api/song.ts";
 import type {SongHistory} from "../../types/SongHistory.ts";
 import ErrorBanner from "../../components/common/error_banner/ErrorBanner.tsx";
 import Spinner from "../spinner/Spinner.tsx";
+import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
+import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
+import "./SongHistory.css"
 
-export default function History() {
+export default function SongHistory() {
     const {appUser, logout} = useAuth();
     const [songHistory, setSongHistory] = useState<SongHistory | null>(null);
     const [loading, setLoading] = useState(true);
@@ -44,6 +47,16 @@ export default function History() {
                 {
                     error && <ErrorBanner message={error}/>
                 }
+                {
+                    !loading && songHistory?.history &&
+                    <div className="song-history-container">
+                        {
+                            groupSongHistoryByMonth(songHistory.history).map(group => (
+                                <SongHistoryGroup group={group}/>
+                            ))
+                        }
+                    </div>
+                }
                 <div className="page-centered-content">
                     {
                         loading && <Spinner/>
@@ -51,9 +64,6 @@ export default function History() {
                     {
                         !loading && !songHistory?.history &&
                         <h1 className="msg">No songs logged yet!</h1>
-                    }
-                    {
-                        !loading && songHistory?.history && <h1>Hello</h1>
                     }
                 </div>
             </div>
