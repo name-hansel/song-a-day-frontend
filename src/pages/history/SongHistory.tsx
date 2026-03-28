@@ -42,29 +42,32 @@ export default function SongHistory() {
     return (<Layout displayName={appUser.appUserName} onLogout={logout}>
         <div className="home-layout">
             <HomeSidebar/>
-
-            <div className="container">
-                {
-                    error && <ErrorBanner message={error}/>
-                }
-                {
-                    !loading && songHistory?.history &&
-                    <div className="song-history-container">
+            <div className="home-main">
+                {/*TODO: Style history page heading*/}
+                <h1>Song History</h1>
+                <div className="container">
+                    {
+                        error && <ErrorBanner message={error}/>
+                    }
+                    {
+                        !loading && songHistory?.history &&
+                        <div className="song-history-container">
+                            {
+                                groupSongHistoryByMonth(songHistory.history).map(group => (
+                                    <SongHistoryGroup group={group}/>
+                                ))
+                            }
+                        </div>
+                    }
+                    <div className="page-centered-content">
                         {
-                            groupSongHistoryByMonth(songHistory.history).map(group => (
-                                <SongHistoryGroup group={group}/>
-                            ))
+                            loading && <Spinner/>
+                        }
+                        {
+                            !loading && !songHistory?.history &&
+                            <h1 className="msg">No songs logged yet!</h1>
                         }
                     </div>
-                }
-                <div className="page-centered-content">
-                    {
-                        loading && <Spinner/>
-                    }
-                    {
-                        !loading && !songHistory?.history &&
-                        <h1 className="msg">No songs logged yet!</h1>
-                    }
                 </div>
             </div>
         </div>
