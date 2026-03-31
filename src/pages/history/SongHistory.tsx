@@ -43,8 +43,7 @@ export default function SongHistory() {
         <div className="home-layout">
             <HomeSidebar/>
             <div className="home-main">
-                {/*TODO: Style history page heading*/}
-                <h1>Song History</h1>
+                <h1 className="history-title">Song History</h1>
                 <div className="container">
                     {
                         error && <ErrorBanner message={error}/>

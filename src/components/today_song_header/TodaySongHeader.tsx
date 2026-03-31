@@ -7,7 +7,7 @@ export default function TodaySongHeader({onSelect}: {
 }) {
     return (
         <section className="today-song-header">
-            <h2 className="today-song today-song-title">
+            <h2 className="today-song-title">
                 today's song
             </h2>
             {
