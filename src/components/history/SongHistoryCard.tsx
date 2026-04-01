@@ -2,6 +2,7 @@ import type {SongOfDay} from "../../types/SongOfDay.ts";
 import "./SongHistoryCard.css"
 import {getDateNumericFromDate} from "../../utils/DateUtils.ts";
 import {Link} from "react-router";
+import {ArrowRight, TextIcon} from "lucide-react";
 
 export default function SongHistoryCard({song}: {
     song: SongOfDay
@@ -24,7 +25,14 @@ export default function SongHistoryCard({song}: {
                     </div>
 
                     <div className="song-history-action">
-                        <span className="song-history-action-icon">›</span>
+                        {
+                            song.memory && <span>
+                            <TextIcon className="song-history-action-icon" size={16}/>
+                            </span>
+                        }
+                        <span className="song-history-action-icon-span">
+                            <ArrowRight className="song-history-action-icon" size={16}/>
+                        </span>
                     </div>
                 </div>
             </Link>

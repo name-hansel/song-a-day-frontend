@@ -3,6 +3,7 @@
     color: inherit;
     display: block;
     flex: 1;
+    min-width: 0;
 }
 
 .song-history-row {
@@ -83,15 +84,16 @@
     align-items: center;
     justify-content: center;
     color: var(--color-text-secondary);
+    flex-shrink: 0;
+    gap: 1rem;
 }
 
-.song-history-action-icon {
-    font-size: 1rem;
+.song-history-action-icon-span, .song-history-action-icon {
     opacity: 0.6;
     transition: all 0.15s ease;
 }
 
-.song-history-card:hover .song-history-action-icon {
+.song-history-card:hover .song-history-action-icon-span {
     opacity: 1;
     transform: translateX(2px);
 }
