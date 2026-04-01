@@ -1,5 +1,6 @@
 import {api, handleError} from "./common.ts";
 import type {Timezone} from "../types/Timezone.ts";
+import type {AppUser} from "../types/AppUser.ts";
 
 export async function getTimezones() {
     try {
@@ -12,7 +13,7 @@ export async function getTimezones() {
 
 export async function saveTimezone(timezone: string) {
     try {
-        const response = await api.patch<Timezone>("/app-user/timezone", {
+        const response = await api.patch<AppUser>("/app-user/timezone", {
             timezone
         });
         return response.data;

@@ -53,13 +53,15 @@ export default function Settings() {
 
         try {
             setSaveLoading(true);
-            const savedTimezone = await saveTimezone(timezone);
-            setTimezone(savedTimezone.value);
+            const updatedAppUser = await saveTimezone(timezone);
+
+            setAppUser(updatedAppUser);
+            setTimezone(updatedAppUser.timezone);
             showToast("Settings saved successfully!");
+            
             if (newUser) {
                 navigate("/");
             }
-            // TODO: Update clock on main header
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
