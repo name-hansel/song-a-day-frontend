@@ -11,7 +11,7 @@ export default function SongHistoryCard({song}: {
 
         <div className="song-history-row">
             <div className="song-history-date">{getDateNumericFromDate(song.songDate)}</div>
-            <Link to={`/song-a-day/${song.songDate}`} className="song-history-link">
+            <Link to={`/song-a-day/${song.songDate}`} className="song-history-link" state={{fromHistory: true}}>
                 <div className="song-history-card">
                     <img
                         src={song.trackInformation.smallImageUrl}

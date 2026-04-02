@@ -2,7 +2,7 @@ import "./SongOfDay.css"
 import "../common/SongOfDay.css";
 import {useEffect, useState} from "react";
 import {deleteSongOfDayForAppUser, getSongOfDayForAppUser, updateMemoryForSong} from "../../api/song.ts";
-import {useOutletContext, useParams} from "react-router";
+import {useLocation, useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
@@ -23,6 +23,8 @@ export default function SongOfDay() {
     const [removeLoading, setRemoveLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
+    const location = useLocation();
+    const fromHistory = location.state?.fromHistory ?? false;
 
     const {appUser, setAppUser} = useAuth();
     const timezone = appUser?.timezone;
@@ -97,7 +99,7 @@ export default function SongOfDay() {
                 {
                     !loading && song &&
                     <div className="song-of-day-entry">
-                        <SongOfDayHeader date={song.songDate}/>
+                        <SongOfDayHeader date={song.songDate} fromHistory={fromHistory}/>
                         <div className="song-of-day-entry-content">
                             <SongOfDayImage
                                 trackInformation={song.trackInformation}/>
