@@ -8,6 +8,7 @@ const errorMessages: Record<string, string> = {
     SONG_OF_DAY_NOT_FOUND: "Song of the day not found. Please try again.",
     INVALID_DATE: "Invalid date entered.",
     INVALID_DATA_MEMORY: "Please enter less than 160 characters.",
+    ACTION_NOT_ALLOWED: "Action not allowed.",
     DEFAULT: "Something went wrong. Please try again."
 }
 

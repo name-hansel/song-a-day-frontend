@@ -63,7 +63,7 @@ export default function SongHistory() {
                             loading && <Spinner/>
                         }
                         {
-                            !loading && !songHistory?.history &&
+                            !loading && !error && !songHistory?.history &&
                             <h1 className="msg">No songs logged yet!</h1>
                         }
                     </div>
