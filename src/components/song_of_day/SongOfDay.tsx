@@ -66,7 +66,7 @@ export default function SongOfDay() {
         }
     }
 
-    async function confirmEdit(draftMemory: string) {
+    async function confirmEdit(draftMemory: string | null) {
         if (!song) return;
 
         try {

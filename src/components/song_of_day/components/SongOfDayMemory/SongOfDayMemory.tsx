@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Check, Pencil, X} from "lucide-react";
+import {Check, Pencil, Trash, X} from "lucide-react";
 import "./SongOfDayMemory.css"
 
 export default function SongOfDayMemory({
@@ -12,20 +12,20 @@ export default function SongOfDayMemory({
     isEditableByDefault: boolean,
     memory: string,
     setMemory?: (memory: string) => void,
-    confirmEdit?: (draftMemory: string) => Promise<void>,
+    confirmEdit?: (draftMemory: string | null) => Promise<void>,
     isEditingMemoryAllowed?: boolean
 }) {
     const [isEditing, setIsEditing] = useState(false);
     const [draftMemory, setDraftMemory] = useState(memory ?? "");
 
     function startEdit() {
-        setDraftMemory(memory ?? "")
-        setIsEditing(true)
+        setDraftMemory(memory ?? "");
+        setIsEditing(true);
     }
 
     function cancelEdit() {
-        setDraftMemory(memory ?? "")
-        setIsEditing(false)
+        setDraftMemory(memory ?? "");
+        setIsEditing(false);
     }
 
     if (isEditableByDefault) {
@@ -59,12 +59,17 @@ export default function SongOfDayMemory({
                 className="song-of-day-memory"/>
             {
                 !isEditing && isEditingMemoryAllowed &&
-                <div className="song-of-day-memory-edit-div">
+                <div className="song-of-day-memory-action-div">
                     <button
-                        className="song-of-day-memory-edit"
+                        className="song-of-day-memory-action-btn"
                         onClick={startEdit}>
                         <Pencil size={18}/>
                     </button>
+                    {
+                        memory && <button className="song-of-day-memory-action-btn" onClick={() => {
+                            void confirmEdit(null);
+                        }}><Trash size={18}/></button>
+                    }
                 </div>
             }
             {

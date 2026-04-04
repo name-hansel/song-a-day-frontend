@@ -41,7 +41,7 @@ export async function getUserSongHistoryForWeek() {
     }
 }
 
-export async function updateMemoryForSong(songUuid: string, updatedMemory: string) {
+export async function updateMemoryForSong(songUuid: string, updatedMemory: string | null) {
     try {
         const response = await api.patch<SongOfDay>(`${path}/memory/${songUuid}`, {
             updatedMemory

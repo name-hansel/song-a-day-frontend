@@ -14,7 +14,7 @@
     line-height: 1.6;
 }
 
-.song-of-day-memory-edit {
+.song-of-day-memory-action-btn {
     font-size: 0.75rem;
     background: var(--color-bg-secondary);
     border: none;
@@ -23,14 +23,15 @@
     gap: 1rem;
 }
 
-.song-of-day-memory-edit:hover {
+.song-of-day-memory-action-btn:hover {
     color: var(--color-accent);
     background-color: transparent;
 }
 
-.song-of-day-memory-edit-div {
+.song-of-day-memory-action-div {
     display: flex;
     justify-content: flex-end;
+    gap: 1rem;
 }
 
 .song-of-day-memory-editing-div {
