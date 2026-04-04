@@ -84,11 +84,11 @@ export default function SongOfDayMemory({
                                 setIsEditing(false);
                                 void confirmEdit(draftMemory);
                             }}
-                            className="song-of-day-memory-edit">
+                            className="song-of-day-memory-action-btn">
                             <Check size={18}/>
                         </button>
                         <button
-                            className="song-of-day-memory-edit"
+                            className="song-of-day-memory-action-btn"
                             onClick={cancelEdit}>
                             <X size={18}/>
                         </button>
