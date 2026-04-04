@@ -79,7 +79,7 @@ export default function SearchBar({onSelect}: {
             <div className="search-icons">
                 {searchLoading &&
                     <span className="loading-text"><Spinner
-                        size={"1rem"}/></span>}
+                        size={"1rem"} color={"var(--color-text-secondary)"}/></span>}
                 {!searchLoading && !query && <Search size={18}/>}
                 {query && !searchLoading && (
                     <X

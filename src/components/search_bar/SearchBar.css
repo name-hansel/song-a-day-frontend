@@ -18,11 +18,6 @@
     padding: 0.6rem 4rem 0.6rem 1rem;
 }
 
-.loading-text {
-    font-size: 0.6rem;
-    color: var(--color-text-secondary);
-}
-
 .search-icons {
     position: absolute;
     right: 8px;
