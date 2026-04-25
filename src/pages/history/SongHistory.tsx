@@ -11,14 +11,13 @@ import Spinner from "../spinner/Spinner.tsx";
 import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
+import {ArrowRight} from "lucide-react";
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
     const [songHistory, setSongHistory] = useState<SongHistory | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    // TODO: Add "Next" button
 
     useEffect(() => {
         async function getHistory() {
@@ -53,11 +52,17 @@ export default function SongHistory() {
                     {
                         !loading && songHistory?.history &&
                         <div className="song-history-container">
-                            {
-                                groupSongHistoryByMonth(songHistory.history).map(group => (
-                                    <SongHistoryGroup group={group}/>
-                                ))
-                            }
+                            <div className="song-history">
+                                {
+                                    groupSongHistoryByMonth(songHistory.history).map(group => (
+                                        <SongHistoryGroup group={group}/>
+                                    ))
+                                }
+                            </div>
+                            {/*TODO: Implement func.*/}
+                            <button className="next-song-history-btn">
+                                Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
+                            </button>
                         </div>
                     }
                     <div className="page-centered-content">
