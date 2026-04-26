@@ -58,7 +58,7 @@ export default function Settings() {
             setAppUser(updatedAppUser);
             setTimezone(updatedAppUser.timezone);
             showToast("Settings saved successfully!");
-            
+
             if (newUser) {
                 navigate("/");
             }
@@ -153,10 +153,12 @@ export default function Settings() {
                     <footer className="settings-actions">
                         <Button className={"settings-button-primary"} onClick={onSave} buttonText={"Save"}
                                 loading={saveLoading}/>
-                        <button className="settings-button-secondary"
-                                onClick={() => navigate(-1)}>
-                            Cancel
-                        </button>
+                        {
+                            !newUser && <button className="settings-button-secondary"
+                                                onClick={() => navigate(-1)}>
+                                Cancel
+                            </button>
+                        }
                     </footer>
                 </section>
             </div>
