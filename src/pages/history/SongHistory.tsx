@@ -50,7 +50,7 @@ export default function SongHistory() {
                         error && <ErrorBanner message={error}/>
                     }
                     {
-                        !loading && songHistory?.history &&
+                        !loading && !error && songHistory?.history &&
                         <div className="song-history-container">
                             <div className="song-history">
                                 {
@@ -59,15 +59,16 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            {/*TODO: Implement func.*/}
-                            <button className="next-song-history-btn">
-                                Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
-                            </button>
+                            {
+                                songHistory?.hasMore && <button className="next-song-history-btn">
+                                    Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
+                                </button>
+                            }
                         </div>
                     }
                     <div className="page-centered-content">
                         {
-                            loading && <Spinner/>
+                            loading && !error && <Spinner/>
                         }
                         {
                             !loading && !error && !songHistory?.history &&

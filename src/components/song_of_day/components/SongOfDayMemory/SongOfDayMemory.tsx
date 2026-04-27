@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Check, Pencil, Trash, X} from "lucide-react";
 import "./SongOfDayMemory.css"
+import {MAX_MEMORY_LENGTH} from "../../../../types/SongOfDay.ts";
 
 export default function SongOfDayMemory({
                                             isEditableByDefault,
@@ -35,11 +36,11 @@ export default function SongOfDayMemory({
             value={memory}
             onChange={(e) => setMemory(e.target.value)}
             placeholder="Enter a memory..."
-            maxLength={160}
+            maxLength={MAX_MEMORY_LENGTH}
             className="song-of-day-memory"/>
             <div className="song-of-day-memory-editing-div">
                 <div className="song-of-day-memory-chars">
-                    {`${memory.length}/160`}
+                    {`${memory.length}/${MAX_MEMORY_LENGTH}`}
                 </div>
             </div>
         </>
@@ -52,7 +53,7 @@ export default function SongOfDayMemory({
     return (
         <>
             <textarea
-                maxLength={160}
+                maxLength={MAX_MEMORY_LENGTH}
                 disabled={!isEditing}
                 value={isEditing ? draftMemory : memory}
                 onChange={(e) => setDraftMemory(e.target.value)}
@@ -76,7 +77,7 @@ export default function SongOfDayMemory({
                 isEditing &&
                 <div className="song-of-day-memory-editing-div">
                     <div className="song-of-day-memory-chars">
-                        {`${draftMemory.length}/160`}
+                        {`${draftMemory.length}/${MAX_MEMORY_LENGTH}`}
                     </div>
                     <div className="song-of-day-memory-edit-btns">
                         <button

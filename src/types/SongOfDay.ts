@@ -8,3 +8,5 @@ export type SongOfDay = {
     updatedAtTime: string;
     memory: string;
 }
+
+export const MAX_MEMORY_LENGTH = 200;
