@@ -3,5 +3,7 @@ import type {SongOfDay} from "./SongOfDay.ts";
 export interface SongHistory {
     history: SongOfDay[];
     nextDate: string;
-    hasMore: boolean;
+    previousDate: string;
+    hasMoreNext: boolean;
+    hasMorePrevious: boolean;
 }

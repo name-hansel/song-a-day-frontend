@@ -11,7 +11,7 @@ import Spinner from "../spinner/Spinner.tsx";
 import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
-import {ArrowRight} from "lucide-react";
+import {ArrowLeft, ArrowRight} from "lucide-react";
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
@@ -20,21 +20,21 @@ export default function SongHistory() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        async function getHistory() {
+            try {
+                const userSongHistory = await getUserSongHistory();
+                setSongHistory(userSongHistory);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(getErrorMessage(err.message));
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
         void getHistory();
     }, []);
-
-    async function getHistory() {
-        try {
-            const userSongHistory = await getUserSongHistory(songHistory?.nextDate);
-            setSongHistory(userSongHistory);
-        } catch (err: unknown) {
-            if (err instanceof Error) {
-                setError(getErrorMessage(err.message));
-            }
-        } finally {
-            setLoading(false);
-        }
-    }
 
     if (!appUser) {
         return <Navigate to="/login" replace/>;
@@ -59,12 +59,22 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            {
-                                songHistory?.hasMore && <button onClick={getHistory}
-                                                                className="next-song-history-btn">
-                                    Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
-                                </button>
-                            }
+                            <div>
+                                {/*TODO: Styling for both buttons*/}
+                                {/*TODO: Test previous and next buttons*/}
+                                {
+                                    songHistory?.hasMoreNext && <button
+                                        className="song-history-action-btn">
+                                        Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
+                                    </button>
+                                }
+                                {
+                                    songHistory?.hasMorePrevious &&
+                                    <button className="song-history-action-btn">Previous <ArrowLeft
+                                        className="next-song-history-btn-arrow" size={16}/>
+                                    </button>
+                                }
+                            </div>
                         </div>
                     }
                     <div className="page-centered-content">

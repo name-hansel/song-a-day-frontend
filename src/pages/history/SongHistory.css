@@ -14,7 +14,7 @@
     gap: 1.2rem;
 }
 
-.next-song-history-btn {
+.song-history-action-btn {
     align-self: flex-end;
     display: inline-flex;
     align-items: center;
