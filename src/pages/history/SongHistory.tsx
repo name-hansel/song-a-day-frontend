@@ -20,21 +20,21 @@ export default function SongHistory() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        async function getHistory() {
-            try {
-                const userSongHistory = await getUserSongHistory();
-                setSongHistory(userSongHistory);
-            } catch (err: unknown) {
-                if (err instanceof Error) {
-                    setError(getErrorMessage(err.message));
-                }
-            } finally {
-                setLoading(false);
-            }
-        }
-
         void getHistory();
     }, []);
+
+    async function getHistory() {
+        try {
+            const userSongHistory = await getUserSongHistory(songHistory?.nextDate);
+            setSongHistory(userSongHistory);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(getErrorMessage(err.message));
+            }
+        } finally {
+            setLoading(false);
+        }
+    }
 
     if (!appUser) {
         return <Navigate to="/login" replace/>;
@@ -60,7 +60,8 @@ export default function SongHistory() {
                                 }
                             </div>
                             {
-                                songHistory?.hasMore && <button className="next-song-history-btn">
+                                songHistory?.hasMore && <button onClick={getHistory}
+                                                                className="next-song-history-btn">
                                     Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
                                 </button>
                             }
