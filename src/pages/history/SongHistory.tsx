@@ -11,7 +11,7 @@ import Spinner from "../spinner/Spinner.tsx";
 import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
-import {ArrowLeft, ArrowRight} from "lucide-react";
+import SongHistoryButtonFooter from "./button_footer/SongHistoryButtonFooter.tsx";
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
@@ -59,22 +59,7 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            <div>
-                                {/*TODO: Styling for both buttons*/}
-                                {/*TODO: Test previous and next buttons*/}
-                                {
-                                    songHistory?.hasMoreNext && <button
-                                        className="song-history-action-btn">
-                                        Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
-                                    </button>
-                                }
-                                {
-                                    songHistory?.hasMorePrevious &&
-                                    <button className="song-history-action-btn">Previous <ArrowLeft
-                                        className="next-song-history-btn-arrow" size={16}/>
-                                    </button>
-                                }
-                            </div>
+                            <SongHistoryButtonFooter songHistory={songHistory}/>
                         </div>
                     }
                     <div className="page-centered-content">

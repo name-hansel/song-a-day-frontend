@@ -1,0 +1,10 @@
+.song-history-action-btn {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.next-song-history-btn-arrow {
+    opacity: 0.6;
+}
