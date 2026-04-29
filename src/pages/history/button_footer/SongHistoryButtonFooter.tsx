@@ -9,14 +9,14 @@ export default function SongHistoryButtonFooter({songHistory}: {
         {/*TODO: Test previous and next buttons*/}
         {
             songHistory?.hasMorePrevious &&
-            <button className="song-history-footer-btn">Previous <ArrowLeft
-                className="song-history-btn-arrow" size={16}/>
+            <button className="song-history-footer-btn"><ArrowLeft
+                size={16}/>
             </button>
         }
         {
             songHistory?.hasMoreNext && <button
                 className="song-history-footer-btn">
-                Next <ArrowRight className="song-history-btn-arrow" size={16}/>
+                <ArrowRight size={16}/>
             </button>
         }
     </div>
