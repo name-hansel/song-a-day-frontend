@@ -1,10 +1,17 @@
-.song-history-action-btn {
-    align-self: flex-end;
-    display: inline-flex;
-    align-items: center;
+.song-history-btn-footer {
+    display: flex;
+    justify-content: flex-end;
     gap: 0.6rem;
 }
 
-.next-song-history-btn-arrow {
+.song-history-footer-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.6rem;
+}
+
+.song-history-btn-arrow {
     opacity: 0.6;
+    margin: 0;
 }

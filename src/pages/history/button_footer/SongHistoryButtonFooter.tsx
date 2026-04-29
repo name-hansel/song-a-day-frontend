@@ -5,19 +5,18 @@ import "./SongHistoryButtonFooter.css"
 export default function SongHistoryButtonFooter({songHistory}: {
     songHistory?: SongHistory
 }) {
-    return <div>
-        {/*TODO: Styling for both buttons*/}
+    return <div className="song-history-btn-footer">
         {/*TODO: Test previous and next buttons*/}
         {
-            songHistory?.hasMoreNext && <button
-                className="song-history-action-btn">
-                Next <ArrowRight className="next-song-history-btn-arrow" size={16}/>
+            songHistory?.hasMorePrevious &&
+            <button className="song-history-footer-btn">Previous <ArrowLeft
+                className="song-history-btn-arrow" size={16}/>
             </button>
         }
         {
-            songHistory?.hasMorePrevious &&
-            <button className="song-history-action-btn">Previous <ArrowLeft
-                className="next-song-history-btn-arrow" size={16}/>
+            songHistory?.hasMoreNext && <button
+                className="song-history-footer-btn">
+                Next <ArrowRight className="song-history-btn-arrow" size={16}/>
             </button>
         }
     </div>
