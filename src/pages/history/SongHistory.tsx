@@ -59,7 +59,8 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            <SongHistoryButtonFooter songHistory={songHistory} setSongHistory={setSongHistory}/>
+                            <SongHistoryButtonFooter songHistory={songHistory} setSongHistory={setSongHistory}
+                                                     setLoading={setLoading} setError={setError}/>
                         </div>
                     }
                     <div className="page-centered-content">
