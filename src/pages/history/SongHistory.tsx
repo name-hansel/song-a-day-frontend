@@ -21,6 +21,7 @@ export default function SongHistory() {
 
     useEffect(() => {
         async function getHistory() {
+            setLoading(true);
             try {
                 const userSongHistory = await getUserSongHistoryInitial();
                 setSongHistory(userSongHistory);
