@@ -4,7 +4,7 @@ import Layout from "../../components/layout/Layout.tsx";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import {useEffect, useState} from "react";
 import {getErrorMessage} from "../../api/messages.ts";
-import {getUserSongHistory} from "../../api/song.ts";
+import {getUserSongHistoryInitial} from "../../api/song.ts";
 import type {SongHistory} from "../../types/SongHistory.ts";
 import ErrorBanner from "../../components/common/error_banner/ErrorBanner.tsx";
 import Spinner from "../spinner/Spinner.tsx";
@@ -22,7 +22,7 @@ export default function SongHistory() {
     useEffect(() => {
         async function getHistory() {
             try {
-                const userSongHistory = await getUserSongHistory();
+                const userSongHistory = await getUserSongHistoryInitial();
                 setSongHistory(userSongHistory);
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -50,7 +50,7 @@ export default function SongHistory() {
                         error && <ErrorBanner message={error}/>
                     }
                     {
-                        !loading && !error && songHistory?.history &&
+                        !loading && !error && songHistory && songHistory.history &&
                         <div className="song-history-container">
                             <div className="song-history">
                                 {
@@ -59,7 +59,7 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            <SongHistoryButtonFooter songHistory={songHistory}/>
+                            <SongHistoryButtonFooter songHistory={songHistory} setSongHistory={setSongHistory}/>
                         </div>
                     }
                     <div className="page-centered-content">

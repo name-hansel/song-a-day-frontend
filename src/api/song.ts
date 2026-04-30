@@ -52,11 +52,30 @@ export async function updateMemoryForSong(songUuid: string, updatedMemory: strin
     }
 }
 
-// TODO: Make 3 separate functions (initial, before, after)
-export async function getUserSongHistory(beforeDate?: string, afterDate?: string) {
+export async function getUserSongHistoryInitial() {
+    try {
+        const response = await api.get<SongHistory>(`${path}/history`);
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
+}
+
+export async function getUserSongHistoryNext(beforeDate: string) {
     try {
         const response = await api.get<SongHistory>(`${path}/history`, {
-            params: beforeDate ? {beforeDate} : afterDate ? {afterDate} : {}
+            params: {beforeDate}
+        });
+        return response.data;
+    } catch (err: unknown) {
+        handleError(err);
+    }
+}
+
+export async function getUserSongHistoryPrevious(afterDate: string) {
+    try {
+        const response = await api.get<SongHistory>(`${path}/history`, {
+            params: {afterDate}
         });
         return response.data;
     } catch (err: unknown) {
