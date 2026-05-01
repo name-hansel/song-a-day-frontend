@@ -1,10 +1,10 @@
 import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
-import {Navigate} from "react-router";
+import {Navigate, useNavigate, useSearchParams} from "react-router";
 import Layout from "../../components/layout/Layout.tsx";
 import {useAuth} from "../../auth/AuthContext.tsx";
 import {useEffect, useState} from "react";
 import {getErrorMessage} from "../../api/messages.ts";
-import {getUserSongHistoryInitial} from "../../api/song.ts";
+import {getUserSongHistory} from "../../api/song.ts";
 import type {SongHistory} from "../../types/SongHistory.ts";
 import ErrorBanner from "../../components/common/error_banner/ErrorBanner.tsx";
 import Spinner from "../spinner/Spinner.tsx";
@@ -15,15 +15,21 @@ import SongHistoryButtonFooter from "./button_footer/SongHistoryButtonFooter.tsx
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
     const [songHistory, setSongHistory] = useState<SongHistory | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        async function getHistory() {
+        const beforeDate = searchParams.get("before");
+        const afterDate = searchParams.get("after");
+
+        async function getHistory(beforeDate: string | null, afterDate: string | null) {
             setLoading(true);
             try {
-                const userSongHistory = await getUserSongHistoryInitial();
+                const userSongHistory = await getUserSongHistory(beforeDate, afterDate);
                 setSongHistory(userSongHistory);
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -34,11 +40,19 @@ export default function SongHistory() {
             }
         }
 
-        void getHistory();
-    }, []);
+        void getHistory(beforeDate, afterDate);
+    }, [searchParams]);
 
     if (!appUser) {
         return <Navigate to="/login" replace/>;
+    }
+
+    const handleNext = () => {
+        navigate(`?before=${songHistory?.nextDate}`);
+    }
+
+    const handlePrevious = () => {
+        navigate(`?after=${songHistory?.previousDate}`)
     }
 
     return (<Layout displayName={appUser.appUserName} onLogout={logout}>
@@ -60,8 +74,9 @@ export default function SongHistory() {
                                     ))
                                 }
                             </div>
-                            <SongHistoryButtonFooter songHistory={songHistory} setSongHistory={setSongHistory}
-                                                     setLoading={setLoading} setError={setError}/>
+                            <SongHistoryButtonFooter hasMorePrevious={songHistory.hasMorePrevious}
+                                                     hasMoreNext={songHistory.hasMoreNext}
+                                                     handleNext={handleNext} handlePrevious={handlePrevious}/>
                         </div>
                     }
                     <div className="page-centered-content">

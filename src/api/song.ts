@@ -52,30 +52,10 @@ export async function updateMemoryForSong(songUuid: string, updatedMemory: strin
     }
 }
 
-export async function getUserSongHistoryInitial() {
-    try {
-        const response = await api.get<SongHistory>(`${path}/history`);
-        return response.data;
-    } catch (err: unknown) {
-        handleError(err);
-    }
-}
-
-export async function getUserSongHistoryNext(beforeDate: string) {
+export async function getUserSongHistory(beforeDate: string | null, afterDate: string | null) {
     try {
         const response = await api.get<SongHistory>(`${path}/history`, {
-            params: {beforeDate}
-        });
-        return response.data;
-    } catch (err: unknown) {
-        handleError(err);
-    }
-}
-
-export async function getUserSongHistoryPrevious(afterDate: string) {
-    try {
-        const response = await api.get<SongHistory>(`${path}/history`, {
-            params: {afterDate}
+            params: beforeDate ? {beforeDate} : afterDate ? {afterDate} : {}
         });
         return response.data;
     } catch (err: unknown) {
