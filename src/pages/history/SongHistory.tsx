@@ -11,7 +11,7 @@ import Spinner from "../spinner/Spinner.tsx";
 import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
-import SongHistoryButtonFooter from "./button_footer/SongHistoryButtonFooter.tsx";
+import SongHistoryButtonFooter from "../../components/history/button_footer/SongHistoryButtonFooter.tsx";
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
