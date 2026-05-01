@@ -14,10 +14,28 @@
     gap: 1.2rem;
 }
 
+.history-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .history-title {
     font-size: 2rem;
     font-family: "Bowlby One", sans-serif;
     letter-spacing: 0.3rem;
     margin: 0;
     color: var(--color-text-primary);
+}
+
+.history-page-header-action-div {
+    display: flex;
+    gap: 1rem;
+}
+
+.history-page-header-action-div button {
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    border: none;
+    padding: 0;
 }

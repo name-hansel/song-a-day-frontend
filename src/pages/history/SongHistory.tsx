@@ -12,6 +12,7 @@ import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
 import SongHistoryButtonFooter from "../../components/history/button_footer/SongHistoryButtonFooter.tsx";
+import {Grid, List} from "lucide-react";
 
 export default function SongHistory() {
     const {appUser, logout} = useAuth();
@@ -21,6 +22,7 @@ export default function SongHistory() {
     const [songHistory, setSongHistory] = useState<SongHistory | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [view, setView] = useState<string>("list");
 
     useEffect(() => {
         const beforeDate = searchParams.get("before");
@@ -31,6 +33,11 @@ export default function SongHistory() {
             try {
                 const userSongHistory = await getUserSongHistory(beforeDate, afterDate);
                 setSongHistory(userSongHistory);
+
+                const viewParam = searchParams.get("view");
+                if (viewParam) {
+                    setView(viewParam);
+                }
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     setError(getErrorMessage(err.message));
@@ -52,14 +59,23 @@ export default function SongHistory() {
     }
 
     const handlePrevious = () => {
-        navigate(`?after=${songHistory?.previousDate}`)
+        navigate(`?after=${songHistory?.previousDate}`);
     }
 
     return (<Layout displayName={appUser.appUserName} onLogout={logout}>
         <div className="home-layout">
             <HomeSidebar/>
             <div className="home-main">
-                <h1 className="history-title">Song History</h1>
+                <div className="history-page-header">
+                    <h1 className="history-title">Song History</h1>
+                    <div className="history-page-header-action-div">
+                        {
+                            view === "list" ?
+                                <button onClick={() => navigate("?view=grid")}><Grid size={16}/></button> :
+                                <button onClick={() => navigate("?view=list")}><List size={16}/></button>
+                        }
+                    </div>
+                </div>
                 <div className="container">
                     {
                         error && <ErrorBanner message={error}/>
