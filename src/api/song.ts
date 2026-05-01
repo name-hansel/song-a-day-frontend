@@ -52,10 +52,18 @@ export async function updateMemoryForSong(songUuid: string, updatedMemory: strin
     }
 }
 
-export async function getUserSongHistory(beforeDate: string | null, afterDate: string | null) {
+export async function getUserSongHistory(beforeDate: string | null, afterDate: string | null, limit: number) {
+    const params: Record<string, string | number> = {limit};
+
+    if (beforeDate) {
+        params.beforeDate = beforeDate;
+    } else if (afterDate) {
+        params.afterDate = afterDate;
+    }
+
     try {
         const response = await api.get<SongHistory>(`${path}/history`, {
-            params: beforeDate ? {beforeDate} : afterDate ? {afterDate} : {}
+            params
         });
         return response.data;
     } catch (err: unknown) {

@@ -23,6 +23,7 @@ export default function SongHistory() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [view, setView] = useState<"list" | "grid">("list");
+    const [entriesNumber, setEntriesNumber] = useState<number>(10);
 
     useEffect(() => {
         const beforeDate = searchParams.get("before");
@@ -31,7 +32,7 @@ export default function SongHistory() {
         async function getHistory(beforeDate: string | null, afterDate: string | null) {
             setLoading(true);
             try {
-                const userSongHistory = await getUserSongHistory(beforeDate, afterDate);
+                const userSongHistory = await getUserSongHistory(beforeDate, afterDate, entriesNumber);
                 setSongHistory(userSongHistory);
 
                 const viewParam = searchParams.get("view");
@@ -48,7 +49,7 @@ export default function SongHistory() {
         }
 
         void getHistory(beforeDate, afterDate);
-    }, [searchParams]);
+    }, [entriesNumber, searchParams]);
 
     if (!appUser) {
         return <Navigate to="/login" replace/>;
@@ -85,6 +86,15 @@ export default function SongHistory() {
                 <div className="history-page-header">
                     <h1 className="history-title">Song History</h1>
                     <div className="history-page-header-action-div">
+                        <div className="entries-number-div">
+                            <label htmlFor="entries-number" className="entries-number-label">Show</label>
+                            <select onChange={(e) => setEntriesNumber(Number(e.target.value))} id="entries-number"
+                                    className="entries-number-select" defaultValue={10}>
+                                <option value={10}>10</option>
+                                <option value={20}>20</option>
+                                <option value={50}>50</option>
+                            </select>
+                        </div>
                         <button onClick={handleViewToggle}>
                             {
                                 view == "list" ? <Grid size={16}/> : <List size={16}/>
