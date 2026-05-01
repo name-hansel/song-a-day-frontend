@@ -15,7 +15,7 @@ export default function SongHistoryGroup({group, view}: {
             {
                 group.songs.map(song => view === "list" ? (
                         <SongHistoryListCard song={song}/>) : (
-                        <SongHistoryGridTile/>
+                        <SongHistoryGridTile song={song}/>
                     )
                 )
             }

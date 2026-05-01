@@ -5,5 +5,6 @@ export type TrackSearch = {
     albumName: string;
     spotifyUrl: string;
     largeImageUrl: string;
+    mediumImageUrl: string;
     smallImageUrl: string;
 }
