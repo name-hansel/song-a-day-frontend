@@ -1,14 +1,13 @@
 import type {SongOfDay} from "../../../types/SongOfDay.ts";
-import "./SongHistoryCard.css"
+import "./SongHistoryListCard.css"
 import {getDateNumericFromDate} from "../../../utils/DateUtils.ts";
 import {Link} from "react-router";
 import {ArrowRight, TextIcon} from "lucide-react";
 
-export default function SongHistoryCard({song}: {
+export default function SongHistoryListCard({song}: {
     song: SongOfDay
 }) {
     return (
-
         <div className="song-history-row">
             <div className="song-history-date">{getDateNumericFromDate(song.songDate)}</div>
             <Link to={`/song-a-day/${song.songDate}`} className="song-history-link" state={{fromHistory: true}}>

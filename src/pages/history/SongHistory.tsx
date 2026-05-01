@@ -22,7 +22,7 @@ export default function SongHistory() {
     const [songHistory, setSongHistory] = useState<SongHistory | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [view, setView] = useState<string>("list");
+    const [view, setView] = useState<"list" | "grid">("list");
 
     useEffect(() => {
         const beforeDate = searchParams.get("before");
@@ -35,7 +35,7 @@ export default function SongHistory() {
                 setSongHistory(userSongHistory);
 
                 const viewParam = searchParams.get("view");
-                if (viewParam) {
+                if (viewParam === "list" || viewParam === "grid") {
                     setView(viewParam);
                 }
             } catch (err: unknown) {
@@ -92,7 +92,7 @@ export default function SongHistory() {
                             <div className={`song-history ${view}`}>
                                 {
                                     groupSongHistoryByMonth(songHistory.history).map(group => (
-                                        <SongHistoryGroup group={group}/>
+                                        <SongHistoryGroup group={group} view={view}/>
                                     ))
                                 }
                             </div>

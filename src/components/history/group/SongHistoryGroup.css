@@ -20,3 +20,15 @@
     background-color: var(--color-border);
     opacity: 0.6;
 }
+
+.month-entries.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.month-entries.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.8rem;
+}

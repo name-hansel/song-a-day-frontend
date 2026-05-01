@@ -10,10 +10,6 @@
     width: 100%;
 }
 
-.song-history {
-    gap: 1.2rem;
-}
-
 .history-page-header {
     display: flex;
     justify-content: space-between;
@@ -38,4 +34,8 @@
     background-color: transparent;
     border: none;
     padding: 0;
+}
+
+.song-history {
+    gap: 1.2rem;
 }
