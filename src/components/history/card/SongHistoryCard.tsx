@@ -1,6 +1,6 @@
-import type {SongOfDay} from "../../types/SongOfDay.ts";
+import type {SongOfDay} from "../../../types/SongOfDay.ts";
 import "./SongHistoryCard.css"
-import {getDateNumericFromDate} from "../../utils/DateUtils.ts";
+import {getDateNumericFromDate} from "../../../utils/DateUtils.ts";
 import {Link} from "react-router";
 import {ArrowRight, TextIcon} from "lucide-react";
 

@@ -1,5 +1,5 @@
 import type {SongOfDay} from "../../../types/SongOfDay.ts";
-import SongHistoryCard from "../SongHistoryCard.tsx";
+import SongHistoryCard from "../card/SongHistoryCard.tsx";
 import "./SongHistoryGroup.css"
 
 export default function SongHistoryGroup({group}: {
