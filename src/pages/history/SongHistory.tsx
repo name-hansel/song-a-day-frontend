@@ -62,6 +62,12 @@ export default function SongHistory() {
         navigate(`?after=${songHistory?.previousDate}`);
     }
 
+    const handleViewToggle = () => {
+        const params = new URLSearchParams(searchParams);
+        params.set("view", view === "list" ? "grid" : "list");
+        navigate(`?${params.toString()}`);
+    };
+
     return (<Layout displayName={appUser.appUserName} onLogout={logout}>
         <div className="home-layout">
             <HomeSidebar/>
@@ -69,11 +75,11 @@ export default function SongHistory() {
                 <div className="history-page-header">
                     <h1 className="history-title">Song History</h1>
                     <div className="history-page-header-action-div">
-                        {
-                            view === "list" ?
-                                <button onClick={() => navigate("?view=grid")}><Grid size={16}/></button> :
-                                <button onClick={() => navigate("?view=list")}><List size={16}/></button>
-                        }
+                        <button onClick={handleViewToggle}>
+                            {
+                                view == "list" ? <Grid size={16}/> : <List size={16}/>
+                            }
+                        </button>
                     </div>
                 </div>
                 <div className="container">
@@ -83,7 +89,7 @@ export default function SongHistory() {
                     {
                         !loading && !error && songHistory && songHistory.history &&
                         <div className="song-history-container">
-                            <div className="song-history">
+                            <div className={`song-history ${view}`}>
                                 {
                                     groupSongHistoryByMonth(songHistory.history).map(group => (
                                         <SongHistoryGroup group={group}/>
