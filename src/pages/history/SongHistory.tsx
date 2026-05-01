@@ -55,11 +55,21 @@ export default function SongHistory() {
     }
 
     const handleNext = () => {
-        navigate(`?before=${songHistory?.nextDate}`);
+        if (songHistory?.nextDate) {
+            const params = new URLSearchParams(searchParams);
+            params.set("before", songHistory.nextDate);
+            params.delete("after");
+            navigate(`?${params.toString()}`);
+        }
     }
 
     const handlePrevious = () => {
-        navigate(`?after=${songHistory?.previousDate}`);
+        if (songHistory?.previousDate) {
+            const params = new URLSearchParams(searchParams);
+            params.set("after", songHistory.previousDate);
+            params.delete("before");
+            navigate(`?${params.toString()}`);
+        }
     }
 
     const handleViewToggle = () => {
