@@ -27,6 +27,7 @@ export default function LogSongConfirmation() {
     const [error, setError] = useState<string | null>(null);
     const [memory, setMemory] = useState("");
     const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
+    const [date, setDate] = useState<string>(getTodayForTimezone(appUser?.timezone));
     const {trackId} = useParams();
 
     useEffect(() => {
@@ -69,7 +70,7 @@ export default function LogSongConfirmation() {
 
         try {
             setConfirmLoading(true);
-            const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim());
+            const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim(), date);
             setSong(loggedSong);
             setAppUser(prev => prev ? {
                 ...prev, hasLoggedSongToday: true
@@ -118,8 +119,9 @@ export default function LogSongConfirmation() {
                                     buttonText={"Confirm"} loading={confirmLoading}/>
                             <input
                                 type="date"
-                                value={getTodayForTimezone(appUser?.timezone)}
-                                disabled
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                                max={getTodayForTimezone(appUser?.timezone)}
                                 className="log-song-confirmation-date-picker"/>
                         </div>
                         <Button className={"log-song-confirmation-cancel-btn"} onClick={onCancel}

@@ -21,10 +21,10 @@ export async function deleteSongOfDayForAppUser() {
     }
 }
 
-export async function logSongOfDayForAppUser(spotifyId: string, memory: string) {
+export async function logSongOfDayForAppUser(spotifyId: string, memory: string, date: string) {
     try {
         const response = await api.put<SongOfDay>(path, {
-            spotifyId, memory
+            spotifyId, memory, date
         });
         return response.data;
     } catch (err: unknown) {
