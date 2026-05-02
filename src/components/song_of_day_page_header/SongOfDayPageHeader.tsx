@@ -52,7 +52,9 @@ export default function SongOfDayPageHeader({onSelect, currentDate}: {
                         <ArrowLeft size={18}/>
                     </button>
                     {
-                        currentDate && getTodayForTimezone(appUser?.timezone) !== currentDate &&
+                        // TODO: currentDate might be null for today's song OR if no song logged
+                        // Compare against URL?
+                        getTodayForTimezone(appUser?.timezone) !== currentDate &&
                         <button
                             onClick={() => goPreviousOrNextSong(shiftDate(currentDate, +1))}
                             className="song-a-day-page-header-btn">

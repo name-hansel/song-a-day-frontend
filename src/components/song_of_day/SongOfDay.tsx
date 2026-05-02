@@ -24,7 +24,7 @@ export default function SongOfDay() {
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
     const location = useLocation();
-    const fromHistory = location.state?.fromHistory ?? false;
+    const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
     const {appUser, setAppUser} = useAuth();
     const timezone = appUser?.timezone;
