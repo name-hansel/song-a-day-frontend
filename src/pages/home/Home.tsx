@@ -26,7 +26,7 @@ export default function Home() {
 
     return (
         <>
-            <SongOfDayPageHeader onSelect={onSelect}/>
+            <SongOfDayPageHeader currentDate={song?.songDate} onSelect={onSelect}/>
             <div className="container">
                 <Outlet context={{song, setSong}}/>
             </div>
