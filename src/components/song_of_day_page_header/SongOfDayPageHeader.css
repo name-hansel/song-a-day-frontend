@@ -1,0 +1,15 @@
+.song-a-day-page-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-a-day-page-header-previous-next-div {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.song-a-day-page-header-btn {
+    color: var(--color-text-secondary);
+    background: none;
+}

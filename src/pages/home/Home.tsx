@@ -1,5 +1,5 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
-import TodaySongHeader from "../../components/today_song_header/TodaySongHeader.tsx";
+import SongOfDayPageHeader from "../../components/song_of_day_page_header/SongOfDayPageHeader.tsx";
 import * as React from "react";
 import {useState} from "react";
 import "./Home.css"
@@ -26,7 +26,7 @@ export default function Home() {
 
     return (
         <>
-            <TodaySongHeader onSelect={onSelect}/>
+            <SongOfDayPageHeader onSelect={onSelect}/>
             <div className="container">
                 <Outlet context={{song, setSong}}/>
             </div>

@@ -31,6 +31,10 @@
 
 .history-page-header-action-div button {
     color: var(--color-text-secondary);
+}
+
+.history-page-header-action-div button {
+    color: var(--color-text-secondary);
     background-color: transparent;
     border: none;
     padding: 0;
