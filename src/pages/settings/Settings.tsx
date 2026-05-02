@@ -1,6 +1,5 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
 import {Navigate, useNavigate, useSearchParams} from "react-router";
-import Layout from "../../components/layout/Layout.tsx";
 import {useEffect, useState} from "react";
 import "./Settings.css"
 import Spinner from "../spinner/Spinner.tsx";
@@ -14,7 +13,7 @@ import {deleteUserAccount} from "../../api/auth.ts";
 import Button from "../../components/common/button/Button.tsx";
 
 export default function Settings() {
-    const {appUser, setAppUser, logout} = useAuth();
+    const {appUser, setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
     const [timezone, setTimezone] = useState(appUser?.timezone);
@@ -91,7 +90,7 @@ export default function Settings() {
     }
 
     return (
-        <Layout displayName={appUser.appUserName} onLogout={logout}>
+        <>
             <div className="settings-layout">
                 {
                     newUser &&
@@ -174,6 +173,6 @@ export default function Settings() {
                     confirmLoading={deleteAccountLoading}
                 />
             }
-        </Layout>
+        </>
     )
 }

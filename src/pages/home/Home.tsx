@@ -1,10 +1,7 @@
 import {useAuth} from "../../auth/AuthContext.tsx";
-import Layout from "../../components/layout/Layout.tsx";
-import TodaySongHeader
-    from "../../components/today_song_header/TodaySongHeader.tsx";
+import TodaySongHeader from "../../components/today_song_header/TodaySongHeader.tsx";
 import * as React from "react";
 import {useState} from "react";
-import HomeSidebar from "../../components/home_sidebar/HomeSidebar.tsx";
 import "./Home.css"
 import {Outlet, useNavigate} from "react-router";
 import type {SongOfDay} from "../../types/SongOfDay.ts";
@@ -16,7 +13,7 @@ export type SongOfDayContext = {
 
 export default function Home() {
     const [song, setSong] = useState<SongOfDay>();
-    const {appUser, logout} = useAuth();
+    const {appUser} = useAuth();
     const navigate = useNavigate();
 
     if (!appUser) {
@@ -28,17 +25,11 @@ export default function Home() {
     }
 
     return (
-        <Layout displayName={appUser.appUserName} onLogout={logout}>
-            <div className="home-layout">
-                <HomeSidebar songForToday={song}/>
-
-                <div className="home-main">
-                    <TodaySongHeader onSelect={onSelect}/>
-                    <div className="container">
-                        <Outlet context={{song, setSong}}/>
-                    </div>
-                </div>
+        <>
+            <TodaySongHeader onSelect={onSelect}/>
+            <div className="container">
+                <Outlet context={{song, setSong}}/>
             </div>
-        </Layout>
+        </>
     );
 }

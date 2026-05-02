@@ -5,12 +5,13 @@ import PrivateRoute from "./auth/PrivateRoute.tsx";
 import Home from "./pages/home/Home.tsx";
 import LogSongConfirmation from "./components/log_song_confirmation/LogSongConfirmation.tsx";
 import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
-import {SongOfDay as SongOfDayPage} from "./pages/song_of_day/SongOfDay.tsx";
 import Login from "./pages/login/Login.tsx";
 import Settings from "./pages/settings/Settings.tsx";
 import {ToastProvider} from "./context/ToastContext.tsx";
 import NotFound from "./pages/not_found/NotFound.tsx";
 import SongHistory from "./pages/history/SongHistory.tsx";
+import RootLayout from "./pages/root_layout/RootLayout.tsx";
+import AppLayout from "./pages/app_layout/AppLayout.tsx";
 
 function App() {
     return (
@@ -20,38 +21,34 @@ function App() {
                     <Routes>
                         <Route path="/login" element={<Login/>}/>
 
-                        {/* Home */}
-                        <Route element={
-                            <PrivateRoute>
-                                <Home/>
-                            </PrivateRoute>
-                        }>
-                            <Route index element={<SongOfDay/>}/>
-                            <Route path="/log/:trackId"
-                                   element={<LogSongConfirmation/>}/>
-                        </Route>
-                        {/* Song of a particular day */}
-                        <Route
-                            element={
+                        {/* Header wrapper */}
+                        <Route element={<RootLayout/>}>
+                            {/*  Header + sidebar  */}
+                            <Route element={
                                 <PrivateRoute>
-                                    <SongOfDayPage/>
+                                    <AppLayout/>
                                 </PrivateRoute>
-                            }
-                            path="/song-a-day/:date">
-                            <Route index element={
-                                <PrivateRoute><SongOfDay/></PrivateRoute>}/>
+                            }>
+
+                                <Route path="/" element={<Home/>}>
+                                    <Route index element={<SongOfDay/>}/>
+                                    <Route path="log/:trackId" element={<LogSongConfirmation/>}/>
+                                    <Route path="song-a-day/:date">
+                                        <Route index element={<SongOfDay/>}/>
+                                    </Route>
+                                </Route>
+
+                                <Route path="history" element={<SongHistory/>}/>
+                            </Route>
+
+                            {/* Header only (no sidebar) */}
+                            <Route path="/settings" element={
+                                <PrivateRoute>
+                                    <Settings/>
+                                </PrivateRoute>
+                            }/>
+                            <Route path="*" element={<NotFound/>}/>
                         </Route>
-                        {/*  Settings  */}
-                        <Route path="/settings"
-                               element={
-                                   <PrivateRoute><Settings/></PrivateRoute>}/>
-                        <Route path="*" element={<NotFound/>}/>
-                        {/*  SongHistory  */}
-                        <Route path="/history" element={
-                            <PrivateRoute>
-                                <SongHistory/>
-                            </PrivateRoute>
-                        }/>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
