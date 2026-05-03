@@ -5,7 +5,7 @@
 }
 
 .msg {
-    font-size: 1rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
     color: var(--color-text-secondary);
 }
