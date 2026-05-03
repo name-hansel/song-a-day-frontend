@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router";
-import {formatDateForSongOfDay} from "../../../../utils/DateUtils.ts";
+import {formatDateForSongOfDay} from "../../../utils/DateUtils.ts";
 import "./SongOfDayHeader.css"
 
 export default function SongOfDayHeader({date, fromHistory}: {

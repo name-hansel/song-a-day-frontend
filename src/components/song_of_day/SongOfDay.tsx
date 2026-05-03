@@ -7,11 +7,11 @@ import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import {useToast} from "../../context/ToastContext.tsx";
-import SongOfDayDetails from "./components/SongOfDayDetails/SongOfDayDetails.tsx";
-import SongOfDayImage from "./components/SongOfDayImage/SongOfDayImage.tsx";
-import SongOfDayFooterRemove from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
-import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
-import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
+import SongOfDayDetails from "./details/SongOfDayDetails.tsx";
+import SongOfDayImage from "./image/SongOfDayImage.tsx";
+import SongOfDayFooterRemove from "./footer/SongOfDayFooterRemove.tsx";
+import SongOfDayMemory from "./memory/SongOfDayMemory.tsx";
+import SongOfDayHeader from "./header/SongOfDayHeader.tsx";
 import {useAuth} from "../../context/AuthContext.tsx";
 import {useSong} from "../../context/SongContext.tsx";
 

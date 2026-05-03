@@ -1,7 +1,7 @@
 import "./HomeSidebar.css"
 import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
-import HomeSidebarSong from "./home_sidebar_song/HomeSidebarSong.tsx";
+import HomeSidebarSong from "./song_card/HomeSidebarSong.tsx";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import type {SongOfDay} from "../../types/SongOfDay.ts";

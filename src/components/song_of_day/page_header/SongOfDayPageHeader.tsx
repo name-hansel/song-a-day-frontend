@@ -1,9 +1,9 @@
 import "./SongOfDayPageHeader.css";
-import SearchBar from "../search_bar/SearchBar.tsx";
+import SearchBar from "../../search_bar/SearchBar.tsx";
 import {ArrowLeft, ArrowRight, Home} from "lucide-react";
 import {useNavigate, useParams} from "react-router";
-import {getTodayForTimezone} from "../../utils/DateUtils.ts";
-import {useAuth} from "../../context/AuthContext.tsx";
+import {getTodayForTimezone} from "../../../utils/DateUtils.ts";
+import {useAuth} from "../../../context/AuthContext.tsx";
 
 
 export default function SongOfDayPageHeader({onSelect}: {

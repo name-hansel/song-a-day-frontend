@@ -1,5 +1,5 @@
 import "./SongOfDayDetails.css"
-import type {TrackSearch} from "../../../../types/TrackSearch.ts";
+import type {TrackSearch} from "../../../types/TrackSearch.ts";
 
 export default function SongOfDayDetails({trackInformation}: {
     trackInformation: TrackSearch

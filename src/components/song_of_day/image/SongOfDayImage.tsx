@@ -1,6 +1,6 @@
 import "./SongOfDayImage.css"
-import type {TrackSearch} from "../../../../types/TrackSearch.ts";
-import Image from "../../../common/image/Image.tsx";
+import type {TrackSearch} from "../../../types/TrackSearch.ts";
+import Image from "../../common/image/Image.tsx";
 
 export default function SongOfDayImage({trackInformation}: {
     trackInformation: TrackSearch

@@ -1,6 +1,6 @@
 import {useState} from "react";
 import "./SongOfDayFooterRemove.css"
-import Button from "../../../common/button/Button.tsx";
+import Button from "../../common/button/Button.tsx";
 
 export default function SongOfDayFooterRemove({removeSongForAppUser, removeLoading}: {
     removeSongForAppUser?: () => Promise<void>,

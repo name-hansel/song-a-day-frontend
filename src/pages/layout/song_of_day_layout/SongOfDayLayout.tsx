@@ -1,4 +1,4 @@
-import SongOfDayPageHeader from "../../../components/song_of_day_page_header/SongOfDayPageHeader.tsx";
+import SongOfDayPageHeader from "../../../components/song_of_day/page_header/SongOfDayPageHeader.tsx";
 import {Outlet, useNavigate} from "react-router";
 import "./SongOfDayLayout.css"
 

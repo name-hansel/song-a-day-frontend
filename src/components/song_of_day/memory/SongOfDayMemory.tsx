@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Check, Pencil, Trash, X} from "lucide-react";
 import "./SongOfDayMemory.css"
-import {MAX_MEMORY_LENGTH} from "../../../../types/SongOfDay.ts";
+import {MAX_MEMORY_LENGTH} from "../../../types/SongOfDay.ts";
 
 export default function SongOfDayMemory({
                                             isEditableByDefault,
