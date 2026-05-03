@@ -31,6 +31,7 @@ export default function SongOfDay() {
     useEffect(() => {
         async function getSongOfDay() {
             try {
+                setLoading(true);
                 const data = await getSongOfDayForAppUser(date);
                 setSong(data);
             } catch (err: unknown) {
