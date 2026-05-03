@@ -1,5 +1,5 @@
-import {useAuth} from "../../context/AuthContext.tsx";
-import {Navigate, useNavigate, useSearchParams} from "react-router";
+import {useAuth, useRequiredAuth} from "../../context/AuthContext.tsx";
+import {useNavigate, useSearchParams} from "react-router";
 import {useEffect, useState} from "react";
 import "./Settings.css"
 import Spinner from "../spinner/Spinner.tsx";
@@ -13,10 +13,11 @@ import {deleteUserAccount} from "../../api/auth.ts";
 import Button from "../../components/common/button/Button.tsx";
 
 export default function Settings() {
-    const {appUser, setAppUser} = useAuth();
+    const appUser = useRequiredAuth();
+    const {setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
-    const [timezone, setTimezone] = useState(appUser?.timezone);
+    const [timezone, setTimezone] = useState(appUser.timezone);
     const [timezones, setTimezones] = useState<Timezone[]>([]);
     const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
 
@@ -83,10 +84,6 @@ export default function Settings() {
         } finally {
             setDeleteAccountLoading(false);
         }
-    }
-
-    if (!appUser) {
-        return <Navigate to="/login" replace/>;
     }
 
     return (

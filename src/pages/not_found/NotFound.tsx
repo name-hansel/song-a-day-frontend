@@ -1,20 +1,18 @@
 import {useAuth} from "../../context/AuthContext.tsx";
 import Spinner from "../spinner/Spinner.tsx";
-import {Link, useNavigate} from "react-router";
+import {Link, Navigate} from "react-router";
 import "./NotFound.css"
 import {ArrowRight} from "lucide-react";
 
 export default function NotFound() {
     const {appUser, loading} = useAuth();
-    const navigate = useNavigate();
 
     if (loading) {
         return <Spinner/>;
     }
 
     if (!appUser) {
-        navigate("/login");
-        return;
+        return <Navigate to="/login" replace/>;
     }
 
     return (

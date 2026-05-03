@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import "./LogSongConfirmation.css"
 import "../common/SongOfDay.css";
-import {useAuth} from "../../context/AuthContext.tsx";
+import {useAuth, useRequiredAuth} from "../../context/AuthContext.tsx";
 import {useNavigate, useParams, useSearchParams} from "react-router";
 import {searchForTrack} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
@@ -18,7 +18,8 @@ import {useSong} from "../../context/SongContext.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useSong();
-    const {appUser, setAppUser} = useAuth();
+    const appUser = useRequiredAuth();
+    const {setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ export default function LogSongConfirmation() {
     const {trackId} = useParams();
     const [searchParams] = useSearchParams();
     const urlDate = searchParams.get("date");
-    const [date, setDate] = useState<string>(urlDate ?? getTodayForTimezone(appUser?.timezone));
+    const [date, setDate] = useState<string>(urlDate ?? getTodayForTimezone(appUser.timezone));
 
     useEffect(() => {
         if (!trackId) return;
@@ -74,6 +75,7 @@ export default function LogSongConfirmation() {
             setConfirmLoading(true);
             const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim(), date);
             setSong(loggedSong);
+            // TODO: Fix, as we cannot be sure song is logged for TODAY
             setAppUser(prev => prev ? {
                 ...prev, hasLoggedSongToday: true
             } : prev)
@@ -123,7 +125,7 @@ export default function LogSongConfirmation() {
                                 type="date"
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
-                                max={getTodayForTimezone(appUser?.timezone)}
+                                max={getTodayForTimezone(appUser.timezone)}
                                 className="log-song-confirmation-date-picker"/>
                         </div>
                         <Button className={"log-song-confirmation-cancel-btn"} onClick={onCancel}

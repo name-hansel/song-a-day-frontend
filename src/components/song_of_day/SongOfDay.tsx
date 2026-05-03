@@ -12,7 +12,7 @@ import SongOfDayImage from "./image/SongOfDayImage.tsx";
 import SongOfDayFooterRemove from "./footer/SongOfDayFooterRemove.tsx";
 import SongOfDayMemory from "./memory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./header/SongOfDayHeader.tsx";
-import {useAuth} from "../../context/AuthContext.tsx";
+import {useAuth, useRequiredAuth} from "../../context/AuthContext.tsx";
 import {useSong} from "../../context/SongContext.tsx";
 
 export default function SongOfDay() {
@@ -25,8 +25,9 @@ export default function SongOfDay() {
     const location = useLocation();
     const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
-    const {appUser, setAppUser} = useAuth();
-    const timezone = appUser?.timezone;
+    const appUser = useRequiredAuth();
+    const {setAppUser} = useAuth();
+    const timezone = appUser.timezone;
 
     useEffect(() => {
         async function getSongOfDay() {
@@ -55,6 +56,7 @@ export default function SongOfDay() {
             setRemoveLoading(true);
             await deleteSongOfDayForAppUser(song?.uuid);
             setSong(null);
+            // TODO: FIX
             setAppUser(prev =>
                 prev ? {...prev, hasLoggedSongToday: false} : prev
             );

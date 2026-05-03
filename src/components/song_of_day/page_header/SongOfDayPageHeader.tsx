@@ -3,17 +3,17 @@ import SearchBar from "../../search_bar/SearchBar.tsx";
 import {ArrowLeft, ArrowRight, Home} from "lucide-react";
 import {useNavigate, useParams} from "react-router";
 import {getTodayForTimezone} from "../../../utils/DateUtils.ts";
-import {useAuth} from "../../../context/AuthContext.tsx";
+import {useRequiredAuth} from "../../../context/AuthContext.tsx";
 
 
 export default function SongOfDayPageHeader({onSelect}: {
     onSelect?: (trackId: string) => void,
 }) {
     const navigate = useNavigate();
-    const {appUser} = useAuth();
+    const appUser = useRequiredAuth();
     // URL date
     const {date} = useParams();
-    const effectiveDate = date ?? getTodayForTimezone(appUser?.timezone);
+    const effectiveDate = date ?? getTodayForTimezone(appUser.timezone);
 
     function goHome() {
         navigate("/");
@@ -62,7 +62,7 @@ export default function SongOfDayPageHeader({onSelect}: {
                     {
 
                         <button
-                            disabled={!date || getTodayForTimezone(appUser?.timezone) === date}
+                            disabled={!date || getTodayForTimezone(appUser.timezone) === date}
                             onClick={handleNext}
                             className="song-a-day-page-header-btn">
                             <ArrowRight size={18}/>

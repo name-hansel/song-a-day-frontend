@@ -22,12 +22,10 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
 
                         {/* Header wrapper */}
-                        <Route element={<RootLayout/>}>
+                        <Route element={<PrivateRoute><RootLayout/></PrivateRoute>}>
                             {/*  Header + sidebar  */}
                             <Route element={
-                                <PrivateRoute>
-                                    <AppLayout/>
-                                </PrivateRoute>
+                                <AppLayout/>
                             }>
                                 <Route element={<SongOfDayLayout/>}>
                                     <Route index element={<SongOfDay/>}/>
@@ -43,8 +41,9 @@ function App() {
                                     <Settings/>
                                 </PrivateRoute>
                             }/>
-                            <Route path="*" element={<NotFound/>}/>
                         </Route>
+
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>

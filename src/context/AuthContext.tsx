@@ -18,6 +18,7 @@ export function AuthProvider({children}: { children: ReactNode }) {
 
     async function loadAppUser() {
         try {
+            setLoading(true);
             const response = await getAppUser();
             setAppUser(response.data);
         } catch {
@@ -51,4 +52,14 @@ export function useAuth(): AuthContextType {
     const ctx = useContext(AuthContext);
     if (!ctx) throw new Error("NO CONTEXT");
     return ctx;
+}
+
+export function useRequiredAuth() {
+    const {appUser} = useAuth();
+
+    if (!appUser) {
+        throw new Error("useRequiredAuth must be used within authenticated routes");
+    }
+
+    return appUser;
 }

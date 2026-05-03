@@ -1,5 +1,4 @@
-import {Navigate, useNavigate, useSearchParams} from "react-router";
-import {useAuth} from "../../context/AuthContext.tsx";
+import {useNavigate, useSearchParams} from "react-router";
 import {useEffect, useState} from "react";
 import {getErrorMessage} from "../../api/messages.ts";
 import {getUserSongHistory} from "../../api/song.ts";
@@ -13,7 +12,6 @@ import SongHistoryButtonFooter from "../../components/history/button_footer/Song
 import SongHistoryHeader from "../../components/history/header/SongHistoryHeader.tsx";
 
 export default function SongHistory() {
-    const {appUser} = useAuth();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -48,10 +46,6 @@ export default function SongHistory() {
 
         void getHistory(beforeDate, afterDate);
     }, [entriesNumber, searchParams]);
-
-    if (!appUser) {
-        return <Navigate to="/login" replace/>;
-    }
 
     const handleNext = () => {
         if (songHistory?.nextDate) {
