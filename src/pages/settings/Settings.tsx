@@ -13,11 +13,11 @@ import {deleteUserAccount} from "../../api/auth.ts";
 import Button from "../../components/common/button/Button.tsx";
 
 export default function Settings() {
-    const appUser = useRequiredAuth();
+    const {timezone} = useRequiredAuth();
     const {setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
-    const [timezone, setTimezone] = useState(appUser.timezone);
+    const [currentTimezone, setCurrentTimezone] = useState(timezone);
     const [timezones, setTimezones] = useState<Timezone[]>([]);
     const [showDeleteAccountModal, setShowDeleteAccountModal] = useState(false);
 
@@ -47,16 +47,16 @@ export default function Settings() {
     }, []);
 
     async function onSave() {
-        if (!timezone) {
+        if (!currentTimezone) {
             return;
         }
 
         try {
             setSaveLoading(true);
-            const updatedAppUser = await saveTimezone(timezone);
+            const updatedAppUser = await saveTimezone(currentTimezone);
 
             setAppUser(updatedAppUser);
-            setTimezone(updatedAppUser.timezone);
+            setCurrentTimezone(updatedAppUser.timezone);
             showToast("Settings saved successfully!");
 
             if (newUser) {
@@ -113,8 +113,8 @@ export default function Settings() {
 
                                 <select
                                     className="settings-select"
-                                    value={timezone}
-                                    onChange={(e) => setTimezone(e.target.value)}
+                                    value={currentTimezone}
+                                    onChange={(e) => setCurrentTimezone(e.target.value)}
                                 >
                                     {
                                         timezones.map(tz => (

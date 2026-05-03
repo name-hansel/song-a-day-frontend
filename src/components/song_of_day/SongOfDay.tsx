@@ -26,9 +26,8 @@ export default function SongOfDay() {
     const location = useLocation();
     const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
-    const appUser = useRequiredAuth();
+    const {timezone} = useRequiredAuth();
     const {updateHasLoggedSongToday} = useAuth();
-    const timezone = appUser.timezone;
 
     useEffect(() => {
         async function getSongOfDay() {
@@ -56,7 +55,7 @@ export default function SongOfDay() {
         try {
             setRemoveLoading(true);
             await deleteSongOfDayForAppUser(song.uuid);
-            if (getTodayForTimezone(appUser.timezone) === song.songDate) {
+            if (getTodayForTimezone(timezone) === song.songDate) {
                 updateHasLoggedSongToday(false);
             }
             setSong(null);

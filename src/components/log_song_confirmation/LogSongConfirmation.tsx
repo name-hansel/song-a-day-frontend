@@ -18,7 +18,7 @@ import LogSongConfirmationFooter from "./footer/LogSongConfirmationFooter.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useSong();
-    const appUser = useRequiredAuth();
+    const {timezone} = useRequiredAuth();
     const {updateHasLoggedSongToday} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function LogSongConfirmation() {
     const {trackId} = useParams();
     const [searchParams] = useSearchParams();
     const urlDate = searchParams.get("date");
-    const [date, setDate] = useState<string>(urlDate ?? getTodayForTimezone(appUser.timezone));
+    const [date, setDate] = useState<string>(urlDate ?? getTodayForTimezone(timezone));
 
     useEffect(() => {
         if (!trackId) return;
@@ -75,7 +75,7 @@ export default function LogSongConfirmation() {
             setConfirmLoading(true);
             const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim(), date);
             setSong(loggedSong);
-            if (getTodayForTimezone(appUser.timezone) === loggedSong.songDate) {
+            if (getTodayForTimezone(timezone) === loggedSong.songDate) {
                 updateHasLoggedSongToday(true);
             }
 

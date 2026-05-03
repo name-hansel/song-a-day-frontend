@@ -10,10 +10,10 @@ export default function SongOfDayPageHeader({onSelect}: {
     onSelect?: (trackId: string) => void,
 }) {
     const navigate = useNavigate();
-    const appUser = useRequiredAuth();
+    const {timezone} = useRequiredAuth();
     // URL date
     const {date} = useParams();
-    const effectiveDate = date ?? getTodayForTimezone(appUser.timezone);
+    const effectiveDate = date ?? getTodayForTimezone(timezone);
 
     function goHome() {
         navigate("/");
@@ -62,7 +62,7 @@ export default function SongOfDayPageHeader({onSelect}: {
                     {
 
                         <button
-                            disabled={!date || getTodayForTimezone(appUser.timezone) === date}
+                            disabled={!date || getTodayForTimezone(timezone) === date}
                             onClick={handleNext}
                             className="song-a-day-page-header-btn">
                             <ArrowRight size={18}/>

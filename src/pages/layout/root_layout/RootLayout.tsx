@@ -4,9 +4,9 @@ import Layout from "../../../components/layout/Layout.tsx";
 
 export default function RootLayout() {
     const {logout} = useAuth();
-    const appUser = useRequiredAuth();
+    const {appUserName} = useRequiredAuth();
 
-    return <Layout displayName={appUser.appUserName} onLogout={logout}>
+    return <Layout displayName={appUserName} onLogout={logout}>
         <Outlet/>
     </Layout>
 }
