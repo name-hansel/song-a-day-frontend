@@ -60,11 +60,9 @@ export default function SongOfDayPageHeader({onSelect}: {
                         <ArrowLeft size={18}/>
                     </button>
                     {
-                        (
-                            date && getTodayForTimezone(appUser?.timezone) !== date
-                        )
-                        &&
+
                         <button
+                            disabled={!date || getTodayForTimezone(appUser?.timezone) === date}
                             onClick={handleNext}
                             className="song-a-day-page-header-btn">
                             <ArrowRight size={18}/>

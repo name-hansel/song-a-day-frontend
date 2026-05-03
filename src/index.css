@@ -41,10 +41,16 @@ button {
     transform 0.05s ease;
 }
 
-button:hover {
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+button:not(:disabled):hover {
     background-color: rgba(192, 122, 140, 0.12);
     border-color: var(--color-accent);
 }
+
 
 button:active {
     transform: translateY(1px);
