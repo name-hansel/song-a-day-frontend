@@ -1,5 +1,6 @@
 import {Grid, List} from "lucide-react";
 import "./SongHistoryHeader.css"
+import HomeButton from "../../common/home_button/HomeButton.tsx";
 
 export default function SongHistoryHeader({setEntriesNumber, view, handleViewToggle}: {
     setEntriesNumber: (value: (((prevState: number) => number) | number)) => void,
@@ -8,6 +9,7 @@ export default function SongHistoryHeader({setEntriesNumber, view, handleViewTog
 }) {
     return (
         <div className="history-page-header">
+            <HomeButton/>
             <h1 className="history-title">Song History</h1>
             <div className="history-page-header-action-div">
                 <div className="entries-number-div">

@@ -1,9 +1,10 @@
 import "./SongOfDayPageHeader.css";
 import SearchBar from "../../search_bar/SearchBar.tsx";
-import {ArrowLeft, ArrowRight, Home} from "lucide-react";
+import {ArrowLeft, ArrowRight} from "lucide-react";
 import {useNavigate, useParams} from "react-router";
 import {getTodayForTimezone} from "../../../utils/DateUtils.ts";
 import {useRequiredAuth} from "../../../context/AuthContext.tsx";
+import HomeButton from "../../common/home_button/HomeButton.tsx";
 
 
 export default function SongOfDayPageHeader({onSelect}: {
@@ -15,9 +16,6 @@ export default function SongOfDayPageHeader({onSelect}: {
     const {date} = useParams();
     const effectiveDate = date ?? getTodayForTimezone(timezone);
 
-    function goHome() {
-        navigate("/");
-    }
 
     function handlePrevious() {
         const previousDate = shiftDate(effectiveDate, -1);
@@ -47,9 +45,7 @@ export default function SongOfDayPageHeader({onSelect}: {
 
     return (
         <section className="song-a-day-page-header-section">
-            <button onClick={goHome} className="song-a-day-page-header-btn">
-                <Home size={18}/>
-            </button>
+            <HomeButton/>
             {
                 onSelect && <SearchBar onSelect={onSelect}/>
             }

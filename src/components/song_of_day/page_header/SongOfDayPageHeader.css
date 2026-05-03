@@ -8,8 +8,3 @@
     display: flex;
     gap: 0.8rem;
 }
-
-.song-a-day-page-header-btn {
-    color: var(--color-text-secondary);
-    background: none;
-}
