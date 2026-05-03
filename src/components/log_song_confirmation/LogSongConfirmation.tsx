@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import "./LogSongConfirmation.css"
 import "../common/SongOfDay.css";
 import {useAuth} from "../../context/AuthContext.tsx";
-import {useNavigate, useParams} from "react-router";
+import {useNavigate, useParams, useSearchParams} from "react-router";
 import {searchForTrack} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
 import {getErrorMessage} from "../../api/messages.ts";
@@ -27,8 +27,10 @@ export default function LogSongConfirmation() {
     const [error, setError] = useState<string | null>(null);
     const [memory, setMemory] = useState("");
     const [pendingSong, setPendingSong] = useState<TrackSearch | null>(null);
-    const [date, setDate] = useState<string>(getTodayForTimezone(appUser?.timezone));
     const {trackId} = useParams();
+    const [searchParams] = useSearchParams();
+    const urlDate = searchParams.get("date");
+    const [date, setDate] = useState<string>(urlDate ?? getTodayForTimezone(appUser?.timezone));
 
     useEffect(() => {
         if (!trackId) return;
@@ -87,7 +89,7 @@ export default function LogSongConfirmation() {
     }
 
     function onCancel() {
-        navigate("/");
+        navigate(urlDate ? `/song-a-day/${urlDate}` : "/");
     }
 
     return <>
