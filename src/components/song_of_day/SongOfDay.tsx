@@ -13,7 +13,6 @@ import SongOfDayFooterRemove from "./components/SongOfDayFooterRemove/SongOfDayF
 import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
 import {useAuth} from "../../context/AuthContext.tsx";
-import {getTodayForTimezone} from "../../utils/DateUtils.ts";
 import {useSong} from "../../context/SongContext.tsx";
 
 export default function SongOfDay() {
@@ -28,14 +27,12 @@ export default function SongOfDay() {
 
     const {appUser, setAppUser} = useAuth();
     const timezone = appUser?.timezone;
-    const [isSongForToday, setIsSongForToday] = useState(false);
 
     useEffect(() => {
         async function getSongOfDay() {
             try {
                 const data = await getSongOfDayForAppUser(date);
                 setSong(data);
-                setIsSongForToday(getTodayForTimezone(timezone) === song?.songDate);
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     setError(getErrorMessage(err.message));
@@ -49,14 +46,19 @@ export default function SongOfDay() {
     }, [date, setSong, song?.songDate, timezone]);
 
     async function removeSongForAppUser() {
+        if (!song) {
+            return;
+        }
+
         try {
             setRemoveLoading(true);
-            await deleteSongOfDayForAppUser();
+            await deleteSongOfDayForAppUser(song?.uuid);
             setSong(null);
             setAppUser(prev =>
                 prev ? {...prev, hasLoggedSongToday: false} : prev
             );
             showToast("Song removed successfully");
+            setError(null);
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
@@ -73,6 +75,7 @@ export default function SongOfDay() {
             setLoading(true);
             const updatedSong = await updateMemoryForSong(song.uuid, draftMemory);
             setSong(updatedSong);
+            setError(null);
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
@@ -108,13 +111,12 @@ export default function SongOfDay() {
                                     trackInformation={song.trackInformation}/>
                                 <SongOfDayMemory isEditableByDefault={false}
                                                  memory={song.memory}
-                                                 confirmEdit={confirmEdit}
-                                                 isEditingMemoryAllowed={isSongForToday}/>
+                                                 confirmEdit={confirmEdit}/>
                             </div>
                         </div>
                         <div className="song-of-day-entry-footer">
                             <SongOfDayFooterRemove
-                                removeSongForAppUser={removeSongForAppUser} isRemoveAllowed={isSongForToday}
+                                removeSongForAppUser={removeSongForAppUser}
                                 removeLoading={removeLoading}/>
                             <p className="song-of-day-timestamp">
                                 {

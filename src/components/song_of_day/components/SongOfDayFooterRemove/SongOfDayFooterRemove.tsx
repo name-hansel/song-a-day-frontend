@@ -2,9 +2,8 @@ import {useState} from "react";
 import "./SongOfDayFooterRemove.css"
 import Button from "../../../common/button/Button.tsx";
 
-export default function SongOfDayFooterRemove({removeSongForAppUser, isRemoveAllowed, removeLoading}: {
+export default function SongOfDayFooterRemove({removeSongForAppUser, removeLoading}: {
     removeSongForAppUser?: () => Promise<void>,
-    isRemoveAllowed: boolean,
     removeLoading: boolean
 }) {
     const [confirmingRemove, setConfirmingRemove] = useState(false);
@@ -12,7 +11,7 @@ export default function SongOfDayFooterRemove({removeSongForAppUser, isRemoveAll
     return (
         <div className="song-of-day-footer-left">
             {
-                isRemoveAllowed && removeSongForAppUser && (confirmingRemove ?
+                removeSongForAppUser && (confirmingRemove ?
                     <div
                         className="song-of-day-remove-confirm">
                         <Button buttonText={"Confirm"} className={"song-of-day-confirm-btn"}

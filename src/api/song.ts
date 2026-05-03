@@ -13,9 +13,9 @@ export async function getSongOfDayForAppUser(date?: string) {
     }
 }
 
-export async function deleteSongOfDayForAppUser() {
+export async function deleteSongOfDayForAppUser(songUuid: string) {
     try {
-        await api.delete(path);
+        await api.delete(`${path}/${songUuid}`);
     } catch (err: unknown) {
         handleError(err);
     }
