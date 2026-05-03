@@ -2,37 +2,18 @@ import "./HomeSidebar.css"
 import {useEffect, useState} from "react";
 import Spinner from "../../pages/spinner/Spinner.tsx";
 import HomeSidebarSong from "./song_card/HomeSidebarSong.tsx";
-import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import type {SongOfDay} from "../../types/SongOfDay.ts";
-import {getUserSongHistoryForWeek} from "../../api/song.ts";
 import {ArrowLeft, ArrowRight} from "lucide-react";
+import {useSidebar} from "../../context/SidebarContext.tsx";
 
-export default function HomeSidebar({songForToday}: {
-    songForToday?: SongOfDay
-}) {
-    const [songHistory, setSongHistory] = useState<SongOfDay[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+export default function HomeSidebar() {
     const [collapsed, setCollapsed] = useState(false);
+    const {entries, loading, error, updateSidebar} = useSidebar();
 
     useEffect(() => {
-        async function getSongHistory() {
-            try {
-                setLoading(true);
-                const data = await getUserSongHistoryForWeek();
-                setSongHistory(data);
-            } catch (err: unknown) {
-                if (err instanceof Error) {
-                    setError(getErrorMessage(err.message));
-                }
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        void getSongHistory();
-    }, [songForToday])
+        void updateSidebar();
+    }, [updateSidebar]);
 
     return (
         <aside className={`home-sidebar ${collapsed ? "collapsed" : ""}`}>
@@ -66,12 +47,12 @@ export default function HomeSidebar({songForToday}: {
                             !error &&
                             <div className="sidebar-content">
                                 {
-                                    songHistory &&
-                                    songHistory.map((song: SongOfDay, index: number) => (
+                                    entries &&
+                                    entries.map((song: SongOfDay, index: number) => (
                                         <HomeSidebarSong
                                             song={song}
                                             key={index}
-                                            isLatest={index === songHistory.length - 1}
+                                            isLatest={index === entries.length - 1}
                                         />
                                     ))
                                 }

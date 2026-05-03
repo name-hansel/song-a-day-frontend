@@ -15,6 +15,7 @@ import SongOfDayHeader from "./header/SongOfDayHeader.tsx";
 import {useAuth, useRequiredAuth} from "../../context/AuthContext.tsx";
 import {useSong} from "../../context/SongContext.tsx";
 import {getTodayForTimezone} from "../../utils/DateUtils.ts";
+import {useSidebar} from "../../context/SidebarContext.tsx";
 
 export default function SongOfDay() {
     const {date} = useParams();
@@ -23,6 +24,7 @@ export default function SongOfDay() {
     const [removeLoading, setRemoveLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const {showToast} = useToast();
+    const {updateSidebar} = useSidebar();
     const location = useLocation();
     const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
@@ -60,6 +62,7 @@ export default function SongOfDay() {
             }
             setSong(null);
 
+            await updateSidebar();
             showToast("Song removed successfully");
             setError(null);
         } catch (err: unknown) {

@@ -22,7 +22,9 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
 
                         {/* Header wrapper */}
-                        <Route element={<PrivateRoute><RootLayout/></PrivateRoute>}>
+                        <Route element={<PrivateRoute>
+                            <RootLayout/>
+                        </PrivateRoute>}>
                             {/*  Header + sidebar  */}
                             <Route element={
                                 <AppLayout/>

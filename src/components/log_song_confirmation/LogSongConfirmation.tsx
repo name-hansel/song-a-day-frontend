@@ -15,12 +15,14 @@ import SongOfDayMemory from "../song_of_day/memory/SongOfDayMemory.tsx";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
 import {useSong} from "../../context/SongContext.tsx";
 import LogSongConfirmationFooter from "./footer/LogSongConfirmationFooter.tsx";
+import {useSidebar} from "../../context/SidebarContext.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useSong();
     const {timezone} = useRequiredAuth();
     const {updateHasLoggedSongToday} = useAuth();
     const {showToast} = useToast();
+    const {updateSidebar} = useSidebar();
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
@@ -79,6 +81,7 @@ export default function LogSongConfirmation() {
                 updateHasLoggedSongToday(true);
             }
 
+            await updateSidebar();
             showToast("Song logged successfully!");
             navigate(`/song-a-day/${loggedSong.songDate}`);
         } catch (err: unknown) {
