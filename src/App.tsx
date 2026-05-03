@@ -1,5 +1,5 @@
 import './App.css'
-import {AuthProvider} from "./auth/AuthContext.tsx";
+import {AuthProvider} from "./context/AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from "react-router";
 import PrivateRoute from "./auth/PrivateRoute.tsx";
 import Home from "./pages/home/Home.tsx";

@@ -1,4 +1,4 @@
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {Outlet} from "react-router";
 import Layout from "../../components/layout/Layout.tsx";
 

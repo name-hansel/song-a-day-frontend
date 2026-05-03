@@ -1,5 +1,5 @@
 import "./Login.css";
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router";
 
 export default function Login() {

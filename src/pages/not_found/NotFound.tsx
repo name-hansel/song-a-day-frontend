@@ -1,4 +1,4 @@
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import Spinner from "../spinner/Spinner.tsx";
 import {Link, useNavigate} from "react-router";
 import "./NotFound.css"

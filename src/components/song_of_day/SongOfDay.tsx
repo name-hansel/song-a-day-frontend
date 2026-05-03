@@ -13,7 +13,7 @@ import SongOfDayImage from "./components/SongOfDayImage/SongOfDayImage.tsx";
 import SongOfDayFooterRemove from "./components/SongOfDayFooterRemove/SongOfDayFooterRemove.tsx";
 import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {getTodayForTimezone} from "../../utils/DateUtils.ts";
 
 export default function SongOfDay() {

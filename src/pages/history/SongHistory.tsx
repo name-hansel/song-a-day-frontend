@@ -1,5 +1,5 @@
 import {Navigate, useNavigate, useSearchParams} from "react-router";
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {useEffect, useState} from "react";
 import {getErrorMessage} from "../../api/messages.ts";
 import {getUserSongHistory} from "../../api/song.ts";

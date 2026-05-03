@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import "./LogSongConfirmation.css"
 import "../common/SongOfDay.css";
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {useNavigate, useOutletContext, useParams} from "react-router";
 import type {SongOfDayContext} from "../../pages/home/Home.tsx";
 import {searchForTrack} from "../../api/search.ts";

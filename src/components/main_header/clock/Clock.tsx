@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useAuth} from "../../../auth/AuthContext.tsx";
+import {useAuth} from "../../../context/AuthContext.tsx";
 import "./Clock.css";
 import {MusicIcon} from "lucide-react";
 

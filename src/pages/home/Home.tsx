@@ -1,4 +1,4 @@
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import SongOfDayPageHeader from "../../components/song_of_day_page_header/SongOfDayPageHeader.tsx";
 import * as React from "react";
 import {useState} from "react";

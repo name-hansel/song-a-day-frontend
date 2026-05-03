@@ -1,4 +1,4 @@
-import {useAuth} from "../../auth/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 import {Navigate, useNavigate, useSearchParams} from "react-router";
 import {useEffect, useState} from "react";
 import "./Settings.css"

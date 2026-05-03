@@ -1,4 +1,4 @@
-import {useAuth} from "./AuthContext.tsx";
+import {useAuth} from "../context/AuthContext.tsx";
 import type {ReactElement} from "react";
 import Spinner from "../pages/spinner/Spinner.tsx";
 import {Navigate} from "react-router";
