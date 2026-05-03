@@ -10,7 +10,7 @@ import {groupSongHistoryByMonth} from "../../utils/HistoryUtils.ts";
 import SongHistoryGroup from "../../components/history/group/SongHistoryGroup.tsx";
 import "./SongHistory.css"
 import SongHistoryButtonFooter from "../../components/history/button_footer/SongHistoryButtonFooter.tsx";
-import {Grid, List} from "lucide-react";
+import SongHistoryHeader from "../../components/history/header/SongHistoryHeader.tsx";
 
 export default function SongHistory() {
     const {appUser} = useAuth();
@@ -79,26 +79,11 @@ export default function SongHistory() {
 
     return (
         <>
-            <div className="history-page-header">
-                <h1 className="history-title">Song History</h1>
-                <div className="history-page-header-action-div">
-                    <div className="entries-number-div">
-                        <label htmlFor="entries-number" className="entries-number-label">Show</label>
-                        <select onChange={(e) => setEntriesNumber(Number(e.target.value))} id="entries-number"
-                                className="entries-number-select" defaultValue={10}>
-                            <option value={10}>10</option>
-                            <option value={20}>20</option>
-                            <option value={50}>50</option>
-                        </select>
-                    </div>
-                    <button onClick={handleViewToggle}>
-                        {view == "list" ? <Grid size={16}/> : <List size={16}/>}
-                    </button>
-                </div>
-            </div>
+            <SongHistoryHeader setEntriesNumber={setEntriesNumber} view={view} handleViewToggle={handleViewToggle}/>
             <div className="container">
                 {error && <ErrorBanner message={error}/>}
-                {!loading && !error && songHistory && songHistory.history &&
+                {
+                    !loading && !error && songHistory && songHistory.history &&
                     <div className="song-history-container">
                         <div className={`song-history ${view}`}>
                             {groupSongHistoryByMonth(songHistory.history).map(group => (
@@ -108,7 +93,8 @@ export default function SongHistory() {
                         <SongHistoryButtonFooter hasMorePrevious={songHistory.hasMorePrevious}
                                                  hasMoreNext={songHistory.hasMoreNext}
                                                  handleNext={handleNext} handlePrevious={handlePrevious}/>
-                    </div>}
+                    </div>
+                }
                 {
                     loading && !error && <div className="page-centered-content"><Spinner/></div>
                 }
