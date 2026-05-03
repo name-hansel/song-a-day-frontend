@@ -1,24 +1,5 @@
-.log-song-confirmation-confirm-btn {
-    margin-right: 0.5rem;
-}
-
-.log-song-confirmation-date-picker {
-    padding: 0.6rem 1.2rem;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border);
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-    font-size: 0.8rem;
-    width: auto;
-}
 
 .song-of-day-memory:focus {
     outline: none;
     border-color: var(--color-accent);
-}
-
-.log-song-confirmation-entry-footer-confirm {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
 }

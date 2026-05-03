@@ -8,7 +8,7 @@ export default function Button({
                                    loading = false
                                }: {
     buttonText: string;
-    className: string;
+    className?: string;
     onClick: () => void | Promise<void>;
     loading?: boolean;
 }) {

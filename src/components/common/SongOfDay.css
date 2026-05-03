@@ -23,11 +23,3 @@
     height: 300px;
     gap: 0.8rem;
 }
-
-.song-of-day-entry-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--color-border);
-    padding-top: 1rem;
-}

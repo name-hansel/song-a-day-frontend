@@ -13,8 +13,8 @@ import SongOfDayImage from "../song_of_day/image/SongOfDayImage.tsx";
 import SongOfDayDetails from "../song_of_day/details/SongOfDayDetails.tsx";
 import SongOfDayMemory from "../song_of_day/memory/SongOfDayMemory.tsx";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
-import Button from "../common/button/Button.tsx";
 import {useSong} from "../../context/SongContext.tsx";
+import LogSongConfirmationFooter from "./footer/LogSongConfirmationFooter.tsx";
 
 export default function LogSongConfirmation() {
     const {setSong} = useSong();
@@ -116,21 +116,8 @@ export default function LogSongConfirmation() {
                                              setMemory={setMemory}/>
                         </div>
                     </div>
-                    <div className="song-of-day-entry-footer">
-                        <div
-                            className="log-song-confirmation-entry-footer-confirm">
-                            <Button className={"log-song-confirmation-confirm-btn"} onClick={onConfirmation}
-                                    buttonText={"Confirm"} loading={confirmLoading}/>
-                            <input
-                                type="date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
-                                max={getTodayForTimezone(appUser.timezone)}
-                                className="log-song-confirmation-date-picker"/>
-                        </div>
-                        <Button className={"log-song-confirmation-cancel-btn"} onClick={onCancel}
-                                buttonText={"Cancel"}/>
-                    </div>
+                    <LogSongConfirmationFooter onConfirmation={onConfirmation} confirmLoading={confirmLoading}
+                                               date={date} setDate={setDate} onCancel={onCancel}/>
                 </div>
             }
         </div>
