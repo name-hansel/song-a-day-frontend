@@ -1,7 +1,6 @@
 import SongOfDayPageHeader from "../../../components/song_of_day_page_header/SongOfDayPageHeader.tsx";
-import SongOfDay from "../../../components/song_of_day/SongOfDay.tsx";
 import {useSong} from "../../../context/SongContext.tsx";
-import {useNavigate, useParams} from "react-router";
+import {Outlet, useNavigate, useParams} from "react-router";
 import "./SongOfDayLayout.css"
 
 export default function SongOfDayLayout() {
@@ -20,7 +19,7 @@ export default function SongOfDayLayout() {
                 onSelect={onSelect}
             />
             <div className="container">
-                <SongOfDay/>
+                <Outlet/>
             </div>
         </>
     )

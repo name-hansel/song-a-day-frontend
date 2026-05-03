@@ -11,6 +11,7 @@ import SongHistory from "./pages/history/SongHistory.tsx";
 import RootLayout from "./pages/layout/root_layout/RootLayout.tsx";
 import AppLayout from "./pages/layout/app_layout/AppLayout.tsx";
 import SongOfDayLayout from "./pages/layout/song_of_day_layout/SongOfDayLayout.tsx";
+import SongOfDay from "./components/song_of_day/SongOfDay.tsx";
 
 function App() {
     return (
@@ -29,8 +30,8 @@ function App() {
                                 </PrivateRoute>
                             }>
                                 <Route element={<SongOfDayLayout/>}>
-                                    <Route index/>
-                                    <Route path="/song-a-day/:date"/>
+                                    <Route index element={<SongOfDay/>}/>
+                                    <Route path="/song-a-day/:date" element={<SongOfDay/>}/>
                                 </Route>
                                 <Route path="/log/:trackId" element={<LogSongConfirmation/>}/>
                                 <Route path="history" element={<SongHistory/>}/>
