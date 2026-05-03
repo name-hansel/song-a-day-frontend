@@ -2,8 +2,7 @@ import {useEffect, useState} from "react";
 import "./LogSongConfirmation.css"
 import "../common/SongOfDay.css";
 import {useAuth} from "../../context/AuthContext.tsx";
-import {useNavigate, useOutletContext, useParams} from "react-router";
-import type {SongOfDayContext} from "../../pages/home/Home.tsx";
+import {useNavigate, useParams} from "react-router";
 import {searchForTrack} from "../../api/search.ts";
 import {logSongOfDayForAppUser} from "../../api/song.ts";
 import {getErrorMessage} from "../../api/messages.ts";
@@ -15,9 +14,10 @@ import SongOfDayDetails from "../song_of_day/components/SongOfDayDetails/SongOfD
 import SongOfDayMemory from "../song_of_day/components/SongOfDayMemory/SongOfDayMemory.tsx";
 import type {TrackSearch} from "../../types/TrackSearch.ts";
 import Button from "../common/button/Button.tsx";
+import {useSong} from "../../context/SongContext.tsx";
 
 export default function LogSongConfirmation() {
-    const {setSong} = useOutletContext<SongOfDayContext>();
+    const {setSong} = useSong();
     const {appUser, setAppUser} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();

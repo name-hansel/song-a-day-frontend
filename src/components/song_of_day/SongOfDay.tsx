@@ -2,8 +2,7 @@ import "./SongOfDay.css"
 import "../common/SongOfDay.css";
 import {useEffect, useState} from "react";
 import {deleteSongOfDayForAppUser, getSongOfDayForAppUser, updateMemoryForSong} from "../../api/song.ts";
-import {useLocation, useOutletContext, useParams} from "react-router";
-import type {SongOfDayContext} from "../../pages/home/Home.tsx";
+import {useLocation, useParams} from "react-router";
 import {getErrorMessage} from "../../api/messages.ts";
 import ErrorBanner from "../common/error_banner/ErrorBanner.tsx";
 import Spinner from "../../pages/spinner/Spinner.tsx";
@@ -15,10 +14,11 @@ import SongOfDayMemory from "./components/SongOfDayMemory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./components/SongOfDayHeader/SongOfDayHeader.tsx";
 import {useAuth} from "../../context/AuthContext.tsx";
 import {getTodayForTimezone} from "../../utils/DateUtils.ts";
+import {useSong} from "../../context/SongContext.tsx";
 
 export default function SongOfDay() {
     const {date} = useParams();
-    const {song, setSong} = useOutletContext<SongOfDayContext>();
+    const {song, setSong} = useSong();
     const [loading, setLoading] = useState(true);
     const [removeLoading, setRemoveLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

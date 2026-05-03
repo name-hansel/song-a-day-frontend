@@ -29,15 +29,9 @@ function App() {
                                     <AppLayout/>
                                 </PrivateRoute>
                             }>
-
-                                <Route path="/" element={<Home/>}>
-                                    <Route index element={<SongOfDay/>}/>
-                                    <Route path="log/:trackId" element={<LogSongConfirmation/>}/>
-                                    <Route path="song-a-day/:date">
-                                        <Route index element={<SongOfDay/>}/>
-                                    </Route>
-                                </Route>
-
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="/log/:trackId" element={<LogSongConfirmation/>}/>
+                                <Route path="/song-a-day/:date" element={<SongOfDay/>}/>
                                 <Route path="history" element={<SongHistory/>}/>
                             </Route>
 
