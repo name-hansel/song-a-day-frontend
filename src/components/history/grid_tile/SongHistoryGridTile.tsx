@@ -5,7 +5,6 @@ import {TextIcon} from "lucide-react";
 import "./SongHistoryGridTile.css"
 
 export default function SongHistoryGridTile({song}: { song: SongOfDay }) {
-    // TODO: pass history link for "Back" button instead of only boolean
     return <Link to={`/song-a-day/${song.songDate}`} className="song-history-tile-link" state={{fromHistory: true}}>
         <div className="song-history-tile">
             <div className="song-history-tile-date-div">
