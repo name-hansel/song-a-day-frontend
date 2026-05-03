@@ -76,8 +76,7 @@ export default function LogSongConfirmation() {
                 ...prev, hasLoggedSongToday: true
             } : prev)
             showToast("Song logged successfully!");
-            // TODO: Navigate to date as per entry
-            navigate("/");
+            navigate(`/song-a-day/${loggedSong.songDate}`);
         } catch (err: unknown) {
             if (err instanceof Error) {
                 setError(getErrorMessage(err.message));
