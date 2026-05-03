@@ -8,6 +8,7 @@ interface AuthContextType {
     loading: boolean;
     setLoading: (isLoading: boolean) => void;
     logout: () => Promise<void>;
+    updateHasLoggedSongToday: (logged: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,13 +37,19 @@ export function AuthProvider({children}: { children: ReactNode }) {
         }
     }
 
+    function updateHasLoggedSongToday(logged: boolean) {
+        setAppUser(prev => prev ? {
+            ...prev, hasLoggedSongToday: logged
+        } : prev);
+    }
+
     useEffect(() => {
         void loadAppUser();
     }, []);
 
     return <>
         <AuthContext.Provider
-            value={{appUser, setAppUser, loading, setLoading, logout}}>
+            value={{appUser, setAppUser, loading, setLoading, logout, updateHasLoggedSongToday}}>
             {children}
         </AuthContext.Provider>
     </>

@@ -19,7 +19,7 @@ import {useSong} from "../../context/SongContext.tsx";
 export default function LogSongConfirmation() {
     const {setSong} = useSong();
     const appUser = useRequiredAuth();
-    const {setAppUser} = useAuth();
+    const {updateHasLoggedSongToday} = useAuth();
     const {showToast} = useToast();
     const navigate = useNavigate();
 
@@ -75,10 +75,10 @@ export default function LogSongConfirmation() {
             setConfirmLoading(true);
             const loggedSong = await logSongOfDayForAppUser(trackId, memory.trim(), date);
             setSong(loggedSong);
-            // TODO: Fix, as we cannot be sure song is logged for TODAY
-            setAppUser(prev => prev ? {
-                ...prev, hasLoggedSongToday: true
-            } : prev)
+            if (getTodayForTimezone(appUser.timezone) === loggedSong.songDate) {
+                updateHasLoggedSongToday(true);
+            }
+
             showToast("Song logged successfully!");
             navigate(`/song-a-day/${loggedSong.songDate}`);
         } catch (err: unknown) {

@@ -14,6 +14,7 @@ import SongOfDayMemory from "./memory/SongOfDayMemory.tsx";
 import SongOfDayHeader from "./header/SongOfDayHeader.tsx";
 import {useAuth, useRequiredAuth} from "../../context/AuthContext.tsx";
 import {useSong} from "../../context/SongContext.tsx";
+import {getTodayForTimezone} from "../../utils/DateUtils.ts";
 
 export default function SongOfDay() {
     const {date} = useParams();
@@ -26,7 +27,7 @@ export default function SongOfDay() {
     const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
     const appUser = useRequiredAuth();
-    const {setAppUser} = useAuth();
+    const {updateHasLoggedSongToday} = useAuth();
     const timezone = appUser.timezone;
 
     useEffect(() => {
@@ -54,12 +55,12 @@ export default function SongOfDay() {
 
         try {
             setRemoveLoading(true);
-            await deleteSongOfDayForAppUser(song?.uuid);
+            await deleteSongOfDayForAppUser(song.uuid);
+            if (getTodayForTimezone(appUser.timezone) === song.songDate) {
+                updateHasLoggedSongToday(false);
+            }
             setSong(null);
-            // TODO: FIX
-            setAppUser(prev =>
-                prev ? {...prev, hasLoggedSongToday: false} : prev
-            );
+
             showToast("Song removed successfully");
             setError(null);
         } catch (err: unknown) {
