@@ -5,6 +5,7 @@ import {useNavigate, useParams} from "react-router";
 import {getTodayForTimezone} from "../../../utils/DateUtils.ts";
 import {useRequiredAuth} from "../../../context/AuthContext.tsx";
 import HomeButton from "../../common/home_button/HomeButton.tsx";
+import DateInput from "../../common/date_input/DateInput.tsx";
 
 
 export default function SongOfDayPageHeader({onSelect}: {
@@ -15,7 +16,6 @@ export default function SongOfDayPageHeader({onSelect}: {
     // URL date
     const {date} = useParams();
     const effectiveDate = date ?? getTodayForTimezone(timezone);
-
 
     function handlePrevious() {
         const previousDate = shiftDate(effectiveDate, -1);
@@ -28,7 +28,17 @@ export default function SongOfDayPageHeader({onSelect}: {
     }
 
     function navigateToSongForDay(date: string) {
-        navigate(`/song-a-day/${date}`);
+        navigate(date ? `/song-a-day/${date}` : "");
+    }
+
+    function handleDateChange(currentValue: string) {
+        const today = getTodayForTimezone(timezone);
+
+        if (currentValue > today) {
+            return;
+        }
+
+        navigateToSongForDay(currentValue);
     }
 
     function shiftDate(dateStr: string, delta: number): string {
@@ -51,7 +61,8 @@ export default function SongOfDayPageHeader({onSelect}: {
             }
             {
                 <div className="song-a-day-page-header-action-div">
-                    <input type="date" className="song-a-day-page-header-date-input"/>
+                    <DateInput value={date ?? getTodayForTimezone(timezone)} max={getTodayForTimezone(timezone)}
+                               onChange={handleDateChange}/>
                     <div className="song-a-day-page-header-previous-next-div">
                         <button onClick={handlePrevious}
                                 className="song-a-day-page-header-btn">
