@@ -50,20 +50,23 @@ export default function SongOfDayPageHeader({onSelect}: {
                 onSelect && <SearchBar onSelect={onSelect}/>
             }
             {
-                <div className="song-a-day-page-header-previous-next-div">
-                    <button onClick={handlePrevious}
-                            className="song-a-day-page-header-btn">
-                        <ArrowLeft size={18}/>
-                    </button>
-                    {
-
-                        <button
-                            disabled={!date || getTodayForTimezone(timezone) === date}
-                            onClick={handleNext}
-                            className="song-a-day-page-header-btn">
-                            <ArrowRight size={18}/>
+                <div className="song-a-day-page-header-action-div">
+                    <input type="date" className="song-a-day-page-header-date-input"/>
+                    <div className="song-a-day-page-header-previous-next-div">
+                        <button onClick={handlePrevious}
+                                className="song-a-day-page-header-btn">
+                            <ArrowLeft size={18}/>
                         </button>
-                    }
+                        {
+
+                            <button
+                                disabled={!date || getTodayForTimezone(timezone) === date}
+                                onClick={handleNext}
+                                className="song-a-day-page-header-btn">
+                                <ArrowRight size={18}/>
+                            </button>
+                        }
+                    </div>
                 </div>
             }
         </section>

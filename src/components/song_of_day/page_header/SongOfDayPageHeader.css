@@ -4,6 +4,21 @@
     align-items: center;
 }
 
+.song-a-day-page-header-action-div {
+    display: flex;
+    gap: 1rem;
+}
+
+.song-a-day-page-header-date-input {
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    font-size: 0.8rem;
+    width: auto;
+}
+
 .song-a-day-page-header-previous-next-div {
     display: flex;
     gap: 0.8rem;
