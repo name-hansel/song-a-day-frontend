@@ -10,7 +10,7 @@ import type {Timezone} from "../../types/Timezone.ts";
 import {useToast} from "../../context/ToastContext.tsx";
 import ConfirmModal from "../../components/common/confirm_modal/ConfirmModal.tsx";
 import {deleteUserAccount} from "../../api/auth.ts";
-import Button from "../../components/common/button/Button.tsx";
+import SettingsFooter from "../../components/settings/footer/SettingsFooter.tsx";
 
 export default function Settings() {
     const {timezone} = useRequiredAuth();
@@ -146,16 +146,7 @@ export default function Settings() {
                             </button>
                         </div>
                     }
-                    <footer className="settings-actions">
-                        <Button className={"settings-button-primary"} onClick={onSave} buttonText={"Save"}
-                                loading={saveLoading}/>
-                        {
-                            !newUser && <button className="settings-button-secondary"
-                                                onClick={() => navigate(-1)}>
-                                Cancel
-                            </button>
-                        }
-                    </footer>
+                    <SettingsFooter onSave={onSave} saveLoading={saveLoading} newUser={newUser}/>
                 </section>
             </div>
             {

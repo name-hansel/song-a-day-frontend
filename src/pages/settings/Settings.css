@@ -62,15 +62,6 @@
     border-color: var(--color-accent);
 }
 
-.settings-actions {
-    margin-top: auto;
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.6rem;
-    padding-top: 0.8rem;
-    border-top: 1px solid var(--color-border);
-}
-
 .settings-danger {
     margin-top: 1rem;
     padding-top: 1rem;
