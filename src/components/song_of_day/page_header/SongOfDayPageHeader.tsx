@@ -68,13 +68,9 @@ export default function SongOfDayPageHeader({onSelect}: {
                         <Button onClick={handlePrevious} className="song-a-day-page-header-btn"
                                 icon={<ArrowLeft size={18}/>}/>
                         {
-
-                            <button
-                                disabled={!date || getTodayForTimezone(timezone) === date}
-                                onClick={handleNext}
-                                className="song-a-day-page-header-btn">
-                                <ArrowRight size={18}/>
-                            </button>
+                            <Button onClick={handleNext} className="song-a-day-page-header-btn"
+                                    icon={<ArrowRight size={18}/>}
+                                    disabled={!date || getTodayForTimezone(timezone) === date}/>
                         }
                     </div>
                 </div>

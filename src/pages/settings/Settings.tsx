@@ -11,6 +11,7 @@ import {useToast} from "../../context/ToastContext.tsx";
 import ConfirmModal from "../../components/common/confirm_modal/ConfirmModal.tsx";
 import {deleteUserAccount} from "../../api/auth.ts";
 import SettingsFooter from "../../components/settings/footer/SettingsFooter.tsx";
+import Button from "../../components/common/button/Button.tsx";
 
 export default function Settings() {
     const {timezone} = useRequiredAuth();
@@ -138,12 +139,8 @@ export default function Settings() {
                                 This action is permanent and cannot be undone.
                             </span>
                             </div>
-                            <button
-                                className="settings-button-danger"
-                                onClick={() => setShowDeleteAccountModal(true)}
-                            >
-                                Delete Account
-                            </button>
+                            <Button className="settings-button-danger" onClick={() => setShowDeleteAccountModal(true)}
+                                    buttonText="Delete Account" loading={loading}/>
                         </div>
                     }
                     <SettingsFooter onSave={onSave} saveLoading={saveLoading} newUser={newUser}/>

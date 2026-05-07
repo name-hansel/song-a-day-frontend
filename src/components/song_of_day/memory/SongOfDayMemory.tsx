@@ -2,6 +2,7 @@ import {useState} from "react";
 import {Check, Pencil, Trash, X} from "lucide-react";
 import "./SongOfDayMemory.css"
 import {MAX_MEMORY_LENGTH} from "../../../types/SongOfDay.ts";
+import Button from "../../common/button/Button.tsx";
 
 export default function SongOfDayMemory({
                                             isEditableByDefault,
@@ -65,9 +66,9 @@ export default function SongOfDayMemory({
                         <Pencil size={18}/>
                     </button>
                     {
-                        memory && <button className="song-of-day-memory-action-btn" onClick={() => {
-                            void confirmEdit(null);
-                        }}><Trash size={18}/></button>
+                        memory &&
+                        <Button onClick={() => confirmEdit(null)} className="song-of-day-memory-action-btn"
+                                icon={<Trash size={18}/>}/>
                     }
                 </div>
             }

@@ -31,12 +31,7 @@ export default function ConfirmModal({
                     <Button className={`modal-btn-primary ${
                         danger ? "modal-btn-danger" : ""
                     }`} onClick={onConfirm} buttonText={confirmButtonText} loading={confirmLoading}/>
-                    <button
-                        className="modal-btn-secondary"
-                        onClick={onCancel}
-                    >
-                        {cancelButtonText}
-                    </button>
+                    <Button className="modal-btn-secondary" onClick={onCancel} buttonText={cancelButtonText}/>
                 </div>
             </div>
         </div>

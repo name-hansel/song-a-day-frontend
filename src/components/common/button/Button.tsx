@@ -7,15 +7,17 @@ export default function Button({
                                    className,
                                    onClick,
                                    loading = false,
-                                   icon
+                                   icon,
+                                   disabled
                                }: {
     buttonText?: string,
     className?: string,
     onClick: () => void | Promise<void>,
     loading?: boolean,
-    icon?: React.JSX.Element
+    icon?: React.JSX.Element,
+    disabled?: boolean
 }) {
-    return <button className={`${className} common-button`} onClick={onClick} disabled={loading}>
+    return <button className={`${className} common-button`} onClick={onClick} disabled={disabled || loading}>
         {
             loading ? <Spinner/> : <span className="common-button-text">{icon ?? buttonText}</span>
         }
