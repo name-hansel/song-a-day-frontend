@@ -12,26 +12,21 @@ export default function SongOfDayFooterRemove({removeSongForAppUser, removeLoadi
         <div className="song-of-day-footer-left">
             {
                 removeSongForAppUser && (confirmingRemove ?
-                    <div
-                        className="song-of-day-remove-confirm">
-                        <Button buttonText={"Confirm"} className={"song-of-day-confirm-btn"}
-                                onClick={removeSongForAppUser} loading={removeLoading}/>
-                        <button
-                            className="song-of-day-cancel-btn"
-                            onClick={() => setConfirmingRemove(false)}
-                        >
-                            Cancel
-                        </button>
-                        <span
-                            className="song-of-day-remove-text">
+                        <div
+                            className="song-of-day-remove-confirm">
+                            <Button buttonText="Confirm" className={"song-of-day-confirm-btn"}
+                                    onClick={removeSongForAppUser} loading={removeLoading}/>
+                            <Button className="song-of-day-cancel-btn" onClick={() => setConfirmingRemove(false)}
+                                    buttonText="Cancel"/>
+                            <span
+                                className="song-of-day-remove-text">
                                                 Are you sure?
                                             </span>
-                    </div> : <button
-                        className="song-of-day-remove-btn"
-                        onClick={() => setConfirmingRemove(true)}
-                    >
-                        Remove
-                    </button>)
+                        </div> :
+                        <Button buttonText="Remove" className="song-of-day-remove-btn"
+                                onClick={() => setConfirmingRemove(true)}
+                        />
+                )
             }
         </div>
     )

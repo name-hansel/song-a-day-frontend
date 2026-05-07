@@ -6,6 +6,7 @@ import {getTodayForTimezone} from "../../../utils/DateUtils.ts";
 import {useRequiredAuth} from "../../../context/AuthContext.tsx";
 import HomeButton from "../../common/home_button/HomeButton.tsx";
 import DateInput from "../../common/date_input/DateInput.tsx";
+import Button from "../../common/button/Button.tsx";
 
 
 export default function SongOfDayPageHeader({onSelect}: {
@@ -64,10 +65,8 @@ export default function SongOfDayPageHeader({onSelect}: {
                     <DateInput value={date ?? getTodayForTimezone(timezone)} max={getTodayForTimezone(timezone)}
                                onChange={handleDateChange}/>
                     <div className="song-a-day-page-header-previous-next-div">
-                        <button onClick={handlePrevious}
-                                className="song-a-day-page-header-btn">
-                            <ArrowLeft size={18}/>
-                        </button>
+                        <Button onClick={handlePrevious} className="song-a-day-page-header-btn"
+                                icon={<ArrowLeft size={18}/>}/>
                         {
 
                             <button

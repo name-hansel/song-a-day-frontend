@@ -1,20 +1,23 @@
 import Spinner from "../../../pages/spinner/Spinner.tsx";
 import "./Button.css"
+import * as React from "react";
 
 export default function Button({
                                    buttonText,
                                    className,
                                    onClick,
-                                   loading = false
+                                   loading = false,
+                                   icon
                                }: {
-    buttonText: string;
-    className?: string;
-    onClick: () => void | Promise<void>;
-    loading?: boolean;
+    buttonText?: string,
+    className?: string,
+    onClick: () => void | Promise<void>,
+    loading?: boolean,
+    icon?: React.JSX.Element
 }) {
     return <button className={`${className} common-button`} onClick={onClick} disabled={loading}>
         {
-            loading ? <Spinner/> : <span className="common-button-text">{buttonText}</span>
+            loading ? <Spinner/> : <span className="common-button-text">{icon ?? buttonText}</span>
         }
     </button>
 }

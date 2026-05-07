@@ -2,6 +2,7 @@ import "./MainHeader.css";
 import Clock from "./clock/Clock.tsx";
 import {History, LogOutIcon, Settings} from "lucide-react";
 import {Link, useLocation} from "react-router";
+import Button from "../common/button/Button.tsx";
 
 export default function MainHeader({displayName, onLogout}: {
     displayName: string,
@@ -27,13 +28,8 @@ export default function MainHeader({displayName, onLogout}: {
                           className="main-header-btn"><Settings
                         size={18}/></Link>
                 }
-                <button
-                    title="Logout"
-                    className="main-header-btn"
-                    onClick={onLogout}
-                >
-                    <LogOutIcon size={18}/>
-                </button>
+                <Button buttonText="Logout" onClick={onLogout} className="main-header-btn"
+                        icon={<LogOutIcon size={18}/>}/>
             </div>
         </header>
     );
