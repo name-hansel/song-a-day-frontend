@@ -7,6 +7,7 @@ import {useRequiredAuth} from "../../../context/AuthContext.tsx";
 import HomeButton from "../../common/home_button/HomeButton.tsx";
 import DateInput from "../../common/date_input/DateInput.tsx";
 import Button from "../../common/button/Button.tsx";
+import {useMemo} from "react";
 
 
 export default function SongOfDayPageHeader({onSelect}: {
@@ -16,7 +17,10 @@ export default function SongOfDayPageHeader({onSelect}: {
     const {timezone} = useRequiredAuth();
     // URL date
     const {date} = useParams();
-    const effectiveDate = date ?? getTodayForTimezone(timezone);
+    const today = useMemo(() => {
+        return getTodayForTimezone(timezone);
+    }, [timezone]);
+    const effectiveDate = date ?? today;
 
     function handlePrevious() {
         const previousDate = shiftDate(effectiveDate, -1);
@@ -33,8 +37,6 @@ export default function SongOfDayPageHeader({onSelect}: {
     }
 
     function handleDateChange(currentValue: string) {
-        const today = getTodayForTimezone(timezone);
-
         if (currentValue > today) {
             return;
         }
@@ -62,7 +64,7 @@ export default function SongOfDayPageHeader({onSelect}: {
             }
             {
                 <div className="song-a-day-page-header-action-div">
-                    <DateInput value={date ?? getTodayForTimezone(timezone)} max={getTodayForTimezone(timezone)}
+                    <DateInput value={effectiveDate} max={today}
                                onChange={handleDateChange}/>
                     <div className="song-a-day-page-header-previous-next-div">
                         <Button onClick={handlePrevious} className="song-a-day-page-header-btn"
@@ -70,7 +72,7 @@ export default function SongOfDayPageHeader({onSelect}: {
                         {
                             <Button onClick={handleNext} className="song-a-day-page-header-btn"
                                     icon={<ArrowRight size={18}/>}
-                                    disabled={!date || getTodayForTimezone(timezone) === date}/>
+                                    disabled={!date || today === date}/>
                         }
                     </div>
                 </div>

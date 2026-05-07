@@ -1,6 +1,6 @@
 import "./SongOfDay.css"
 import "../common/SongOfDay.css";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {deleteSongOfDayForAppUser, getSongOfDayForAppUser, updateMemoryForSong} from "../../api/song.ts";
 import {useLocation, useParams} from "react-router";
 import {getErrorMessage} from "../../api/messages.ts";
@@ -29,6 +29,9 @@ export default function SongOfDay() {
     const [fromHistory] = useState<boolean>(location.state?.fromHistory ?? false);
 
     const {timezone} = useRequiredAuth();
+    const today = useMemo(() => {
+        return getTodayForTimezone(timezone);
+    }, [timezone]);
     const {updateHasLoggedSongToday} = useAuth();
 
     useEffect(() => {
@@ -57,7 +60,7 @@ export default function SongOfDay() {
         try {
             setRemoveLoading(true);
             await deleteSongOfDayForAppUser(song.uuid);
-            if (getTodayForTimezone(timezone) === song.songDate) {
+            if (today === song.songDate) {
                 updateHasLoggedSongToday(false);
             }
             setSong(null);
