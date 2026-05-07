@@ -60,11 +60,7 @@ export default function SongOfDayMemory({
             {
                 !isEditing &&
                 <div className="song-of-day-memory-action-div">
-                    <button
-                        className="song-of-day-memory-action-btn"
-                        onClick={startEdit}>
-                        <Pencil size={18}/>
-                    </button>
+                    <Button className="song-of-day-memory-action-btn" onClick={startEdit} icon={<Pencil size={18}/>}/>
                     {
                         memory &&
                         <Button onClick={() => confirmEdit(null)} className="song-of-day-memory-action-btn"
@@ -79,19 +75,11 @@ export default function SongOfDayMemory({
                         {`${draftMemory.length}/${MAX_MEMORY_LENGTH}`}
                     </div>
                     <div className="song-of-day-memory-edit-btns">
-                        <button
-                            onClick={() => {
-                                setIsEditing(false);
-                                void confirmEdit(draftMemory);
-                            }}
-                            className="song-of-day-memory-action-btn">
-                            <Check size={18}/>
-                        </button>
-                        <button
-                            className="song-of-day-memory-action-btn"
-                            onClick={cancelEdit}>
-                            <X size={18}/>
-                        </button>
+                        <Button onClick={() => {
+                            setIsEditing(false);
+                            void confirmEdit(draftMemory);
+                        }} className="song-of-day-memory-action-btn" icon={<Check size={18}/>}/>
+                        <Button className="song-of-day-memory-action-btn" onClick={cancelEdit} icon={<X size={18}/>}/>
                     </div>
                 </div>
             }

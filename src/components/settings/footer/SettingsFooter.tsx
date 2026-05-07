@@ -13,10 +13,7 @@ export default function SettingsFooter({onSave, saveLoading, newUser}: {
         <Button onClick={onSave} buttonText={"Save"}
                 loading={saveLoading}/>
         {
-            !newUser && <button
-                onClick={() => navigate(-1)}>
-                Cancel
-            </button>
+            !newUser && <Button onClick={() => navigate(-1)} buttonText="Cancel"/>
         }
     </footer>
 }

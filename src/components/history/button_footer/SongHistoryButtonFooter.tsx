@@ -1,5 +1,6 @@
 import {ArrowLeft, ArrowRight} from "lucide-react";
 import "./SongHistoryButtonFooter.css"
+import Button from "../../common/button/Button.tsx";
 
 export default function SongHistoryButtonFooter({hasMorePrevious, hasMoreNext, handleNext, handlePrevious}: {
     hasMorePrevious: boolean,
@@ -11,17 +12,13 @@ export default function SongHistoryButtonFooter({hasMorePrevious, hasMoreNext, h
     return <div className="song-history-btn-footer">
         {
             hasMorePrevious &&
-            <button className="song-history-footer-btn"
-                    onClick={handlePrevious}><ArrowLeft
-                size={16}/>
-            </button>
+            <Button className="song-history-footer-btn" onClick={handlePrevious} icon={<ArrowLeft
+                size={16}/>}
+            />
         }
         {
             hasMoreNext &&
-            <button onClick={handleNext}
-                    className="song-history-footer-btn">
-                <ArrowRight size={16}/>
-            </button>
+            <Button onClick={handleNext} className="song-history-footer-btn" icon={<ArrowRight size={16}/>}/>
         }
     </div>
 }
