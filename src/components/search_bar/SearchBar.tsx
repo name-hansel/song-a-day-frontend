@@ -94,12 +94,12 @@ export default function SearchBar({onSelect}: {
                     <div className="search-results">
                         {
                             searchResult.map((track: TrackSearch) => (
-                                <TrackProposalItem key={track.spotifyId}
+                                <TrackProposalItem key={track.spotifyTrackId}
                                                    track={track}
                                                    hideProposals={() => setShowProposals(false)}
                                                    onSelect={() => {
                                                        setQuery("");
-                                                       onSelect(track.spotifyId);
+                                                       onSelect(track.spotifyTrackId);
                                                    }}
                                 />
                             ))

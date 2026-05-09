@@ -12,9 +12,9 @@ export default function TrackProposalItem({
     onSelect: (trackId: string) => void
 }) {
     return (
-        <div className="search-item" id={track.spotifyId} onClick={() => {
+        <div className="search-item" id={track.spotifyTrackId} onClick={() => {
             hideProposals();
-            onSelect(track.spotifyId);
+            onSelect(track.spotifyTrackId);
         }}>
             <Image src={track.smallImageUrl}
                    alt="Album cover"

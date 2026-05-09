@@ -1,5 +1,5 @@
 export type TrackSearch = {
-    spotifyId: string;
+    spotifyTrackId: string;
     trackName: string;
     artistName: string;
     albumName: string;
